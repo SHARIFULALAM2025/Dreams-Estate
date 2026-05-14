@@ -12,11 +12,22 @@ import ListSidebar from '../Listing/ListSidebar/ListSidebar'
 import RentList from '../Listing/RentList/RentList'
 import RentGridSidebar from '../Listing/RentGridSidebar/RentGridSidebar'
 import RentListSidebar from '../Listing/RentListSidebar/RentListSidebar'
+import ErrorPage404 from '../Error/ErrorPage404'
+import BlogList from '../Blog/BlogList'
+import BlogGrid from '../Blog/BlogGrid'
+import About from '../Others/About/About'
+import Policy from '../Others/Policy'
+import Contact from '../Others/Contact'
+import Faq from '../Others/Faq'
+import Pricing from '../Others/Pricing'
+import Testimonial from '../Others/Testimonial'
+import Conditions from '../Others/Conditions'
 
 export const router = createBrowserRouter([
   {
     path: '/',
     Component: MainLayout,
+    ErrorBoundary: ErrorPage404,
     children: [
       { index: true, Component: Home },
       { path: 'Buy', Component: Buy },
@@ -27,6 +38,15 @@ export const router = createBrowserRouter([
       { path: 'RentList', Component: RentList },
       { path: 'RentGridSidebar', Component: RentGridSidebar },
       { path: 'RentListSidebar', Component: RentListSidebar },
+      { path: 'BlogGrid', Component: BlogGrid },
+      { path: 'BlogList', Component: BlogList },
+      { path: 'About', Component: About },
+      { path: 'Faq', Component: Faq },
+      { path: 'Contact', Component: Contact },
+      { path: 'Policy', Component: Policy },
+      { path: 'Pricing', Component: Pricing },
+      { path: 'Testimonial', Component: Testimonial },
+      { path: 'Conditions', Component: Conditions },
     ],
   },
   {

@@ -34,7 +34,7 @@ const Hero = () => {
         <div className="max-w-3xl mb-10 md:mb-16">
           <h1 className="text-3xl sm:text-4xl md:text-6xl font-extrabold text-slate-900 leading-[1.2] mb-6 drop-shadow-md">
             World's Largest Property Listing site for
-            <span className="text-emerald-600">Rental, Buy & Sell...</span>
+            <span className="text-emerald-600"> Rental, Buy & Sell...</span>
           </h1>
           <p className="text-base md:text-lg text-black font-medium max-w-xl  ">
             Properties for buy / rent in in your location. We have more than
@@ -86,7 +86,7 @@ const Hero = () => {
                   <option>select</option>
                   <option>Bye Property</option>
                   <option>Rent Property</option>
-                  
+
                 </select>
                 <FaChevronDown
                   className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none"
