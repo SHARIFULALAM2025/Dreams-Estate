@@ -5,11 +5,12 @@ import { navData } from './NavData'
 import { FaLock } from 'react-icons/fa6'
 import DarkMode from '../DarkMode/DarkMode'
 import { AuthContext } from '../Authentication/AuthContext'
-import { IoIosSearch } from 'react-icons/io'
+
 import SearchBox from '../SearchBox/SearchBox'
+import LogoutButton from '../Logout/LogoutButton'
 
 const Navbar = () => {
-  const { theme } = useContext(AuthContext)
+  const { user } = useContext(AuthContext)
 
   return (
     <nav className="flex justify-between items-center gap-8 bg-white dark:bg-slate-950 px-10  shadow-sm dark:shadow-slate-900/50 relative z-50 transition-colors duration-300">
@@ -82,26 +83,30 @@ const Navbar = () => {
 
       {/* Theme Toggle & Auth Buttons */}
       <div className="flex items-center gap-2 ">
-        <SearchBox/>
+        <SearchBox />
         <DarkMode />
       </div>
-      <div className="flex items-center gap-3">
-        <Link
-          to="auth/login"
-          className="px-5 py-2 text-white flex items-center font-semibold rounded-lg bg-slate-800 dark:bg-slate-600 hover:bg-slate-700 dark:hover:bg-slate-700 gap-2 hover:shadow-lg transition-all active:scale-95"
-        >
-          <FaLock className="w-3 h-3" />
-          Login
-        </Link>
+      {user ? (
+        <LogoutButton />
+      ) : (
+        <div className="flex items-center gap-3">
+          <Link
+            to="auth/login"
+            className="px-5 py-2 text-white flex items-center font-semibold rounded-lg bg-slate-800 dark:bg-slate-600 hover:bg-slate-700 dark:hover:bg-slate-700 gap-2 hover:shadow-lg transition-all active:scale-95"
+          >
+            <FaLock className="w-3 h-3" />
+            Login
+          </Link>
 
-        <Link
-          to="auth/register"
-          className="px-5 py-2 bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-bold rounded-lg shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/40 hover:-translate-y-0.5 transition-all active:scale-95 flex items-center gap-2"
-        >
-          <FaLock className="w-3 h-3" />
-          Register
-        </Link>
-      </div>
+          <Link
+            to="auth/register"
+            className="px-5 py-2 bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-bold rounded-lg shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/40 hover:-translate-y-0.5 transition-all active:scale-95 flex items-center gap-2"
+          >
+            <FaLock className="w-3 h-3" />
+            Register
+          </Link>
+        </div>
+      )}
     </nav>
   )
 }

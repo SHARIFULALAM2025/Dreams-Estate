@@ -9,6 +9,8 @@ import {
 import { FcGoogle } from 'react-icons/fc'
 import { Link } from 'react-router'
 import { useForm } from 'react-hook-form'
+import Social from '../Social/Social'
+import Facebook from '../Facebook/Facebook'
 const Login = () => {
   const [eye, openEye] = useState(false)
   const handelEye = () => {
@@ -161,14 +163,8 @@ const Login = () => {
 
         {/* Social Buttons - Stacks on tiny screens, side-by-side on sm+ */}
         <div className="flex flex-col sm:flex-row gap-4">
-          <button className="flex-1 flex items-center justify-center gap-2 border border-slate-200 py-2.5 rounded-md hover:bg-slate-50 transition active:bg-slate-100">
-            <FaFacebook className="text-blue-600" />
-            <span className="text-sm font-medium text-slate-600">Facebook</span>
-          </button>
-          <button className="flex-1 flex items-center justify-center gap-2 border border-slate-200 py-2.5 rounded-md hover:bg-slate-50 transition active:bg-slate-100">
-            <FcGoogle />
-            <span className="text-sm font-medium text-slate-600">Google</span>
-          </button>
+          <Facebook/>
+         <Social/>
         </div>
 
         {/* Footer Link */}

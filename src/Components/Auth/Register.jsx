@@ -10,6 +10,8 @@ import {
 import { FcGoogle } from 'react-icons/fc'
 import { Link } from 'react-router'
 import { FaEye } from 'react-icons/fa'
+import Social from '../Social/Social'
+import Facebook from '../Facebook/Facebook'
 
 
 const Register = () => {
@@ -212,15 +214,9 @@ const Register = () => {
         </div>
 
         {/* Social Buttons - Stacks on mobile, side-by-side on larger screens */}
-        <div className="flex flex-col sm:flex-row gap-4">
-          <button className="flex-1 flex items-center justify-center gap-2 border border-slate-200 py-2.5 rounded-md hover:bg-slate-50 transition">
-            <FaFacebook className="text-blue-600" />
-            <span className="text-sm font-medium text-slate-600">Facebook</span>
-          </button>
-          <button className="flex-1 flex items-center justify-center gap-2 border border-slate-200 py-2.5 rounded-md hover:bg-slate-50 transition">
-            <FcGoogle />
-            <span className="text-sm font-medium text-slate-600">Google</span>
-          </button>
+        <div className="flex flex-row gap-4 justify-around">
+         <Facebook />
+          <Social/>
         </div>
 
         {/* Footer Link */}

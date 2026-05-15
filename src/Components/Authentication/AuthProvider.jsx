@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 import {
   createUserWithEmailAndPassword,
+  FacebookAuthProvider,
   GoogleAuthProvider,
   onAuthStateChanged,
   signInWithEmailAndPassword,
@@ -32,9 +33,22 @@ const AuthProvider = ({ children }) => {
   const LogOut = () => {
     return signOut(auth)
   }
+  //
+  // ফেসবুক প্রোভাইডার সেটআপ
+  const facebookProvider = new FacebookAuthProvider()
+
+  // ফেসবুক লগইন ফাংশন
+  const CreateAccountFacebook = () => {
+    setLoading(true)
+    return signInWithPopup(auth, facebookProvider)
+  }
   //  user  login google
   const provider = new GoogleAuthProvider()
   const CreateAccountGoogle = () => {
+    provider.setCustomParameters({
+      prompt: 'select_account',
+    })
+
     return signInWithPopup(auth, provider)
   }
   //
@@ -54,6 +68,7 @@ const AuthProvider = ({ children }) => {
     LoginUser,
     LogOut,
     CreateAccountGoogle,
+    CreateAccountFacebook,
     user,
     setUser,
     theme,

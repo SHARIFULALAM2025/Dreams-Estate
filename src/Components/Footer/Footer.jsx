@@ -78,7 +78,7 @@ const Footer = () => {
                 { text: 'Los Angeles', href: '#' },
               ].map((item) => (
                 <a
-                  key={item}
+                  key={item.text}
                   href={item.href}
                   className="text-slate-300 hover:underline hover:text-emerald-400 transition-colors cursor-pointer"
                 >
