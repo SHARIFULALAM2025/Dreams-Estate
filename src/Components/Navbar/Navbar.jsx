@@ -22,12 +22,12 @@ const Navbar = () => {
     <nav className="bg-white dark:bg-slate-950  shadow-sm dark:shadow-slate-900/50 relative z-50 transition-colors duration-300">
       <div className="flex justify-between items-center  max-w-[1440px] mx-auto gap-4">
         {/* Logo Section */}
-        <div className="flex items-center gap-2 shrink-0">
+        <Link to="/" className="flex items-center gap-2 shrink-0">
           <img src="/Logo.png" alt="Logo" className="w-10 h-10" />
           <h1 className="font-bold text-xL md:text-2xl text-slate-800 dark:text-white">
             Dreams Estate
           </h1>
-        </div>
+        </Link>
 
         {/* Desktop Navigation Links - Hidden on Mobile */}
         <div className="hidden lg:flex items-center gap-2">

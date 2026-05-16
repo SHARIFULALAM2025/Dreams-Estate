@@ -24,6 +24,7 @@ import Testimonial from '../Others/Testimonial'
 import Conditions from '../Others/Conditions'
 import Gallery from '../Others/Gallery/Gallery'
 import Team from '../Others/Team/Team'
+import AddProperty from '../../AddProperty/AddProperty'
 
 
 export const router = createBrowserRouter([
@@ -52,6 +53,7 @@ export const router = createBrowserRouter([
       { path: 'Conditions', Component: Conditions },
       { path: 'gallery', Component: Gallery },
       { path: 'team', Component: Team },
+      { path: 'addProperty', Component: AddProperty },
     ],
   },
   {
