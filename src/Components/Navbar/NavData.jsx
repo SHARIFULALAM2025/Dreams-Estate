@@ -110,6 +110,7 @@ export const navData = [
       { id: 546, Name: 'Pricing', path: '/Pricing' },
       { id: 547, Name: 'Terms & Conditions', path: '/Conditions' },
       { id: 548, Name: 'Privacy Policy', path: '/Policy' },
+      { id: 549, Name: 'Our Team', path: '/team' },
     ],
   },
 ]
