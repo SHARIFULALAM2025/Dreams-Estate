@@ -20,7 +20,7 @@ const Navbar = () => {
 
   return (
     <nav className="bg-white dark:bg-slate-950  shadow-sm dark:shadow-slate-900/50 relative z-50 transition-colors duration-300">
-      <div className="flex justify-between items-center h-20 max-w-[1440px] mx-auto gap-4">
+      <div className="flex justify-between items-center  max-w-[1440px] mx-auto gap-4">
         {/* Logo Section */}
         <div className="flex items-center gap-2 shrink-0">
           <img src="/Logo.png" alt="Logo" className="w-10 h-10" />
