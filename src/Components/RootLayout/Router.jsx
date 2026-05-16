@@ -22,6 +22,8 @@ import Faq from '../Others/Faq'
 import Pricing from '../Others/Pricing'
 import Testimonial from '../Others/Testimonial'
 import Conditions from '../Others/Conditions'
+import Gallery from '../Others/Gallery/Gallery'
+
 
 export const router = createBrowserRouter([
   {
@@ -47,6 +49,7 @@ export const router = createBrowserRouter([
       { path: 'Pricing', Component: Pricing },
       { path: 'Testimonial', Component: Testimonial },
       { path: 'Conditions', Component: Conditions },
+      { path: 'gallery', Component: Gallery },
     ],
   },
   {

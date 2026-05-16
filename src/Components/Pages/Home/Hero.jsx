@@ -5,6 +5,7 @@ const Hero = () => {
   // ইমেজের লিস্ট
   const images = [
     'https://i.ibb.co.com/5x5Jpprf/Gemini-Generated-Image-azm0y7azm0y7azm0.png',
+    'https://i.ibb.co.com/5XHQV4tw/Gemini-Generated-Image-wiw3xdwiw3xdwiw3.png',
     'https://i.ibb.co.com/FkbbNMck/kara-eads-L7-Ew-Hkq1-B2s-unsplash.jpg',
     'https://i.ibb.co.com/XkNwJmGq/lotus-design-n-print-Wgk-A3-CSFrjc-unsplash.jpg',
   ]
