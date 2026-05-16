@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 
 const Faq = () => {
-  // Use state to track which accordion item is open across all sections
-  // We'll use a string like "General-0" to ensure only one item is open at a time
   const [openId, setOpenId] = useState('General-0')
 
   const categories = [
@@ -127,66 +125,103 @@ const Faq = () => {
   }
 
   return (
-    <section className="grid grid-cols-12 gap-8 p-10 max-w-7xl mx-auto font-sans">
-      {/* Sidebar - Fixed/Sticky so it stays visible while scrolling */}
-      <div className="col-span-3">
-        <div className="sticky top-10 border border-gray-100 rounded-lg p-6 shadow-sm">
-          <h2 className="font-bold text-xl mb-6">Table of Contents</h2>
-          <div className="flex flex-col gap-2">
-            {categories.map((tab) => (
-              <button
-                key={tab}
-                onClick={() => scrollToSection(tab)}
-                className="text-left px-4 py-3 rounded-lg transition-all duration-200 text-gray-500 hover:bg-gray-50 hover:text-[#0F172A]"
-              >
-                {tab}
-              </button>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Content Area - Shows all categories */}
-      <div className="col-span-9 flex flex-col gap-12">
-        {categories.map((category) => (
-          <div key={category} id={category} className="scroll-mt-10">
-            <h2 className="text-3xl font-bold mb-6 text-[#0F172A]">
-              {category}
+    <div className="bg-white dark:bg-slate-950 transition-colors duration-300">
+      <section className="grid grid-cols-1 md:grid-cols-12 gap-8 py-16 px-6 lg:px-10 max-w-7xl mx-auto">
+        {/* Sidebar - Table of Contents */}
+        <div className="col-span-1 md:col-span-3">
+          <div className="sticky top-24 bg-slate-50 dark:bg-slate-900/50 border border-slate-100 dark:border-slate-800 rounded-2xl p-6 shadow-sm">
+            <h2 className="font-bold text-xl mb-6 text-slate-900 dark:text-white">
+              Topics
             </h2>
-            <div className="flex flex-col gap-4">
-              {faqData[category].map((item, index) => {
-                const uniqueId = `${category}-${index}`
-                const isOpen = openId === uniqueId
-
-                return (
-                  <div
-                    key={uniqueId}
-                    className="border border-gray-200 rounded-xl overflow-hidden bg-white"
-                  >
-                    <button
-                      className="w-full flex justify-between items-center p-5 text-left font-semibold text-lg hover:bg-gray-50 transition-colors"
-                      onClick={() => setOpenId(isOpen ? null : uniqueId)}
-                    >
-                      {item.question}
-                      <span className="text-2xl text-gray-400">
-                        {isOpen ? '−' : '+'}
-                      </span>
-                    </button>
-
-                    {isOpen && (
-                      <div className="px-5 pb-5 text-gray-600 border-t border-gray-100 pt-4 animate-fadeIn">
-                        {item.answer}
-                      </div>
-                    )}
-                  </div>
-                )
-              })}
+            <div className="flex flex-col gap-2">
+              {categories.map((tab) => (
+                <button
+                  key={tab}
+                  onClick={() => scrollToSection(tab)}
+                  className="text-left px-4 py-3 rounded-xl transition-all duration-300 text-slate-500 dark:text-slate-400 hover:bg-emerald-50 dark:hover:bg-emerald-500/10 hover:text-emerald-600 dark:hover:text-emerald-400 font-medium"
+                >
+                  {tab}
+                </button>
+              ))}
             </div>
           </div>
-        ))}
-      </div>
-    </section>
+        </div>
+
+        {/* Content Area */}
+        <div className="col-span-1 md:col-span-9 flex flex-col gap-16">
+          {categories.map((category) => (
+            <div key={category} id={category} className="scroll-mt-24">
+              <div className="flex items-center gap-4 mb-8">
+                <h2 className="text-3xl font-black text-slate-900 dark:text-white">
+                  {category}
+                </h2>
+                <div className="h-1 flex-grow bg-slate-100 dark:bg-slate-800 rounded-full">
+                  <div className="h-full w-20 bg-emerald-500 rounded-full"></div>
+                </div>
+              </div>
+
+              <div className="flex flex-col gap-4">
+                {faqData[category].map((item, index) => {
+                  const uniqueId = `${category}-${index}`
+                  const isOpen = openId === uniqueId
+
+                  return (
+                    <div
+                      key={uniqueId}
+                      className={`border rounded-2xl transition-all duration-300 overflow-hidden ${
+                        isOpen
+                          ? 'border-emerald-500 shadow-lg shadow-emerald-500/5 bg-white dark:bg-slate-900'
+                          : 'border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900/40 hover:border-slate-200 dark:hover:border-slate-700'
+                      }`}
+                    >
+                      <button
+                        className="w-full flex justify-between items-center p-6 text-left transition-colors"
+                        onClick={() => setOpenId(isOpen ? null : uniqueId)}
+                      >
+                        <span
+                          className={`text-lg font-bold transition-colors ${isOpen ? 'text-emerald-600 dark:text-emerald-400' : 'text-slate-700 dark:text-slate-200'}`}
+                        >
+                          {item.question}
+                        </span>
+                        <div
+                          className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${isOpen ? 'bg-emerald-500 text-white rotate-180' : 'bg-slate-100 dark:bg-slate-800 text-slate-500'}`}
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-5 w-5"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                          >
+                            <path
+                              fillRule="evenodd"
+                              d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                              clipRule="evenodd"
+                            />
+                          </svg>
+                        </div>
+                      </button>
+
+                      <div
+                        className={`transition-all duration-500 ease-in-out overflow-hidden ${
+                          isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+                        }`}
+                      >
+                        <div className="px-6 pb-6 text-slate-600 dark:text-slate-400 leading-relaxed border-t border-slate-50 dark:border-slate-800/50 pt-4">
+                          {item.answer}
+                        </div>
+                      </div>
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+    </div>
   )
 }
 
 export default Faq
+
+
