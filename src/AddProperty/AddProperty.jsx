@@ -1,37 +1,37 @@
 import React, { useState } from 'react'
-import { IoCalendarOutline } from 'react-icons/io5'
+import { useForm } from 'react-hook-form'
 import { countryData } from './Data'
 import { useTranslation } from 'react-i18next'
+import { uploadImage } from '../Components/ReusableFunction/UploadImage'
 const AddProperty = () => {
 
 
   const { i18n } = useTranslation()
   const currentLang = i18n.language || 'en'
 
-  // ৩টি ড্রপডাউনের জন্য ৩টি স্টেট
+
   const [selectedCountry, setSelectedCountry] = useState('')
   const [selectedState, setSelectedState] = useState('')
   const [selectedCity, setSelectedCity] = useState('')
 
-  // ১. সিলেক্টেড দেশের ওপর ভিত্তি করে জেলা (States) ফিল্টার করা
+
   const availableStates =
     countryData.find((c) => c.countryId === selectedCountry)?.states || []
 
-  // ২. সিলেক্টেড জেলার ওপর ভিত্তি করে উপজেলা (Cities) ফিল্টার করা
   const availableCities =
     availableStates.find((s) => s.stateId === selectedState)?.upazilas || []
 
-  // দেশ পরিবর্তন হলে জেলা ও উপজেলা রিসেট করার ফাংশন
+
   const handleCountryChange = (e) => {
     setSelectedCountry(e.target.value)
-    setSelectedState('') // আগের সিলেক্ট করা জেলা রিসেট
-    setSelectedCity('') // আগের সিলেক্ট করা উপজেলা রিসেট
+    setSelectedState('')
+    setSelectedCity('')
   }
 
-  // জেলা পরিবর্তন হলে উপজেলা রিসেট করার ফাংশন
+
   const handleStateChange = (e) => {
     setSelectedState(e.target.value)
-    setSelectedCity('') // আগের সিলেক্ট করা উপজেলা রিসেট
+    setSelectedCity('')
   }
   const [activeTab, setActiveTab] = useState('Property Information')
 
@@ -73,6 +73,35 @@ const AddProperty = () => {
     { label: 'Sporting Facilities', defaultChecked: true },
   ]
 
+const {
+  register,
+  handleSubmit,
+
+  formState: { errors },
+  } = useForm({ defaultValues: { amenities: amenitiesList.filter(item => item.defaultChecked).map(item => item.label) } })
+
+
+  const handelData = async (data) => {
+    console.log(data);
+
+      //   let uploadedLinks = []
+      // if (data.attachment && data.attachment.length > 0) {
+      //   for (const file of data.attachment) {
+      //     const url = await uploadImage(file)
+      //     if (url) {
+      //       uploadedLinks.push(url)
+      //     }
+      //   }
+
+
+}
+
+
+
+
+
+
+
   return (
     <div className="bg-slate-50/50 dark:bg-slate-950 min-h-screen   transition-colors duration-300">
       <div className="max-w-7xl mx-auto bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 p-6 md:p-10">
@@ -94,7 +123,7 @@ const AddProperty = () => {
         </div>
 
         {/* Form Body Layout */}
-        <form className="space-y-16">
+        <form onSubmit={handleSubmit(handelData)} className="space-y-16">
           {/* SECTION 1: Property Information */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
             <div className="lg:col-span-4 space-y-2">
@@ -113,57 +142,85 @@ const AddProperty = () => {
                   Property Name
                 </label>
                 <input
+                  {...register('propertyName', { required: true })}
                   type="text"
                   className="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl py-3 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all dark:text-white"
                 />
+                {errors.propertyName && (
+                  <span className="text-red-600">This field is required!</span>
+                )}
               </div>
               <div>
                 <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">
                   Property Type
                 </label>
-                <select className="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl py-3 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all dark:text-white">
+                <select
+                  {...register('propertyType', { required: true })}
+                  className="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl py-3 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all dark:text-white"
+                >
                   <option>Select</option>
-                  <option>Buy</option>
-                  <option>Sell</option>
+                  <option value="Buy">Buy</option>
+                  <option value="Sell">Sell</option>
                 </select>
+                {errors.propertyType && (
+                  <span className="text-red-600">This field is required!</span>
+                )}
               </div>
               <div>
                 <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">
                   Property Category
                 </label>
-                <select className="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl py-3 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all dark:text-white">
+                <select
+                  {...register('propertyCategory', { required: true })}
+                  className="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl py-3 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all dark:text-white"
+                >
                   <option>Select</option>
-                  <option>Apartment</option>
-                  <option>Villa</option>
-                  <option>Cando</option>
-                  <option>Residency</option>
+
+                  <option value="Apartment">Apartment</option>
+                  <option value="Villa">Villa</option>
+                  <option value="Cando">Cando</option>
+                  <option value="Residency">Residency</option>
                 </select>
+                {errors.propertyCategory && (
+                  <span className="text-red-600">This field is required!</span>
+                )}
               </div>
               <div>
                 <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">
                   Currency Type
                 </label>
-                <select className="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl py-3 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all dark:text-white">
+                <select
+                  {...register('propertyCurrency', { required: true })}
+                  className="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl py-3 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all dark:text-white"
+                >
                   <option>Select</option>
-                  <option>Cash</option>
-                  <option>Bank Transfer</option>
-                  <option>Biksh</option>
+                  <option value="Cash">Cash</option>
+                  <option value="Bank Transfer">Bank Transfer</option>
+                  <option value="Biksh">Biksh</option>
                 </select>
+                {errors.propertyCurrency && (
+                  <span className="text-red-600">This field is required!</span>
+                )}
               </div>
               <div>
                 <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">
                   Sale Price
                 </label>
                 <input
+                  {...register('propertyPriceSale', { required: true })}
                   type="text"
                   className="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl py-3 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all dark:text-white"
                 />
+                {errors.propertyPrice && (
+                  <span className="text-red-600">This field is required!</span>
+                )}
               </div>
               <div>
                 <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">
                   Offer Price
                 </label>
                 <input
+                  {...register('propertyOfferPrice', { required: true })}
                   type="text"
                   className="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl py-3 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all dark:text-white"
                 />
@@ -189,7 +246,8 @@ const AddProperty = () => {
                   Property Id
                 </label>
                 <input
-                  type="text"
+                  {...register('propertyPropertyId', { required: true })}
+                  type="number"
                   className="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl py-3 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all dark:text-white"
                 />
               </div>
@@ -198,7 +256,8 @@ const AddProperty = () => {
                   Price Per Sqft
                 </label>
                 <input
-                  type="text"
+                  {...register('propertyPropertyId', { required: true })}
+                  type="number"
                   className="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl py-3 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all dark:text-white"
                 />
               </div>
@@ -206,10 +265,13 @@ const AddProperty = () => {
                 <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">
                   Structure Type
                 </label>
-                <select className="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl py-3 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all dark:text-white">
+                <select
+                  {...register('propertyStructureType', { required: true })}
+                  className="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl py-3 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all dark:text-white"
+                >
                   <option>Select</option>
-                  <option>Square</option>
-                  <option>Rectangle</option>
+                  <option value="Square">Square</option>
+                  <option value="Rectangle">Rectangle</option>
                 </select>
               </div>
               <div>
@@ -217,7 +279,8 @@ const AddProperty = () => {
                   No of Bedrooms
                 </label>
                 <input
-                  type="text"
+                  {...register('propertyBedrooms', { required: true })}
+                  type="number"
                   className="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl py-3 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all dark:text-white"
                 />
               </div>
@@ -226,7 +289,8 @@ const AddProperty = () => {
                   No of Bathrooms
                 </label>
                 <input
-                  type="text"
+                  type="number"
+                  {...register('propertyBathrooms', { required: true })}
                   className="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl py-3 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all dark:text-white"
                 />
               </div>
@@ -235,7 +299,8 @@ const AddProperty = () => {
                   Sqft
                 </label>
                 <input
-                  type="text"
+                  type="number"
+                  {...register('propertySqft', { required: true })}
                   className="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl py-3 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all dark:text-white"
                 />
               </div>
@@ -244,7 +309,8 @@ const AddProperty = () => {
                   Parking
                 </label>
                 <input
-                  type="text"
+                  {...register('propertyParking', { required: true })}
+                  type="number"
                   className="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl py-3 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all dark:text-white"
                 />
               </div>
@@ -252,10 +318,13 @@ const AddProperty = () => {
                 <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">
                   Balcony
                 </label>
-                <select className="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl py-3 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all dark:text-white">
+                <select
+                  {...register('propertyBalcony', { required: true })}
+                  className="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl py-3 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all dark:text-white"
+                >
                   <option>Select</option>
-                  <option>Yes</option>
-                  <option>No</option>
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
                 </select>
               </div>
               <div>
@@ -263,7 +332,8 @@ const AddProperty = () => {
                   Floor
                 </label>
                 <input
-                  type="text"
+                  {...register('propertyFloor', { required: true })}
+                  type="number"
                   className="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl py-3 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all dark:text-white"
                 />
               </div>
@@ -272,7 +342,8 @@ const AddProperty = () => {
                   Wardrobe
                 </label>
                 <input
-                  type="text"
+                  {...register('propertyWardrobe', { required: true })}
+                  type="number"
                   className="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl py-3 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all dark:text-white"
                 />
               </div>
@@ -281,7 +352,8 @@ const AddProperty = () => {
                   TV
                 </label>
                 <input
-                  type="text"
+                  {...register('propertyTV', { required: true })}
+                  type="number"
                   className="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl py-3 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all dark:text-white"
                 />
               </div>
@@ -290,7 +362,8 @@ const AddProperty = () => {
                   Water Purifier
                 </label>
                 <input
-                  type="text"
+                  {...register('propertyWaterPurifier', { required: true })}
+                  type="number"
                   className="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl py-3 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all dark:text-white"
                 />
               </div>
@@ -299,7 +372,8 @@ const AddProperty = () => {
                   Microwave
                 </label>
                 <input
-                  type="text"
+                  {...register('propertyMicrowave', { required: true })}
+                  type="number"
                   className="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl py-3 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all dark:text-white"
                 />
               </div>
@@ -308,7 +382,8 @@ const AddProperty = () => {
                   AC
                 </label>
                 <input
-                  type="text"
+                  {...register('propertyAC', { required: true })}
+                  type="number"
                   className="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl py-3 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all dark:text-white"
                 />
               </div>
@@ -317,7 +392,8 @@ const AddProperty = () => {
                   Fridge
                 </label>
                 <input
-                  type="text"
+                  {...register('propertyFridge', { required: true })}
+                  type="number"
                   className="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl py-3 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all dark:text-white"
                 />
               </div>
@@ -326,7 +402,8 @@ const AddProperty = () => {
                   Wardrobe
                 </label>
                 <input
-                  type="text"
+                  {...register('propertyWardrobe', { required: true })}
+                  type="number"
                   className="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl py-3 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all dark:text-white"
                 />
               </div>
@@ -335,7 +412,8 @@ const AddProperty = () => {
                   Garage Size
                 </label>
                 <input
-                  type="text"
+                  {...register('propertyGarageSize', { required: true })}
+                  type="number"
                   className="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl py-3 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all dark:text-white"
                 />
               </div>
@@ -347,6 +425,7 @@ const AddProperty = () => {
                 </label>
                 <div className="relative">
                   <input
+                    {...register('propertyAvailableFrom', { required: true })}
                     type="date"
                     placeholder="dd/mm/yyyy"
                     className="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl py-3 pl-4 pr-10 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all dark:text-white"
@@ -358,10 +437,13 @@ const AddProperty = () => {
                 <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">
                   Curtains
                 </label>
-                <select className="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl py-3 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all dark:text-white">
+                <select
+                  {...register('propertyAvailableCurtains', { required: true })}
+                  className="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl py-3 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all dark:text-white"
+                >
                   <option>Select</option>
-                  <option>Yes</option>
-                  <option>No</option>
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
                 </select>
               </div>
 
@@ -373,6 +455,9 @@ const AddProperty = () => {
                   </label>
                   <div className="relative">
                     <input
+                      {...register('propertyYearConstructed', {
+                        required: true,
+                      })}
                       type="date"
                       placeholder="dd/mm/yyyy"
                       className="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl py-3 pl-4 pr-10 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all dark:text-white"
@@ -403,8 +488,9 @@ const AddProperty = () => {
                   className="flex items-center gap-3 cursor-pointer select-none group py-1"
                 >
                   <input
+                    {...register('amenities')}
                     type="checkbox"
-                    defaultChecked={item.defaultChecked}
+                    value={item.label}
                     className="w-[18px] h-[18px] rounded accent-emerald-500 dark:accent-emerald-400 border-slate-300 dark:border-slate-700 cursor-pointer"
                   />
                   <span className="text-[13px] font-semibold text-slate-600 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-white transition-colors">
@@ -414,41 +500,28 @@ const AddProperty = () => {
               ))}
             </div>
           </div>
-          {/* SECTION 4: Property Documents */}
+          {/* SECTION 4: about */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 border-t border-slate-100 dark:border-slate-800 pt-12">
             <div className="lg:col-span-4 space-y-2">
               <h3 className="text-xl font-black text-slate-900 dark:text-white">
-                Property Documents
+                About Property
               </h3>
               <p className="text-sm text-slate-400 dark:text-slate-500 leading-relaxed">
-                View and Upload all essential legal documents, including title,
-                approvals, and receipts, organized for transparency and
-                convenience.
+                A beautifully designed home combining style and function, ideal
+                for modern lifestyles and peaceful, long-term living.
               </p>
             </div>
 
-            <div className="lg:col-span-8 bg-slate-50/30 dark:bg-slate-900/40 p-6 rounded-2xl border border-slate-100/70 dark:border-slate-800/60 space-y-4">
+            <div className="lg:col-span-8 bg-slate-50/30 dark:bg-slate-900/40 p-6 rounded-2xl border border-slate-100/70 dark:border-slate-800/60">
               <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">
-                Upload Documents
+                about of Property
               </label>
-              <div className="flex items-center gap-3 bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl p-1.5 max-w-full overflow-hidden">
-                <button
-                  type="button"
-                  className="bg-[#0F172A] hover:bg-slate-800 dark:bg-slate-700 dark:hover:bg-slate-600 text-white font-bold text-xs px-4 py-2.5 rounded-lg shrink-0 transition-colors"
-                >
-                  Browse Files
-                </button>
-                <span className="text-xs text-slate-400 truncate">
-                  No Files Selected
-                </span>
-              </div>
-              <ul className="list-disc list-inside text-xs text-slate-400 space-y-1 pl-1">
-                <li>The maximum size is 8 MB. Format: PDF.</li>
-                <li>Maximum number of files upload will be 5 files.</li>
-              </ul>
-              <div className="flex items-center gap-1.5 text-xs text-emerald-500 font-bold pt-1">
-                <span>✓</span> Document Uploaded Successfully
-              </div>
+              <textarea
+                {...register('aboutProperty')}
+                placeholder="About Property"
+                rows={5}
+                className="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl py-3 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all dark:text-white resize-none"
+              ></textarea>
             </div>
           </div>
 
@@ -504,14 +577,15 @@ const AddProperty = () => {
                 Photo
               </label>
               <div className="flex items-center gap-3 bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl p-1.5">
-                <button
-                  type="button"
+                <input
+                  type="file"
+                  multiple
+                  {...register('attachment')}
                   className="bg-[#0F172A] hover:bg-slate-800 dark:bg-slate-700 text-white font-bold text-xs px-4 py-2.5 rounded-lg shrink-0 transition-colors"
-                >
-                  Browse Files
-                </button>
+                />
+
                 <span className="text-xs text-slate-400">
-                  3 Photos Selected
+                  6 Photos Selected
                 </span>
               </div>
               <ul className="list-disc list-inside text-xs text-slate-400 space-y-1 pl-1">
@@ -544,10 +618,12 @@ const AddProperty = () => {
                 <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">
                   Embed Video
                 </label>
-                <select className="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl py-3 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all dark:text-white">
+                <select
+                  {...register("EmbedVideo",{required:true})}
+                  className="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl py-3 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all dark:text-white">
                   <option>Select</option>
-                  <option>Youtube</option>
-                  <option>Vimeo</option>
+                  <option value="Youtube">Youtube</option>
+                  <option value="Vimeo">Vimeo</option>
                 </select>
               </div>
               <div>
@@ -555,6 +631,7 @@ const AddProperty = () => {
                   Video Link
                 </label>
                 <input
+                  {...register("VideoLink")}
                   type="text"
                   className="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl py-3 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all dark:text-white"
                 />
@@ -579,6 +656,7 @@ const AddProperty = () => {
                 Description of Property
               </label>
               <textarea
+                {...register("description")}
                 rows={5}
                 className="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl py-3 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all dark:text-white resize-none"
               ></textarea>
