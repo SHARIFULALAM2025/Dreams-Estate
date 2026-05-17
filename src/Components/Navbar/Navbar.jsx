@@ -13,6 +13,7 @@ import { AuthContext } from '../Authentication/AuthContext'
 import SearchBox from '../SearchBox/SearchBox'
 import LogoutButton from '../Logout/LogoutButton'
 import { RxCross2 } from 'react-icons/rx'
+import LanguageSelector from '../LanguageSelector/LanguageSelector'
 
 const Navbar = () => {
   const { user } = useContext(AuthContext)
@@ -87,6 +88,7 @@ const Navbar = () => {
         <div className="hidden lg:flex items-center gap-4">
           <SearchBox />
           <DarkMode />
+          <LanguageSelector/>
           {user ? (
             <LogoutButton />
           ) : (
@@ -146,7 +148,9 @@ const Navbar = () => {
               >
                 <RxCross2 className="w-5 h-5 dark:text-white" />
               </button>
+              <LanguageSelector/>
               <DarkMode />
+
             </div>
 
             <div className="flex flex-col gap-4 overflow-y-auto">

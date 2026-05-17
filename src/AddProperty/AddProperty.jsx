@@ -1,8 +1,38 @@
 import React, { useState } from 'react'
 import { IoCalendarOutline } from 'react-icons/io5'
-
+import { countryData } from './Data'
+import { useTranslation } from 'react-i18next'
 const AddProperty = () => {
-  // টপ নেভিগেশন ট্যাব ট্র্যাকিং
+
+
+  const { i18n } = useTranslation()
+  const currentLang = i18n.language || 'en'
+
+  // ৩টি ড্রপডাউনের জন্য ৩টি স্টেট
+  const [selectedCountry, setSelectedCountry] = useState('')
+  const [selectedState, setSelectedState] = useState('')
+  const [selectedCity, setSelectedCity] = useState('')
+
+  // ১. সিলেক্টেড দেশের ওপর ভিত্তি করে জেলা (States) ফিল্টার করা
+  const availableStates =
+    countryData.find((c) => c.countryId === selectedCountry)?.states || []
+
+  // ২. সিলেক্টেড জেলার ওপর ভিত্তি করে উপজেলা (Cities) ফিল্টার করা
+  const availableCities =
+    availableStates.find((s) => s.stateId === selectedState)?.upazilas || []
+
+  // দেশ পরিবর্তন হলে জেলা ও উপজেলা রিসেট করার ফাংশন
+  const handleCountryChange = (e) => {
+    setSelectedCountry(e.target.value)
+    setSelectedState('') // আগের সিলেক্ট করা জেলা রিসেট
+    setSelectedCity('') // আগের সিলেক্ট করা উপজেলা রিসেট
+  }
+
+  // জেলা পরিবর্তন হলে উপজেলা রিসেট করার ফাংশন
+  const handleStateChange = (e) => {
+    setSelectedState(e.target.value)
+    setSelectedCity('') // আগের সিলেক্ট করা উপজেলা রিসেট
+  }
   const [activeTab, setActiveTab] = useState('Property Information')
 
   const tabs = [
@@ -93,6 +123,8 @@ const AddProperty = () => {
                 </label>
                 <select className="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl py-3 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all dark:text-white">
                   <option>Select</option>
+                  <option>Buy</option>
+                  <option>Sell</option>
                 </select>
               </div>
               <div>
@@ -101,6 +133,10 @@ const AddProperty = () => {
                 </label>
                 <select className="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl py-3 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all dark:text-white">
                   <option>Select</option>
+                  <option>Apartment</option>
+                  <option>Villa</option>
+                  <option>Cando</option>
+                  <option>Residency</option>
                 </select>
               </div>
               <div>
@@ -109,6 +145,9 @@ const AddProperty = () => {
                 </label>
                 <select className="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl py-3 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all dark:text-white">
                   <option>Select</option>
+                  <option>Cash</option>
+                  <option>Bank Transfer</option>
+                  <option>Biksh</option>
                 </select>
               </div>
               <div>
@@ -169,6 +208,8 @@ const AddProperty = () => {
                 </label>
                 <select className="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl py-3 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all dark:text-white">
                   <option>Select</option>
+                  <option>Square</option>
+                  <option>Rectangle</option>
                 </select>
               </div>
               <div>
@@ -213,6 +254,8 @@ const AddProperty = () => {
                 </label>
                 <select className="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl py-3 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all dark:text-white">
                   <option>Select</option>
+                  <option>Yes</option>
+                  <option>No</option>
                 </select>
               </div>
               <div>
@@ -304,11 +347,10 @@ const AddProperty = () => {
                 </label>
                 <div className="relative">
                   <input
-                    type="text"
+                    type="date"
                     placeholder="dd/mm/yyyy"
                     className="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl py-3 pl-4 pr-10 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all dark:text-white"
                   />
-                  <IoCalendarOutline className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg pointer-events-none" />
                 </div>
               </div>
 
@@ -318,6 +360,8 @@ const AddProperty = () => {
                 </label>
                 <select className="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl py-3 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all dark:text-white">
                   <option>Select</option>
+                  <option>Yes</option>
+                  <option>No</option>
                 </select>
               </div>
 
@@ -329,11 +373,10 @@ const AddProperty = () => {
                   </label>
                   <div className="relative">
                     <input
-                      type="text"
+                      type="date"
                       placeholder="dd/mm/yyyy"
                       className="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl py-3 pl-4 pr-10 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all dark:text-white"
                     />
-                    <IoCalendarOutline className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg pointer-events-none" />
                   </div>
                 </div>
               </div>
@@ -503,6 +546,8 @@ const AddProperty = () => {
                 </label>
                 <select className="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl py-3 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all dark:text-white">
                   <option>Select</option>
+                  <option>Youtube</option>
+                  <option>Vimeo</option>
                 </select>
               </div>
               <div>
@@ -569,6 +614,8 @@ const AddProperty = () => {
                   </label>
                   <select className="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl py-3 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all dark:text-white">
                     <option>Select</option>
+                    <option>Buy</option>
+                    <option>Sell</option>
                   </select>
                 </div>
                 <div>
@@ -577,6 +624,10 @@ const AddProperty = () => {
                   </label>
                   <select className="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl py-3 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all dark:text-white">
                     <option>Select</option>
+                    <option>Apartment</option>
+                    <option>Villa</option>
+                    <option>Cando</option>
+                    <option>Residency</option>
                   </select>
                 </div>
                 <div>
@@ -585,6 +636,8 @@ const AddProperty = () => {
                   </label>
                   <select className="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl py-3 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all dark:text-white">
                     <option>Select</option>
+                    <option>Cash</option>
+                    <option>Bank Transfer</option>
                   </select>
                 </div>
                 <div>
@@ -670,32 +723,81 @@ const AddProperty = () => {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {/* 🌍 ১. Country Dropdown */}
                 <div>
                   <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">
-                    Country
+                    {currentLang === 'bn' ? 'দেশ' : 'Country'}
                   </label>
-                  <select className="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl py-3 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all dark:text-white">
-                    <option>Select</option>
+                  <select
+                    value={selectedCountry}
+                    onChange={handleCountryChange}
+                    className="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl py-3 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all dark:text-white"
+                  >
+                    <option value="">
+                      {currentLang === 'bn'
+                        ? 'দেশ নির্বাচন করুন'
+                        : 'Select Country'}
+                    </option>
+                    {countryData.map((country) => (
+                      <option key={country.countryId} value={country.countryId}>
+                        {currentLang === 'bn'
+                          ? country.countryNameBn
+                          : country.countryNameEn}
+                      </option>
+                    ))}
                   </select>
                 </div>
+
+                {/* 🏙️ ২. State / District Dropdown */}
                 <div>
                   <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">
-                    State
+                    {currentLang === 'bn' ? 'জেলা / স্টেট' : 'State / District'}
                   </label>
-                  <select className="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl py-3 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all dark:text-white">
-                    <option>Select</option>
+                  <select
+                    value={selectedState}
+                    onChange={handleStateChange}
+                    disabled={!selectedCountry} // দেশ সিলেক্ট না করা পর্যন্ত এটি লক থাকবে
+                    className="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl py-3 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all dark:text-white disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    <option value="">
+                      {currentLang === 'bn'
+                        ? 'জেলা নির্বাচন করুন'
+                        : 'Select District'}
+                    </option>
+                    {availableStates.map((state) => (
+                      <option key={state.stateId} value={state.stateId}>
+                        {currentLang === 'bn'
+                          ? state.stateNameBn
+                          : state.stateNameEn}
+                      </option>
+                    ))}
                   </select>
                 </div>
+
+                {/* 🏡 ৩. City / Upazila Dropdown */}
                 <div>
                   <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">
-                    City
+                    {currentLang === 'bn' ? 'উপজেলা / সিটি' : 'City / Upazila'}
                   </label>
-                  <select className="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl py-3 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all dark:text-white">
-                    <option>Select</option>
+                  <select
+                    value={selectedCity}
+                    onChange={(e) => setSelectedCity(e.target.value)}
+                    disabled={!selectedState} // জেলা সিলেক্ট না করা পর্যন্ত এটি লক থাকবে
+                    className="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl py-3 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all dark:text-white disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    <option value="">
+                      {currentLang === 'bn'
+                        ? 'উপজেলা নির্বাচন করুন'
+                        : 'Select Upazila'}
+                    </option>
+                    {availableCities.map((city) => (
+                      <option key={city.id} value={city.id}>
+                        {currentLang === 'bn' ? city.nameBn : city.nameEn}
+                      </option>
+                    ))}
                   </select>
                 </div>
               </div>
-
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">
@@ -719,7 +821,6 @@ const AddProperty = () => {
 
               {/* Google Maps Container Overlay placeholder */}
               <div className="w-full h-80 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 relative bg-slate-100">
-                
                 <iframe
                   title="Property Location Map"
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.895738096285!2d90.3908883!3d23.7511111!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjPCsDQ1JTA0LjAiTiA5MMKwMjMnMjcuMiJF!5e0!3m2!1sbn!2sbd!4v1652697600000!5m2!1sbn!2sbd"
