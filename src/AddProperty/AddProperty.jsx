@@ -81,6 +81,13 @@ const {
   } = useForm({ defaultValues: { amenities: amenitiesList.filter(item => item.defaultChecked).map(item => item.label) } })
 
 
+
+
+
+
+
+  
+
   const handelData = async (data) => {
     console.log(data);
 
