@@ -113,9 +113,5 @@ export const navData = [
       { id: 549, Name: 'Our Team', path: '/team' },
     ],
   },
-  {
-    id: 6,
-    Name: "Add Property",
-    path:"addProperty"
-  }
+  
 ]

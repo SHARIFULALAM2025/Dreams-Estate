@@ -16,6 +16,7 @@ import { RxCross2 } from 'react-icons/rx'
 import LanguageSelector from '../LanguageSelector/LanguageSelector'
 import User from '../User/User'
 import LogoutButton from '../Logout/LogoutButton'
+import AddPropertyButton from '../AddPropertyButton/AddPropertyButton'
 
 const Navbar = () => {
   const { user } = useContext(AuthContext)
@@ -92,7 +93,10 @@ const Navbar = () => {
           <DarkMode />
           <LanguageSelector />
           {user ? (
-            <User />
+            <div className="flex gap-1">
+              <AddPropertyButton />
+              <User />
+            </div>
           ) : (
             <div className="flex items-center gap-3">
               <Link

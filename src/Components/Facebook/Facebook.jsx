@@ -15,21 +15,20 @@ const Facebook = () => {
      const result = await CreateAccountFacebook()
      const user = result.user
 
-     // ১. ফেসবুকের আসল ইউজার আইডি (UID) বের করা
-     // Firebase providerData থেকে ফেসবুকের সুনির্দিষ্ট আইডি তুলে আনে
+
      const facebookProvider = user.providerData.find(
        (p) => p.providerId === 'facebook.com'
      )
      const facebookUid = facebookProvider ? facebookProvider.uid : user.uid
 
-     // ২. এই স্থায়ী লিঙ্কটি কখনো এক্সপায়ার হবে না এবং সাদা দেখাবে না
+
      const permanentPhotoURL = `https://graph.facebook.com/${facebookUid}/picture?type=large`
 
-     // এখন ব্যাকএন্ডে এই স্থায়ী লিঙ্কটি পাঠানো হচ্ছে
+
      await saveUser({
        name: user.displayName,
        email: user.email || 'facebook_user',
-       photo: permanentPhotoURL, // <--- স্থায়ী লিঙ্কটি যাচ্ছে
+       photo: permanentPhotoURL, 
      })
 
      setUser(user)
