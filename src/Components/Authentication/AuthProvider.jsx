@@ -15,7 +15,8 @@ import { auth } from './Firebase.init'
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null)
-  console.log(user)
+
+  console.log(user, )
 
   const [theme, setTheme] = useState('light')
 

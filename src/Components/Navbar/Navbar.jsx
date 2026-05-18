@@ -11,9 +11,11 @@ import { FaLock } from 'react-icons/fa6'
 import DarkMode from '../DarkMode/DarkMode'
 import { AuthContext } from '../Authentication/AuthContext'
 import SearchBox from '../SearchBox/SearchBox'
-import LogoutButton from '../Logout/LogoutButton'
+
 import { RxCross2 } from 'react-icons/rx'
 import LanguageSelector from '../LanguageSelector/LanguageSelector'
+import User from '../User/User'
+import LogoutButton from '../Logout/LogoutButton'
 
 const Navbar = () => {
   const { user } = useContext(AuthContext)
@@ -88,9 +90,9 @@ const Navbar = () => {
         <div className="hidden lg:flex items-center gap-4">
           <SearchBox />
           <DarkMode />
-          <LanguageSelector/>
+          <LanguageSelector />
           {user ? (
-            <LogoutButton />
+            <User />
           ) : (
             <div className="flex items-center gap-3">
               <Link
@@ -119,7 +121,7 @@ const Navbar = () => {
               Register
             </Link>
           )}
-          {user && <LogoutButton />}
+          {user && <User />}
 
           {/* Hamburger Icon */}
           <button
@@ -148,15 +150,13 @@ const Navbar = () => {
               >
                 <RxCross2 className="w-5 h-5 dark:text-white" />
               </button>
-              <LanguageSelector/>
+              <LanguageSelector />
               <DarkMode />
-
             </div>
 
             <div className="flex flex-col gap-4 overflow-y-auto">
               {navData.map((item) => (
                 <div key={item.id} className="flex flex-col gap-2">
-
                   <NavLink
                     to={item.path}
                     onClick={() => !item.hasDropdown && setIsMenuOpen(false)}
@@ -202,12 +202,13 @@ const Navbar = () => {
               ))}
             </div>
 
-            <div className="mt-auto pt-6 border-t border-slate-100 dark:border-slate-800">
+            <div className="flex justify-between mt-auto pt-6 border-t border-slate-100 dark:border-slate-800">
               <SearchBox />
-              <p className="text-[10px] text-slate-400 mt-4 text-center italic">
-                © 2026 Dreams Estate
-              </p>
+              <LogoutButton />
             </div>
+            <p className="text-[10px] text-slate-400 mt-4 text-center italic">
+              © 2026 Dreams Estate
+            </p>
           </div>
         </div>
       </div>
