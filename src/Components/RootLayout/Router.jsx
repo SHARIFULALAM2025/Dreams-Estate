@@ -25,6 +25,9 @@ import Conditions from '../Others/Conditions'
 import Gallery from '../Others/Gallery/Gallery'
 import Team from '../Others/Team/Team'
 import AddProperty from '../../AddProperty/AddProperty'
+import AgentDetails from '../Listing/Buy/AgentDetails'
+
+
 
 
 export const router = createBrowserRouter([
@@ -54,6 +57,7 @@ export const router = createBrowserRouter([
       { path: 'gallery', Component: Gallery },
       { path: 'team', Component: Team },
       { path: 'addProperty', Component: AddProperty },
+      { path: 'BuyDetails/:agentId', Component: AgentDetails },
     ],
   },
   {
