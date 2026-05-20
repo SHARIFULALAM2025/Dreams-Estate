@@ -54,6 +54,7 @@ const BlogGrid = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
           {blogs?.map((data) => (
             <Link
+              to={`/BlogDetails/${data?.id}`}
               key={data?.id || data?._id}
               className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-800 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group flex flex-col"
             >
