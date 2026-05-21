@@ -63,7 +63,7 @@ const HomeAbout = () => {
   }
 
   return (
-    <section className="bg-[#f8f8f8] py-20 overflow-hidden">
+    <section className="bg-[#f8f8f8] py-20 dark:bg-slate-950 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 lg:px-8">
         {/* Top Section */}
         <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -71,32 +71,40 @@ const HomeAbout = () => {
           <div>
             <Link
               to="/About"
-              className="inline-block bg-[#6f52ff] text-white text-sm font-semibold px-4 py-2 rounded-md mb-5"
+              className="inline-flex w-fit bg-white hover:bg-[#6f52ff] text-slate-900 hover:text-white transition-all duration-300 px-6 py-3 rounded-xl text-sm shadow-xl font-semibold border border-slate-200 hover:border-[#6f52ff] items-center gap-2 group mb-5"
             >
               {about}
+              <span className="transition-transform duration-300 group-hover:translate-x-1">
+                →
+              </span>
             </Link>
 
-            <h2 className="text-4xl lg:text-6xl font-black text-slate-900 leading-tight">
+            <h2 className="text-4xl lg:text-6xl font-black dark:text-white text-slate-900 leading-tight">
               {title}
             </h2>
 
-            <p className="text-slate-500 text-lg leading-8 mt-6 max-w-2xl">
+            <p className="text-slate-500 dark:text-white text-lg leading-8 mt-6 max-w-2xl">
               {description}
             </p>
 
             <div className="flex flex-wrap gap-4 mt-10">
               <Link
                 to="/addProperty"
-                className="bg-slate-900 hover:bg-slate-800 text-white font-semibold px-8 py-4 rounded-lg transition-all duration-300 shadow-md"
+                className="   bg-white hover:bg-[#6f52ff] text-slate-900 hover:text-white transition-all duration-300 px-6 py-3 rounded-xl text-xs shadow-xl font-semibold border border-slate-200 hover:border-[#6f52ff] flex items-center gap-2 group"
               >
                 {addButton}
+                <span className="transition-transform duration-300 group-hover:translate-x-1">
+                  →
+                </span>
               </Link>
-
               <Link
                 to="/Contact"
-                className="bg-emerald-500 hover:bg-emerald-600 text-white font-semibold px-8 py-4 rounded-lg transition-all duration-300 shadow-md"
+                className="   bg-white hover:bg-[#6f52ff] text-slate-900 hover:text-white transition-all duration-300 px-6 py-3 rounded-xl text-xs shadow-xl font-semibold border border-slate-200 hover:border-[#6f52ff] flex items-center gap-2 group"
               >
                 {contactButton}
+                <span className="transition-transform duration-300 group-hover:translate-x-1">
+                  →
+                </span>
               </Link>
             </div>
           </div>

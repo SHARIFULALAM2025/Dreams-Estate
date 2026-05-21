@@ -32,18 +32,18 @@ const HomeFaq = () => {
   }
 
   return (
-    <section className="bg-[#f8f8f8]">
+    <section className="bg-[#f8f8f8] dark:bg-slate-950">
       <div className="max-w-7xl mx-auto px-4">
         {/* Heading */}
         <div className="text-center mb-14">
-          <h2 className="text-4xl font-bold text-slate-900">
+          <h2 className="text-4xl font-bold dark:text-white text-slate-900">
             {currentLang === 'bn' ? 'প্রায়শই জিজ্ঞাসিত' : 'Frequently Asked'}
             <span className="text-emerald-500">
               {currentLang === 'bn' ? 'প্রশ্ন' : 'Questions'}
             </span>
           </h2>
 
-          <p className="text-slate-500 mt-3">
+          <p className="text-slate-500 dark:text-white mt-3">
             {currentLang === 'bn'
               ? 'দ্রুত উত্তর হলো সাধারণ খরচ'
               : 'Quick Answers to Common Questions'}
