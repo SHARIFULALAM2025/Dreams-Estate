@@ -9,7 +9,7 @@ const fetchTestimonialPageData = async () => {
 
 export const useTestimonialPageData = () => {
     return useQuery({
-        queryKey: ['FaqPageData'],
+        queryKey: ['TestimonialPageData'],
         queryFn: fetchTestimonialPageData,
         staleTime: 1000 * 60 * 10,
     });
