@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useFaqPageData } from '../../Hook/Faq'
+
 import { Link } from 'react-router'
+import { useFaqPageData } from '../../Hook/Faq'
 
 const HomeFaq = () => {
   const { i18n } = useTranslation()
@@ -13,12 +14,13 @@ const HomeFaq = () => {
   const [openIndex, setOpenIndex] = useState(0)
 
   const images = faq?.image || []
-  console.log(faq);
-  console.log(images)
+
+
+
 
 
   const faqItems = faq?.Home?.[`Home_${currentLang}`] || []
-console.log(faqItems)
+
   if (isLoading) {
     return <div className="py-20 text-center">Loading...</div>
   }
