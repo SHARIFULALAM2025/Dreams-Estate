@@ -32,7 +32,7 @@ const HomeFaq = () => {
   }
 
   return (
-    <section className="bg-[#f8f8f8] py-20">
+    <section className="bg-[#f8f8f8]">
       <div className="max-w-7xl mx-auto px-4">
         {/* Heading */}
         <div className="text-center mb-14">

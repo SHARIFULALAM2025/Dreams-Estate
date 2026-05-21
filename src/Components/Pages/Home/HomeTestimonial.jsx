@@ -2,6 +2,7 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { FaQuoteRight, FaStar } from 'react-icons/fa'
 import { useTestimonialPageData } from '../../Hook/testimonial'
+import { Link } from 'react-router'
 
 
 const HomeTestimonial = () => {
@@ -22,7 +23,7 @@ const HomeTestimonial = () => {
   // Loading Skeleton
   if (isLoading) {
     return (
-      <section className="bg-[#f8f8f8] dark:bg-slate-950 py-20 px-5">
+      <section className="bg-[#f8f8f8] dark:bg-slate-950  px-5">
         <div className="max-w-7xl mx-auto animate-pulse">
           {/* Header */}
           <div className="text-center mb-14">
@@ -80,28 +81,18 @@ const HomeTestimonial = () => {
   }
 
   return (
-    <section className="bg-[#f8f8f8] dark:bg-slate-950 py-20 px-5 transition-colors duration-300">
+    <section className="bg-[#f8f8f8] dark:bg-slate-950 py-5 px-5 transition-colors duration-300">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-14">
           <h2 className="text-3xl md:text-5xl font-black text-slate-900 dark:text-white leading-tight">
-            <span className="text-emerald-400">
-              ~
-            </span>{' '}
-            {currentLang === 'bn'
-              ? 'সফলতার'
-              : 'Success'}{' '}
+            <span className="text-emerald-400">~</span>{' '}
+            {currentLang === 'bn' ? 'সফলতার' : 'Success'}{' '}
             <span className="text-emerald-500">
-              {currentLang === 'bn'
-                ? 'গল্প'
-                : 'Stories'}
+              {currentLang === 'bn' ? 'গল্প' : 'Stories'}
             </span>{' '}
-            {currentLang === 'bn'
-              ? 'তাদের নিজের ভাষায়'
-              : 'in their Own Words'}{' '}
-            <span className="text-emerald-400">
-              ~
-            </span>
+            {currentLang === 'bn' ? 'তাদের নিজের ভাষায়' : 'in their Own Words'}{' '}
+            <span className="text-emerald-400">~</span>
           </h2>
 
           <p className="text-slate-500 dark:text-slate-400 mt-4 text-lg">
@@ -160,42 +151,29 @@ const HomeTestimonial = () => {
           ))}
         </div>
 
-        {/* Slider Dots */}
-        <div className="flex justify-center items-center gap-2 mt-14">
-          <div className="w-8 h-2 bg-emerald-500 rounded-full"></div>
-          <div className="w-2 h-2 bg-slate-300 dark:bg-slate-700 rounded-full"></div>
-        </div>
-
         {/* Bottom Rating Badge */}
-        <div className="flex justify-center mt-14">
-          <div className="bg-[#bdbdbd] dark:bg-slate-800 rounded-full px-5 py-3 flex items-center gap-4 shadow-md">
+        <div className="flex justify-center mt-3 gap-3 items-center ">
+          <div className="bg-[#bdbdbd] dark:bg-slate-800 rounded-full px-5 py-2 flex items-center gap-4 shadow-md">
             {/* Avatar Stack */}
             <div className="flex -space-x-3">
-              {testimonials
-                .slice(0, 4)
-                .map((item) => (
-                  <img
-                    key={item.id}
-                    src={item.img}
-                    alt={item.name}
-                    className="w-12 h-12 rounded-full border-2 border-white object-cover"
-                  />
-                ))}
+              {testimonials.slice(0, 4).map((item) => (
+                <img
+                  key={item.id}
+                  src={item.img}
+                  alt={item.name}
+                  className="w-12 h-12 rounded-full border-2 border-white object-cover"
+                />
+              ))}
             </div>
 
             {/* Rating */}
             <div>
               <div className="flex items-center gap-2">
-                <span className="font-bold text-white">
-                  Ratings 5.0
-                </span>
+                <span className="font-bold text-white">Ratings 5.0</span>
 
                 <div className="flex text-yellow-400">
                   {[...Array(5)].map((_, i) => (
-                    <FaStar
-                      key={i}
-                      size={14}
-                    />
+                    <FaStar key={i} size={14} />
                   ))}
                 </div>
               </div>
@@ -206,6 +184,17 @@ const HomeTestimonial = () => {
                   : 'Trusted By Client around the World'}
               </p>
             </div>
+          </div>
+          <div className="">
+            <Link
+              to="/Testimonial"
+              className="   bg-white hover:bg-[#6f52ff] text-slate-900 hover:text-white transition-all duration-300 px-6 py-3 rounded-xl text-xs shadow-xl font-semibold border border-slate-200 hover:border-[#6f52ff] flex items-center gap-2 group"
+            >
+              {currentLang === 'bn' ? 'আরও পড়ুন' : 'Read More'}
+              <span className="transition-transform duration-300 group-hover:translate-x-1">
+                →
+              </span>
+            </Link>
           </div>
         </div>
       </div>
