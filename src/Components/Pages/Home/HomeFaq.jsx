@@ -13,9 +13,12 @@ const HomeFaq = () => {
   const [openIndex, setOpenIndex] = useState(0)
 
   const images = faq?.image || []
+  console.log(faq);
+  console.log(images)
+
 
   const faqItems = faq?.Home?.[`Home_${currentLang}`] || []
-
+console.log(faqItems)
   if (isLoading) {
     return <div className="py-20 text-center">Loading...</div>
   }
@@ -98,7 +101,7 @@ const HomeFaq = () => {
 
           {/* FAQ Accordion */}
           <div className="space-y-4">
-            {faqItems?.map((item, index) => {
+            {faqItems.map((item, index) => {
               const isOpen = openIndex === index
 
               return (
