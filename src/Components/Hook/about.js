@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 
 const fetchAboutPageData = async () => {
-    const { data } = await axios.get('http://localhost:5000/api/components/about_page_data');
+    const { data } = await axios.get('https://dreams-backend-sepia.vercel.app/api/components/about_page_data');
     return data;
 };
 

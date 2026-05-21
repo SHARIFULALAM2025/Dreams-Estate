@@ -21,7 +21,7 @@ const BlogDetails = () => {
     queryKey: ['blogDetails', blogId],
     queryFn: async () => {
       const { data } = await axios.get(
-        `http://localhost:5000/blog/single/${blogId}`
+        `https://dreams-backend-sepia.vercel.app/blog/single/${blogId}`
       )
       return data
     },

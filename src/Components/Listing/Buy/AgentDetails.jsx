@@ -1,14 +1,20 @@
-import React from 'react';
-import { useParams } from 'react-router';
-import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
-import { useTranslation } from 'react-i18next';
-import { FaChevronUp, FaMapMarkerAlt, FaPhoneAlt, FaStar, FaWhatsapp } from 'react-icons/fa';
+import React from 'react'
+import { useParams } from 'react-router'
+import { useQuery } from '@tanstack/react-query'
+import axios from 'axios'
+import { useTranslation } from 'react-i18next'
+import {
+  FaChevronUp,
+  FaMapMarkerAlt,
+  FaPhoneAlt,
+  FaStar,
+  FaWhatsapp,
+} from 'react-icons/fa'
 
 const AgentDetails = () => {
-  const { agentId } = useParams();
-  const { i18n } = useTranslation();
-  const currentLang = i18n.language;
+  const { agentId } = useParams()
+  const { i18n } = useTranslation()
+  const currentLang = i18n.language
 
   const {
     data: agent,
@@ -19,13 +25,13 @@ const AgentDetails = () => {
     queryKey: ['agentDetails', agentId],
     queryFn: async () => {
       const { data } = await axios.get(
-        `http://localhost:5000/single/agent/${agentId}`
-      );
-      return data;
+        `https://dreams-backend-sepia.vercel.app/single/agent/${agentId}`
+      )
+      return data
     },
     enabled: !!agentId,
     staleTime: 1000 * 60 * 10,
-  });
+  })
 
   // --- ১. নির্দিষ্ট পেজ লেআউট অনুযায়ী স্কেলিটন লোডার (Skeleton Correction) ---
   if (isLoading) {
@@ -53,7 +59,7 @@ const AgentDetails = () => {
           </div>
         </div>
       </div>
-    );
+    )
   }
 
   // --- ২. এরর হ্যান্ডলিং এবং ডাটা সেফটি চেক ---
@@ -62,7 +68,7 @@ const AgentDetails = () => {
       <div className="text-center py-12 text-rose-500 font-bold">
         Error: {error?.message || 'Something went wrong.'}
       </div>
-    );
+    )
   }
 
   // অপশনাল চেইনিং সেফটি গার্ড (যদি ডাটা না থাকে পেজ ক্র্যাশ করা আটকাবে)
@@ -71,13 +77,12 @@ const AgentDetails = () => {
       <div className="text-center py-12 text-slate-500 font-bold">
         No agent data found!
       </div>
-    );
+    )
   }
 
   return (
     <div className="bg-slate-50 dark:bg-slate-950 min-h-screen py-8 px-4 sm:px-6 lg:px-8 transition-colors duration-300">
       <div className="max-w-7xl mx-auto space-y-6">
-
         {/* --- Top Header Profile Card --- */}
         <div className="bg-white dark:bg-slate-900 rounded-xl border border-slate-100 dark:border-slate-800 p-6 flex flex-col sm:flex-row items-center sm:items-start justify-between gap-6 shadow-sm">
           <div className="flex flex-col sm:flex-row items-center sm:items-start gap-5 text-center sm:text-left">
@@ -266,10 +271,9 @@ const AgentDetails = () => {
             </form>
           </div>
         </div>
-
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default AgentDetails;
+export default AgentDetails
