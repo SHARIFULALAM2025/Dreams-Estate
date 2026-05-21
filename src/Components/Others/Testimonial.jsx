@@ -1,57 +1,18 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { FaStar } from 'react-icons/fa'
+import { useTestimonialPageData } from '../Hook/testimonial'
 
 const Testimonial = () => {
-  const testimonials = [
-    {
-      id: 1,
-      name: 'Robert King',
-      address: 'Harlingen',
-      img: 'https://i.ibb.co.com/FbZTfjb8/user-01.jpg',
-      rating: 5,
-      text: "We ended up with our dream home in less than two months! I can't recommend them enough.",
-    },
-    {
-      id: 2,
-      name: 'Erin Hawkins',
-      address: 'Penns Neck.',
-      img: 'https://i.ibb.co.com/MxhjQfXY/user-02.webp',
-      rating: 4,
-      text: 'They explained every step clearly and found me the perfect home within my budget.',
-    },
-    {
-      id: 3,
-      name: 'Margaret Buchanan',
-      address: 'Wausau.',
-      img: 'https://i.ibb.co.com/XfH9sFVM/user-04.webp',
-      rating: 5,
-      text: 'Selling our family home was an emotional journey, but Ethel Laughlin made it was easier!',
-    },
-    {
-      id: 4,
-      name: 'George William',
-      address: 'Memphis.',
-      img: 'https://i.ibb.co.com/NgbWDmbk/user-03.webp',
-      rating: 5,
-      text: 'Highly recommend for anyone selling a home. Their market expertise helped us price the home right.',
-    },
-    {
-      id: 5,
-      name: 'Kent Lintz',
-      address: 'San Jose.',
-      img: 'https://i.ibb.co.com/xSFgPN1h/user-05.jpg',
-      rating: 5,
-      text: "I've worked with [Agent/Company Name] on three investment properties, and every time.",
-    },
-    {
-      id: 6,
-      name: 'Margaret Lee',
-      address: 'Montgomery.',
-      img: 'https://i.ibb.co.com/RTd3sHNx/user-13.webp',
-      rating: 4,
-      text: "They've brought solid opportunities and helped me maximize returns. Their property management.",
-    },
-  ]
+  const { i18n } = useTranslation()
+
+ const currentLang = i18n.language?.startsWith('bn') ? 'bn' : 'en'
+
+    const { data, isLoading, isError } = useTestimonialPageData()
+const testimonial =
+    data?.testimonials?.[`testimonials_${currentLang}`] ||  []
+  console.log(data?.testimonials)
+
 
   return (
     <section className="bg-white dark:bg-slate-950 py-20 px-6 lg:px-10 transition-colors duration-300">
@@ -59,17 +20,23 @@ const Testimonial = () => {
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-black text-slate-900 dark:text-white mb-4">
-            Client <span className="text-emerald-500">Testimonials</span>
+            {currentLang === 'bn' ? 'ক্লায়েন্ট' : 'Client'}
+            <span className="text-emerald-500">
+              {' '}
+              {currentLang === 'bn' ? 'প্রশংসাপত্র' : 'Testimonials'}
+            </span>
           </h2>
           <div className="w-24 h-1.5 bg-emerald-500 mx-auto rounded-full shadow-sm shadow-emerald-500/50"></div>
           <p className="mt-6 text-slate-500 dark:text-slate-400 max-w-2xl mx-auto italic">
-            "What our clients say about their journey with Dreams Estate"
+            {currentLang === 'bn'
+              ? 'ড্রিমস এস্টেটের সাথে তাদের অভিজ্ঞতা নিয়ে আমাদের ক্লায়েন্টরা যা বলেন'
+              : 'What our clients say about their journey with Dreams Estate'}
           </p>
         </div>
 
         {/* Testimonials Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {testimonials.map((item) => (
+          {testimonial?.map((item) => (
             <div
               key={item.id}
               className="bg-slate-50/50 dark:bg-slate-900/40 p-8 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-xl hover:translate-y-[-5px] transition-all duration-300 group"

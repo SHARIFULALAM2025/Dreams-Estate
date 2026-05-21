@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useFaqPageData } from '../../Hook/Faq'
+import { Link } from 'react-router'
 
 const HomeFaq = () => {
   const { i18n } = useTranslation()
@@ -57,7 +58,7 @@ const HomeFaq = () => {
             </div>
 
             {/* Right Images */}
-            <div className="flex flex-col gap-4 h-full">
+            <div className="relative flex flex-col gap-4 h-full">
               <img
                 src={images[1]}
                 alt="faq"
@@ -69,6 +70,17 @@ const HomeFaq = () => {
                 alt="faq"
                 className="h-1/2 w-full object-cover rounded-md"
               />
+
+              {/* Read More FAQ Button */}
+              <Link
+                to="/Faq"
+                className="absolute bottom-5 left-1/2 -translate-x-1/2 bg-white hover:bg-[#6f52ff] text-slate-900 hover:text-white transition-all duration-300 px-6 py-3 rounded-xl text-xs shadow-xl font-semibold border border-slate-200 hover:border-[#6f52ff] flex items-center gap-2 group"
+              >
+                {currentLang === 'bn' ? 'আরও পড়ুন' : 'Read More'}
+                <span className="transition-transform duration-300 group-hover:translate-x-1">
+                  →
+                </span>
+              </Link>
             </div>
 
             {/* Badge */}
@@ -86,7 +98,7 @@ const HomeFaq = () => {
 
           {/* FAQ Accordion */}
           <div className="space-y-4">
-            {faqItems.map((item, index) => {
+            {faqItems?.map((item, index) => {
               const isOpen = openIndex === index
 
               return (
