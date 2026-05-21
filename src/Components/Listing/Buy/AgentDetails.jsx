@@ -25,7 +25,7 @@ const AgentDetails = () => {
     queryKey: ['agentDetails', agentId],
     queryFn: async () => {
       const { data } = await axios.get(
-        `https://dreams-backend-sepia.vercel.app/single/agent/${agentId}`
+        `${import.meta.env.VITE_Backend_url}/single/agent/${agentId}`
       )
       return data
     },
