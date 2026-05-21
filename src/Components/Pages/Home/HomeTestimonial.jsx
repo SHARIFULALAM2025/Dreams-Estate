@@ -80,6 +80,8 @@ const HomeTestimonial = () => {
     )
   }
 
+
+  //
   return (
     <section className="bg-[#f8f8f8] dark:bg-slate-950 py-5 px-5 transition-colors duration-300">
       <div className="max-w-7xl mx-auto">
