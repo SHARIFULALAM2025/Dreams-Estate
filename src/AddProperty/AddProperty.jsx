@@ -192,17 +192,48 @@ const AddProperty = () => {
 
   const [activeTab, setActiveTab] = useState('Property Information')
 
-  const tabs = [
-    'Property Information',
-    'Property Details',
-    'Amenities',
-    'Documents',
-    'Gallery',
-    'Videos',
-    'Description',
-
-    'Location',
-  ]
+const tabs = [
+  {
+    key: 'property_information',
+    en: 'Property Information',
+    bn: 'প্রপার্টি তথ্য',
+  },
+  {
+    key: 'property_details',
+    en: 'Property Details',
+    bn: 'প্রপার্টি বিস্তারিত',
+  },
+  {
+    key: 'amenities',
+    en: 'Amenities',
+    bn: 'সুবিধাসমূহ',
+  },
+  {
+    key: 'documents',
+    en: 'Documents',
+    bn: 'ডকুমেন্টস',
+  },
+  {
+    key: 'gallery',
+    en: 'Gallery',
+    bn: 'গ্যালারি',
+  },
+  {
+    key: 'videos',
+    en: 'Videos',
+    bn: 'ভিডিও',
+  },
+  {
+    key: 'description',
+    en: 'Description',
+    bn: 'বিবরণ',
+  },
+  {
+    key: 'location',
+    en: 'Location',
+    bn: 'অবস্থান',
+  },
+]
 
 
 
@@ -287,14 +318,14 @@ const handelData = async (data) => {
             {tabs.map((tab) => (
               <button
                 key={tab}
-                onClick={() => setActiveTab(tab)}
+                onClick={() => setActiveTab(tab[currentLang])}
                 className={`whitespace-nowrap px-4 py-2.5 rounded-lg text-sm font-bold transition-all ${
-                  activeTab === tab
+                  activeTab === tab[currentLang]
                     ? 'bg-[#0F172A] text-white dark:bg-slate-800'
                     : 'text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50'
                 }`}
               >
-                {tab}
+                {tab[currentLang]}
               </button>
             ))}
           </div>

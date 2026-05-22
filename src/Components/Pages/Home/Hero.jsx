@@ -34,11 +34,11 @@ const Hero = () => {
 
       <div className="max-w-7xl mx-auto w-full relative z-10">
         <div className="max-w-3xl mb-10 md:mb-16">
-          <h1 className="text-3xl sm:text-4xl md:text-6xl font-extrabold text-slate-900 leading-[1.2] mb-6 drop-shadow-md">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl font-extrabold text-white leading-[1.2] mb-6 drop-shadow-md">
             World's Largest Property Listing site for
             <span className="text-emerald-600"> Rental, Buy & Sell...</span>
           </h1>
-          <p className="text-base md:text-lg text-black font-medium max-w-xl  ">
+          <p className="text-base md:text-lg text-white font-medium max-w-xl  ">
             Properties for buy / rent in in your location. We have more than
             3000+ listings
           </p>

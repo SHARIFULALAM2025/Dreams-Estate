@@ -17,11 +17,14 @@ import LanguageSelector from '../LanguageSelector/LanguageSelector'
 import User from '../User/User'
 import LogoutButton from '../Logout/LogoutButton'
 import AddPropertyButton from '../AddPropertyButton/AddPropertyButton'
+import { useTranslation } from 'react-i18next'
 
 const Navbar = () => {
   const { user } = useContext(AuthContext)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-
+const { i18n } = useTranslation()
+  const currentLang = i18n.language
+  const lang = i18n.language?.startsWith('bn') ? 'bn' : 'en'
   return (
     <nav className="bg-white dark:bg-slate-950  shadow-sm dark:shadow-slate-900/50 relative z-50 transition-colors duration-300">
       <div className="flex justify-between items-center  max-w-[1440px] mx-auto gap-4">
@@ -29,19 +32,19 @@ const Navbar = () => {
         <Link to="/" className="flex items-center gap-2 shrink-0">
           <img src="/Logo.png" alt="Logo" className="w-10 h-10" />
           <h1 className="font-bold text-xL md:text-2xl text-slate-800 dark:text-white">
-            Dreams Estate
+            {currentLang === 'bn' ? 'ড্রিমস এস্টেট' : 'Dreams Estate'}
           </h1>
         </Link>
 
         {/* Desktop Navigation Links - Hidden on Mobile */}
         <div className="hidden lg:flex items-center gap-2">
-          {navData.map((item) => (
+          {navData?.map((item) => (
             <div key={item.id} className="relative group">
               <NavLink
                 to={item.path}
                 className="dark:text-white px-3 py-2 flex items-center gap-1 font-bold hover:text-emerald-500 transition-colors"
               >
-                {item.Name}
+                {item.Name[lang]}
                 {item.hasDropdown && (
                   <IoIosArrowDown className="text-xs group-hover:rotate-180 transition-transform duration-300" />
                 )}
@@ -52,13 +55,13 @@ const Navbar = () => {
                 <div className="absolute left-0 top-full pt-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
                   <div className="ml-4 w-3 h-3 bg-white dark:bg-slate-900 border-t border-l border-slate-100 dark:border-slate-800 rotate-45 absolute -top-1.5 left-0 z-10"></div>
                   <div className="bg-white dark:bg-slate-900 min-w-[240px] shadow-2xl rounded-xl border border-slate-100 dark:border-slate-800 py-2">
-                    {item.subLink.map((sub) => (
+                    {item?.subLink?.map((sub) => (
                       <div key={sub.id} className="relative group/nested">
                         <NavLink
                           to={sub.path}
                           className="flex items-center justify-between px-5 py-3 text-sm font-semibold text-slate-900 dark:text-white hover:bg-emerald-50 dark:hover:bg-emerald-500/10 hover:text-emerald-500 transition-all"
                         >
-                          {sub.Name}
+                          {sub.Name[lang]}
                           {sub.hasNested && (
                             <IoIosArrowForward className="text-xs" />
                           )}
@@ -66,13 +69,13 @@ const Navbar = () => {
                         {sub.hasNested && (
                           <div className="absolute left-full top-0 ml-1 opacity-0 invisible group-hover/nested:opacity-100 group-hover/nested:visible transition-all duration-300 transform translate-x-2 group-hover/nested:translate-x-0">
                             <div className="bg-white dark:bg-slate-900 min-w-[220px] shadow-2xl rounded-xl border border-slate-100 dark:border-slate-800 py-2">
-                              {sub.nestedLink.map((nested) => (
+                              {sub?.nestedLink?.map((nested) => (
                                 <NavLink
                                   key={nested.id}
                                   to={nested.path}
                                   className="block px-5 py-2.5 text-sm font-medium text-slate-900 dark:text-white hover:bg-emerald-50 dark:hover:bg-emerald-500/10 hover:text-emerald-500 transition-colors"
                                 >
-                                  {nested.Name}
+                                  {nested.Name[lang]}
                                 </NavLink>
                               ))}
                             </div>
@@ -103,13 +106,15 @@ const Navbar = () => {
                 to="auth/login"
                 className="px-5 py-2 text-white flex items-center font-semibold rounded-lg bg-slate-800 dark:bg-slate-800 hover:bg-slate-700 gap-2 transition-all active:scale-95"
               >
-                <FaLock className="w-3 h-3" /> Login
+                <FaLock className="w-3 h-3" />
+                {currentLang === 'bn' ? 'লগ ইন করুন' : 'Log In'}
               </Link>
               <Link
                 to="auth/register"
                 className="px-5 py-2 bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-bold rounded-lg shadow-lg hover:shadow-emerald-500/40 transition-all active:scale-95 flex items-center gap-2"
               >
-                <FaLock className="w-3 h-3" /> Register
+                <FaLock className="w-3 h-3" />{' '}
+                {currentLang === 'bn' ? 'নিবন্ধন করুন' : 'Register'}
               </Link>
             </div>
           )}
@@ -122,7 +127,7 @@ const Navbar = () => {
               to="auth/register"
               className="px-4 py-2 bg-gradient-to-r from-emerald-500 to-teal-600 text-white text-sm font-bold rounded-lg shadow-lg flex items-center gap-2 transition-all active:scale-95"
             >
-              Register
+              {currentLang === 'bn' ? 'নিবন্ধন করুন' : 'Register'}
             </Link>
           )}
           {user && <User />}
@@ -159,20 +164,20 @@ const Navbar = () => {
             </div>
 
             <div className="flex flex-col gap-4 overflow-y-auto">
-              {navData.map((item) => (
+              {navData?.map((item) => (
                 <div key={item.id} className="flex flex-col gap-2">
                   <NavLink
                     to={item.path}
                     onClick={() => !item.hasDropdown && setIsMenuOpen(false)}
                     className="dark:text-white py-2 flex items-center gap-1 font-bold hover:text-emerald-500 transition-colors"
                   >
-                    {item.Name}
+                    {item.Name[lang]}
                   </NavLink>
 
                   {/* মোবাইল ড্রপডাউন লিন্কসমূহ */}
                   {item.hasDropdown && (
                     <div className="pl-4 flex flex-col gap-2 border-l border-slate-100 dark:border-slate-800">
-                      {item.subLink.map((sub) => (
+                      {item?.subLink?.map((sub) => (
                         <div key={sub.id} className="flex flex-col gap-1">
                           <NavLink
                             to={sub.path}
@@ -181,19 +186,19 @@ const Navbar = () => {
                             }
                             className="text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-emerald-500 py-1"
                           >
-                            {sub.Name}
+                            {sub.Name[lang]}
                           </NavLink>
 
                           {sub.hasNested && (
                             <div className="pl-4 flex flex-col gap-1 text-xs">
-                              {sub.nestedLink.map((nested) => (
+                              {sub?.nestedLink?.map((nested) => (
                                 <NavLink
                                   key={nested.id}
                                   to={nested.path}
                                   onClick={() => setIsMenuOpen(false)}
                                   className="text-slate-500 dark:text-slate-400 hover:text-emerald-500 py-1"
                                 >
-                                  {nested.Name}
+                                  {nested.Name[lang]}
                                 </NavLink>
                               ))}
                             </div>
@@ -211,7 +216,9 @@ const Navbar = () => {
               <LogoutButton />
             </div>
             <p className="text-[10px] text-slate-400 mt-4 text-center italic">
-              © 2026 Dreams Estate
+              {currentLang === 'bn'
+                ? '© ২০২৬ ড্রিমস এস্টেট'
+                : '© 2026 Dreams Estate'}
             </p>
           </div>
         </div>
