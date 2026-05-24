@@ -24,9 +24,10 @@ import Testimonial from '../Others/Testimonial'
 import Conditions from '../Others/Conditions'
 import Gallery from '../Others/Gallery/Gallery'
 import Team from '../Others/Team/Team'
-import AddProperty from '../../AddProperty/AddProperty'
+
 import AgentDetails from '../Listing/Buy/AgentDetails'
 import BlogDetails from '../Blog/BlogDetails'
+import AddProperty from '../AddProperty/AddProperty'
 
 
 
@@ -71,3 +72,6 @@ export const router = createBrowserRouter([
     ],
   },
 ])
+
+
+
