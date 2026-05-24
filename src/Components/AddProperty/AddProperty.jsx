@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { countryData } from './Data'
+
 import { toast } from 'react-toastify'
 import { useTranslation } from 'react-i18next'
-import { uploadImage } from '../Components/ReusableFunction/UploadImage'
+import { uploadImage } from '../ReusableFunction/UploadImage'
 import axios from 'axios'
 import { useContext } from 'react'
-import { AuthContext } from '../Components/Authentication/AuthContext'
+import { AuthContext } from '../Authentication/AuthContext'
+import { countryData } from './Data'
 const AddProperty = () => {
   const { user } = useContext(AuthContext)
   //https://www.youtube.com/watch?v=AWovHEZcpQU
