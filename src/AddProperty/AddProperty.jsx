@@ -276,6 +276,7 @@ const AddProperty = () => {
         postName: user?.displayName,
 
         postEmail: user?.email,
+        profileUrl:user?.photoURL,
 
         lang: currentLang,
 
@@ -289,7 +290,7 @@ const AddProperty = () => {
 
         city: currentLang === 'bn' ? cityObj?.nameBn : cityObj?.nameEn,
       }
-
+      console.log(finalData)
       const response = await axios.post(
         `${import.meta.env.VITE_Backend_url}/api/property/add`,
         finalData
@@ -320,7 +321,7 @@ const AddProperty = () => {
         <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-12 border-b border-slate-100 dark:border-slate-800 no-scrollbar">
           {tabs.map((tab) => (
             <button
-              key={tab}
+              key={tab.key}
               onClick={() => setActiveTab(tab[currentLang])}
               className={`whitespace-nowrap px-4 py-2.5 rounded-lg text-sm font-bold transition-all ${
                 activeTab === tab[currentLang]
