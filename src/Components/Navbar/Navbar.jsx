@@ -18,6 +18,8 @@ import User from '../User/User'
 import LogoutButton from '../Logout/LogoutButton'
 import AddPropertyButton from '../AddPropertyButton/AddPropertyButton'
 import { useTranslation } from 'react-i18next'
+import CartButton from '../Cart/CartButton'
+import Notification from '../Notification/Notification'
 
 const Navbar = () => {
   const { user } = useContext(AuthContext)
@@ -97,6 +99,8 @@ const { i18n } = useTranslation()
           <LanguageSelector />
           {user ? (
             <div className="flex gap-1">
+              <Notification/>
+              <CartButton />
               <AddPropertyButton />
               <User />
             </div>

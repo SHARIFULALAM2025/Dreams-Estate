@@ -5,7 +5,7 @@ import { AuthContext } from '../Authentication/AuthContext'
 
 const DarkMode = () => {
   const { setTheme, theme } = useContext(AuthContext)
-  // মোবাইলে ক্লিক করে ড্রপডাউন ওপেন/ক্লোজ করার জন্য স্টেট
+
   const [isOpenMobile, setIsOpenMobile] = useState(false)
   const mobileMenuRef = useRef(null)
 
@@ -14,7 +14,7 @@ const DarkMode = () => {
     setTheme(saveTheme)
     document.documentElement.classList.toggle('dark', saveTheme === 'dark')
 
-    // মোবাইলে ড্রপডাউনের বাইরে ক্লিক করলে যেন মেনু বন্ধ হয়ে যায়
+
     const handleOutsideClick = (event) => {
       if (
         mobileMenuRef.current &&
@@ -31,13 +31,13 @@ const DarkMode = () => {
     setTheme(newTheme)
     document.documentElement.classList.toggle('dark', newTheme === 'dark')
     localStorage.setItem('theme', newTheme)
-    // থিম সিলেক্ট করার পর মোবাইল ড্রপডাউন বন্ধ করার জন্য
+
     setIsOpenMobile(false)
   }
 
   return (
     <div ref={mobileMenuRef} className="relative group py-2">
-      {/* মেইন বাটন: ডেস্কটপে হোভার আর মোবাইলে ক্লিকের জন্য আলাদা লজিক */}
+
       <button
         onClick={() => setIsOpenMobile(!isOpenMobile)}
         className="px-2.5 py-2.5 rounded-lg text-slate-700 dark:text-white dark:bg-slate-800 bg-gray-100 hover:bg-gray-200 dark:hover:bg-slate-700 transition-all ease-in-out shadow-md active:scale-95 flex items-center justify-center"
@@ -49,10 +49,6 @@ const DarkMode = () => {
         )}
       </button>
 
-      {/* নিচের ক্লাসে Tailwind-এর মাধ্যমে কন্ডিশনাল স্টাইলিং করা হয়েছে।
-        - ডেস্কটপে `lg:group-hover:...` দিয়ে আগের লজিক ঠিক রাখা হয়েছে।
-        - মোবাইলে স্টেট (`isOpenMobile`) সত্য হলে মেনুটি দৃশ্যমান হবে।
-      */}
       <div
         className={`absolute right-0 top-full pt-2 transition-all duration-300 transform translate-y-2 z-50
           lg:opacity-0 lg:invisible lg:group-hover:opacity-100 lg:group-hover:visible lg:group-hover:translate-y-0
