@@ -15,6 +15,7 @@ import Facebook from '../Facebook/Facebook'
 import { CgProfile } from 'react-icons/cg'
 import { uploadImage } from '../ReusableFunction/UploadImage'
 import { toast } from 'react-toastify'
+import { saveUser } from '../ReusableFunction/SaveUser'
 
 
 const Register = () => {
@@ -29,8 +30,7 @@ const Register = () => {
       let originalPassword = '';
       if (password === ConfirmPassword) {
         originalPassword = password
-      } else {
-        toast.error('password not match')
+        return
       }
       if (!image || image.length == 0) {
         toast.error('please select an image')
@@ -38,8 +38,9 @@ const Register = () => {
       }
       const profileImage = image[0]
       const userImage = await uploadImage(profileImage)
-      const userInfo = { name, email, originalPassword, userImage }
-      console.log(userInfo)
+      const userInfo = { name, email,password:originalPassword, userImage }
+      await saveUser(userInfo)
+      toast.success("register successfully!")
       if (!userImage) {
         toast.error('image upload failed')
         return
