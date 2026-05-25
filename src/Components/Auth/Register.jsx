@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import {
   FaUser,
@@ -8,7 +8,7 @@ import {
 
 } from 'react-icons/fa'
 
-import { Link } from 'react-router'
+import { Link, useNavigate } from 'react-router'
 import { FaEye } from 'react-icons/fa'
 import Social from '../Social/Social'
 import Facebook from '../Facebook/Facebook'
@@ -16,10 +16,13 @@ import { CgProfile } from 'react-icons/cg'
 import { uploadImage } from '../ReusableFunction/UploadImage'
 import { toast } from 'react-toastify'
 import { saveUser } from '../ReusableFunction/SaveUser'
+import { AuthContext } from '../Authentication/AuthContext'
 
 
 const Register = () => {
   const [eye, openEye] = useState(false)
+  const navigate=useNavigate()
+  const { setUser }=useContext(AuthContext)
   const handelEye = () => {
     openEye(!eye)
   }
@@ -40,11 +43,19 @@ const Register = () => {
       }
       const profileImage = image[0]
       const userImage = await uploadImage(profileImage)
-      const userInfo = { name, email, password: originalPassword, userImage }
+      const userInfo = {
+        name,
+        email,
+        password,
+        photo: userImage,
+        provider: 'email',
+      }
       console.log(userInfo)
 
-      await saveUser(userInfo)
+      const result = await saveUser(userInfo)
+      setUser(result)
       toast.success("register successfully!")
+      navigate('/', { replace: true })
       if (!userImage) {
         toast.error('image upload failed')
         return
@@ -54,7 +65,7 @@ const Register = () => {
         toast.error('email already exist')
       } else {
         console.error(error)
-        toast.error('something went wrong')
+        toast.error(error,'something went wrong')
       }
 
     }

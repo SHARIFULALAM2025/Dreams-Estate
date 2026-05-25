@@ -15,13 +15,14 @@ const Social = () => {
       setLoading(true)
       const result = await CreateAccountGoogle()
       const user = result.user
-
+      const userInfo = {
+        name: user.displayName,
+        email: user.email,
+        photo: user.photoURL,
+        provider: 'google',
+      }
       // ডাটাবেজে ইউজার সেভ করা
-      await saveUser({
-        name: user?.displayName,
-        email: user?.email,
-        photo: user?.photoURL,
-      })
+      await saveUser(userInfo)
 
       setUser(user)
 
@@ -32,7 +33,7 @@ const Social = () => {
         showConfirmButton: false,
       })
 
-      navigate('/', { replace: true }) // replace: true দিলে ব্যাক বাটনে লগইন পেজ আসবে না
+      navigate('/', { replace: true })
     } catch (error) {
       console.error(error)
       Swal.fire({
