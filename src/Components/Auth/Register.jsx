@@ -5,9 +5,9 @@ import {
   FaEnvelope,
   FaLock,
   FaEyeSlash,
-  FaFacebook,
+
 } from 'react-icons/fa'
-import { FcGoogle } from 'react-icons/fc'
+
 import { Link } from 'react-router'
 import { FaEye } from 'react-icons/fa'
 import Social from '../Social/Social'
@@ -30,7 +30,9 @@ const Register = () => {
       let originalPassword = '';
       if (password === ConfirmPassword) {
         originalPassword = password
-        return
+
+      } else {
+        toast.error("password not match")
       }
       if (!image || image.length == 0) {
         toast.error('please select an image')
@@ -38,7 +40,9 @@ const Register = () => {
       }
       const profileImage = image[0]
       const userImage = await uploadImage(profileImage)
-      const userInfo = { name, email,password:originalPassword, userImage }
+      const userInfo = { name, email, password: originalPassword, userImage }
+      console.log(userInfo)
+
       await saveUser(userInfo)
       toast.success("register successfully!")
       if (!userImage) {
@@ -248,7 +252,7 @@ const Register = () => {
           </div>
 
           {/* Sign Up Button */}
-          <button className="w-full bg-[#10b981] hover:bg-[#0da371] text-white font-bold py-3 md:py-4 rounded-md transition-colors shadow-lg">
+          <button type='submit' className="w-full bg-[#10b981] hover:bg-[#0da371] text-white font-bold py-3 md:py-4 rounded-md transition-colors shadow-lg">
             Sign Up
           </button>
         </form>
