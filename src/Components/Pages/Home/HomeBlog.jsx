@@ -9,7 +9,7 @@ const HomeBlog = () => {
   const { i18n } = useTranslation()
   const currentLang = i18n.language
   const { data: blogs, isLoading, isError, error } = useBlogPageData()
-const sliceData=blogs.slice(0,4) || []
+const sliceData=blogs?.slice(0,4) || []
   if (isLoading) {
     return (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -65,8 +65,8 @@ const sliceData=blogs.slice(0,4) || []
         {/* Grid Container */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
           {sliceData?.map((data) => (
-            <Link
-              to={`/BlogDetails/${data?.id}`}
+            <div
+
               key={data?.id || data?._id}
               className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-800 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group flex flex-col"
             >
@@ -127,6 +127,7 @@ const sliceData=blogs.slice(0,4) || []
                 {/* Blog Property Name Title */}
                 <Link
                   to={`/BlogDetails/${data.id}`}
+                  
                   className="text-base font-black text-slate-800 dark:text-white group-hover:text-emerald-500 transition-colors duration-200 line-clamp-2 mb-2"
                 >
                   {currentLang === 'bn'
@@ -141,7 +142,7 @@ const sliceData=blogs.slice(0,4) || []
                     : data?.blog_info?.desc?.text_en}
                 </p>
               </div>
-            </Link>
+            </div>
           ))}
         </div>
       </div>
