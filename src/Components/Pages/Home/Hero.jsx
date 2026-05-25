@@ -7,9 +7,9 @@ const Hero = () => {
         const currentLang = i18n.language
   // ইমেজের লিস্ট
   const images = [
-    'https://i.ibb.co.com/5x5Jpprf/Gemini-Generated-Image-azm0y7azm0y7azm0.png',
-    'https://i.ibb.co.com/3mS9F9c1/blog-img-11.jpg',
-    'https://i.ibb.co.com/5XHQV4tw/Gemini-Generated-Image-wiw3xdwiw3xdwiw3.png',
+    'https://i.ibb.co.com/vK472ZT/buy-grid-img-05.webp',
+    'https://i.ibb.co.com/LDdjTd7b/buy-slide-img-1.jpg',
+    'https://i.ibb.co.com/cK9y5RW3/blog-img-03.webp',
     'https://i.ibb.co.com/FkbbNMck/kara-eads-L7-Ew-Hkq1-B2s-unsplash.jpg',
     'https://i.ibb.co.com/XkNwJmGq/lotus-design-n-print-Wgk-A3-CSFrjc-unsplash.jpg',
   ]
@@ -36,23 +36,42 @@ const Hero = () => {
       <div className="absolute inset-0 "></div>
 
       <div className="max-w-7xl mx-auto w-full relative z-10">
-        <div className="max-w-3xl mb-10 md:mb-16">
-          <h1 className="text-3xl sm:text-4xl md:text-6xl font-extrabold text-white leading-[1.2] mb-6 drop-shadow-md">
+        <div className="max-w-4xl mb-10 md:mb-16 relative z-10">
+          {/* Industry Label */}
+          <div
+            className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full
+    bg-white/70 backdrop-blur-md border border-gray-200 shadow-lg"
+          >
+            <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
+
+            <span className="text-sm font-semibold tracking-wide uppercase text-gray-700">
+              {currentLang === 'bn'
+                ? 'বিশ্বস্ত রিয়েল এস্টেট প্ল্যাটফর্ম'
+                : 'Trusted Real Estate Platform'}
+            </span>
+          </div>
+
+          {/* Main Heading */}
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-black leading-[1.1] mb-6 text-white">
             {currentLang === 'bn'
               ? 'ভাড়া, ক্রয় ও বিক্রয়ের জন্য'
-              : "World's Largest Property Listing site for"}
-            <span className="text-emerald-600">
-              {' '}
+              : "World's Largest Property Listing Site for"}
+
+            <span className="block mt-3 text-white bg-clip-text text-transparent">
               {currentLang === 'bn'
-                ? 'বিশ্বের বৃহত্তম সম্পত্তি তালিকাভুক্তির সাইট...'
+                ? 'বিশ্বের বৃহত্তম সম্পত্তি তালিকাভুক্তির সাইট'
                 : 'Rental, Buy & Sell...'}
             </span>
           </h1>
-          <p className="text-base md:text-lg text-white font-medium max-w-xl  ">
+
+          {/* Description */}
+          <p className="text-lg md:text-xl text-white font-bold max-w-2xl leading-relaxed">
             {currentLang === 'bn'
-              ? 'আপনার এলাকায় ক্রয় / ভাড়ার জন্য সম্পত্তি। আমাদের কাছে ৩০০০টিরও বেশি তালিকা রয়েছে।'
-              : 'Properties for buy / rent in in your location. We have more than 3000+ listings'}
+              ? 'আপনার এলাকায় ক্রয় ও ভাড়ার জন্য সেরা সম্পত্তি খুঁজুন। আমাদের কাছে ৩০০০+ প্রিমিয়াম তালিকা রয়েছে।'
+              : 'Find premium properties for buying and renting in your area. Explore 3000+ verified listings with trusted agents.'}
           </p>
+
+
         </div>
 
         {/* Tab Buttons Section */}
