@@ -10,6 +10,7 @@ import {
   FaStar,
   FaWhatsapp,
 } from 'react-icons/fa'
+import ErrorPage505 from '../../Error/ErrorPage505'
 
 const AgencyDetails = () => {
   const { agencyId } = useParams()
@@ -65,8 +66,8 @@ const AgencyDetails = () => {
   // --- ২. এরর হ্যান্ডলিং এবং ডাটা সেফটি চেক ---
   if (isError) {
     return (
-      <div className="text-center py-12 text-rose-500 font-bold">
-        Error: {error?.message || 'Something went wrong.'}
+      <div className="">
+        <ErrorPage505/>
       </div>
     )
   }

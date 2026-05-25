@@ -116,7 +116,7 @@ const RentAndHome = () => {
    const { data: rentAndSell, isLoading, isError } = useRentAndSellPageData()
    const allData=rentAndSell?.data || []
   return (
-    <section className="bg-gray-50 py-10">
+    <section className="bg-white dark:bg-slate-950 py-10">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
           {allData?.map((property) => (

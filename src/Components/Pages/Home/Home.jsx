@@ -6,6 +6,9 @@ import HomeFaq from './HomeFaq'
 import HomeTestimonial from './HomeTestimonial'
 import BenefitsSection from './BenefitsSection'
 import RentAndHome from './RentAndHome'
+import Pricing from '../../Others/Pricing'
+
+import HomeBlog from './HomeBlog'
 
 const Home = () => {
   return (
@@ -16,6 +19,8 @@ const Home = () => {
       <HomeAbout />
       <HomeTestimonial />
       <HomeFaq />
+      <HomeBlog/>
+      <Pricing/>
     </div>
   )
 }
