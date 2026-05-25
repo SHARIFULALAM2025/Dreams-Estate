@@ -182,28 +182,29 @@ const Pricing = () => {
   ]
 
   return (
-    <div className="bg-white dark:bg-slate-950  px-4 transition-colors duration-300">
+    <div className="bg-white dark:bg-slate-950 px-4 transition-colors duration-300">
       <div className="max-w-7xl mx-auto">
-        {/* Toggle Switch */}
-        <div className="flex justify-center mb-16">
-          <div className="bg-white dark:bg-slate-900 border dark:border-slate-800 p-1 rounded-full flex items-center shadow-sm">
+        {/* Toggle Button */}
+        <div className="flex justify-center mb-12">
+          <div className="bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-1 rounded-full flex items-center shadow-md w-full max-w-xs">
             <button
-              onClick={() =>
-                setBillingCycle(
-                  `   ${currentLang === 'bn' ? 'মাসিক' : 'Monthly'}`
-                )
-              }
-              className={`px-6 py-2 rounded-full text-sm font-bold transition-all ${billingCycle === 'monthly' ? 'bg-emerald-500 text-white shadow-md' : 'text-slate-500 hover:text-slate-800 dark:hover:text-slate-200'}`}
+              onClick={() => setBillingCycle('monthly')}
+              className={`flex-1 py-3 rounded-full text-sm font-bold transition-all duration-300 ${
+                billingCycle === 'monthly'
+                  ? 'bg-gradient-to-r from-emerald-500 to-teal-600 text-white shadow-lg'
+                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+              }`}
             >
               {currentLang === 'bn' ? 'মাসিক' : 'Monthly'}
             </button>
+
             <button
-              onClick={() =>
-                setBillingCycle(
-                  `  ${currentLang === 'bn' ? 'বার্ষিক' : 'Yearly'}`
-                )
-              }
-              className={`px-6 py-2 rounded-full text-sm font-bold transition-all ${billingCycle === 'yearly' ? 'bg-emerald-500 text-white shadow-md' : 'text-slate-500 hover:text-slate-800 dark:hover:text-slate-200'}`}
+              onClick={() => setBillingCycle('yearly')}
+              className={`flex-1 py-3 rounded-full text-sm font-bold transition-all duration-300 ${
+                billingCycle === 'yearly'
+                  ? 'bg-gradient-to-r from-emerald-500 to-teal-600 text-white shadow-lg'
+                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+              }`}
             >
               {currentLang === 'bn' ? 'বার্ষিক' : 'Yearly'}
             </button>
@@ -211,56 +212,67 @@ const Pricing = () => {
         </div>
 
         {/* Pricing Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {plans.map((plan, index) => (
             <div
               key={index}
-              className={`relative bg-white hover:bg-indigo-600  dark:bg-slate-900 rounded-3xl p-8 border ${plan.isPopular ? 'border-emerald-500 shadow-xl' : 'border-slate-100 dark:border-slate-800 shadow-sm'} transition-all hover:translate-y-[-5px]`}
+              className={`relative group bg-white dark:bg-slate-900 rounded-3xl p-8 border transition-all duration-300 hover:-translate-y-2 hover:bg-indigo-600 ${
+                plan.isPopular
+                  ? 'border-emerald-500 shadow-xl'
+                  : 'border-slate-100 dark:border-slate-800 shadow-sm'
+              }`}
             >
               {/* Most Popular Badge */}
               {plan.isPopular && (
                 <div className="absolute top-0 right-8 transform -translate-y-1/2 bg-pink-500 text-white text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-md">
-                  {currentLang === '' ? 'সবচেয়ে জনপ্রিয়' : 'Most Popular'}
+                  {currentLang === 'bn' ? 'সবচেয়ে জনপ্রিয়' : 'Most Popular'}
                   <div className="absolute -bottom-1 right-2 w-2 h-2 bg-pink-500 rotate-45"></div>
                 </div>
               )}
 
-              <h3 className="text-2xl font-black text-slate-900 dark:text-white mb-2">
+              {/* Plan Name */}
+              <h3 className="text-2xl font-black text-slate-900 dark:text-white group-hover:text-white mb-2 transition-colors duration-300">
                 {currentLang === 'bn' ? plan.name.bn : plan.name.en}
               </h3>
-              <p className="text-slate-400 dark:text-slate-500 text-sm leading-relaxed mb-6">
+
+              {/* Description */}
+              <p className="text-slate-600 dark:text-slate-400 group-hover:text-slate-100 text-sm leading-relaxed mb-6 transition-colors duration-300">
                 {currentLang === 'bn'
                   ? plan.description.bn
                   : plan.description.en}
               </p>
 
+              {/* Price */}
               <div className="flex items-baseline gap-1 mb-8">
-                <span className="text-4xl font-black text-slate-900 dark:text-white">
+                <span className="text-4xl font-black text-slate-900 dark:text-white group-hover:text-white transition-colors duration-300">
                   ${plan.price}
                 </span>
-                <span className="text-slate-400 font-medium">
+                <span className="text-slate-400 group-hover:text-slate-200 font-medium transition-colors duration-300">
                   /{billingCycle}
                 </span>
               </div>
 
-              <div className="border-t border-slate-100 dark:border-slate-800 pt-8 mb-8">
-                <h4 className="text-sm font-black text-slate-900 dark:text-white uppercase tracking-wider mb-6">
+              {/* Features */}
+              <div className="border-t border-slate-100 dark:border-slate-800 group-hover:border-slate-400/30 pt-8 mb-8 transition-colors duration-300">
+                <h4 className="text-sm font-black text-slate-900 dark:text-white group-hover:text-white uppercase tracking-wider mb-6 transition-colors duration-300">
                   {currentLang === 'bn' ? 'মূল বৈশিষ্ট্য' : 'Key Features'}
                 </h4>
+
                 <ul className="space-y-4">
                   {plan.features.map((feature, idx) => (
                     <li
                       key={idx}
-                      className="flex items-center gap-3 text-slate-900 hover:text-white dark:text-slate-400 text-[13px] font-medium leading-tight"
+                      className="flex items-center gap-3 text-slate-700 dark:text-slate-400 group-hover:text-white text-[13px] font-medium leading-tight transition-colors duration-300"
                     >
-                      <FaCheckCircle className="text-slate-400 shrink-0 text-[16px]" />
+                      <FaCheckCircle className="text-emerald-500 shrink-0 text-[16px]" />
                       {currentLang === 'bn' ? feature.bn : feature.en}
                     </li>
                   ))}
                 </ul>
               </div>
 
-              <button className="w-full bg-[#111827] hover:bg-slate-800 text-white font-bold py-4 rounded-xl transition-all active:scale-95">
+              {/* Button */}
+              <button className="w-full bg-[#111827] hover:bg-slate-800 group-hover:bg-white group-hover:text-indigo-600 text-white font-bold py-4 rounded-xl transition-all duration-300 active:scale-95">
                 {currentLang === 'bn' ? 'আজই মূল্য জানুন' : 'Get a Quote'}
               </button>
             </div>
