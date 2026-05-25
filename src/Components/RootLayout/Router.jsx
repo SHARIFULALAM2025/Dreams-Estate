@@ -28,6 +28,7 @@ import Team from '../Others/Team/Team'
 import AgentDetails from '../Listing/Buy/AgentDetails'
 import BlogDetails from '../Blog/BlogDetails'
 import AddProperty from '../AddProperty/AddProperty'
+import AgencyDetails from '../Listing/Rent/AgencyDetails'
 
 
 
@@ -61,6 +62,7 @@ export const router = createBrowserRouter([
       { path: 'addProperty', Component: AddProperty },
       { path: 'BuyDetails/:agentId', Component: AgentDetails },
       { path: 'BlogDetails/:blogId', Component: BlogDetails },
+      { path: 'AgencyDetails/:agencyId', Component: AgencyDetails },
     ],
   },
   {
