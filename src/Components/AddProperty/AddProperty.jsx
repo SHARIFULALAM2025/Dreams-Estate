@@ -10,8 +10,7 @@ import { AuthContext } from '../Authentication/AuthContext'
 import { countryData } from './Data'
 const AddProperty = () => {
   const { user } = useContext(AuthContext)
-  //https://www.youtube.com/watch?v=AWovHEZcpQU
-  //https://www.youtube.com/watch?v=BjnBo37YHgQ
+
   const { i18n } = useTranslation()
   const currentLang = i18n.language
 
@@ -277,7 +276,7 @@ const AddProperty = () => {
         postName: user?.displayName,
 
         postEmail: user?.email,
-        profileUrl:user?.photoURL,
+        profileUrl: user?.photoURL,
 
         lang: currentLang,
 
@@ -304,10 +303,12 @@ const AddProperty = () => {
             : 'Property added successfully'
         )
 
-        reset() // react-hook-form reset
+        reset()
       }
     } catch (error) {
       console.error('Upload failed:', error)
+
+      console.log('Backend Error:', error.response?.data)
 
       toast.error(
         currentLang === 'bn' ? 'কিছু একটা ভুল হয়েছে' : 'Something went wrong'
@@ -460,6 +461,7 @@ const AddProperty = () => {
                   </span>
                 )}
               </div>
+              
               <div>
                 <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">
                   {currentLang === 'bn' ? 'বিক্রয় মূল্য' : 'Sale Price'}

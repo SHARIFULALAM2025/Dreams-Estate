@@ -114,12 +114,12 @@ const RentAndHome = () => {
    const currentLang = i18n.language
 
    const { data: rentAndSell, isLoading, isError } = useRentAndSellPageData()
-   console.log(rentAndSell)
+   const allData=rentAndSell?.data || []
   return (
     <section className="bg-gray-50 py-10">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
-          {rentAndSell?.data?.map((property) => (
+          {allData?.map((property) => (
             <div
               key={property.id}
               className="group overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl"
@@ -127,7 +127,7 @@ const RentAndHome = () => {
               {/* Image */}
               <div className="relative overflow-hidden">
                 <img
-                  src={property.attachment[0]}
+                  src={property?.attachment[0]}
                   alt={property.title}
                   className="h-[260px] w-full object-cover transition duration-500 group-hover:scale-110"
                 />
@@ -165,7 +165,7 @@ const RentAndHome = () => {
                 {/* Avatar */}
                 <div className="absolute bottom-4 right-4">
                   <img
-                    src={property.avatar}
+                    src={property.profileUrl}
                     alt=""
                     className="h-12 w-12 rounded-full border-[3px] border-white object-cover"
                   />
@@ -183,10 +183,10 @@ const RentAndHome = () => {
                   </div>
 
                   <span className="font-medium text-gray-700">
-                    {property.rating}
+                    4.5
                   </span>
 
-                  <span>({property.reviews} Reviews)</span>
+                  <span>(4.5 Reviews)</span>
                 </div>
 
                 {/* Title */}
@@ -197,7 +197,10 @@ const RentAndHome = () => {
                 {/* Location */}
                 <div className="mb-5 flex items-center gap-2 text-sm text-gray-500">
                   <FaMapMarkerAlt className="text-violet-500" />
-                  <span>{property.location}</span>
+                  <span>
+                    {property.city[currentLang]} ,{property.state[currentLang]}{' '}
+                    ,{property.country[currentLang]}
+                  </span>
                 </div>
 
                 {/* Info */}
@@ -224,14 +227,16 @@ const RentAndHome = () => {
                     <span className="font-semibold text-gray-800">
                       Listed on :
                     </span>{' '}
-                    {property.property_available_from}
+                    {new Date(
+                      property.property_available_from
+                    ).toLocaleDateString()}
                   </p>
 
                   <p>
                     <span className="font-semibold text-gray-800">
                       Category :
                     </span>{' '}
-                    {property.property_category}
+                    {property.property_category[currentLang]}
                   </p>
                 </div>
               </div>
