@@ -12,6 +12,9 @@ import { Link } from 'react-router'
 import { FaEye } from 'react-icons/fa'
 import Social from '../Social/Social'
 import Facebook from '../Facebook/Facebook'
+import { CgProfile } from 'react-icons/cg'
+import { uploadImage } from '../ReusableFunction/UploadImage'
+import { toast } from 'react-toastify'
 
 
 const Register = () => {
@@ -20,10 +23,37 @@ const Register = () => {
     openEye(!eye)
   }
 
- const handelSignup = (data) => {
-    console.log(data);
+  const handelSignup = async (data) => {
+    try {
+      const { name, email, password, ConfirmPassword, image } = data
+      let originalPassword = '';
+      if (password === ConfirmPassword) {
+        originalPassword = password
+      } else {
+        toast.error('password not match')
+      }
+      if (!image || image.length == 0) {
+        toast.error('please select an image')
+        return
+      }
+      const profileImage = image[0]
+      const userImage = await uploadImage(profileImage)
+      const userInfo = { name, email, originalPassword, userImage }
+      console.log(userInfo)
+      if (!userImage) {
+        toast.error('image upload failed')
+        return
+      }
+    } catch (error) {
+      if (error.response?.status == 400) {
+        toast.error('email already exist')
+      } else {
+        console.error(error)
+        toast.error('something went wrong')
+      }
 
     }
+  }
 
  const {
    register,
@@ -159,7 +189,7 @@ const Register = () => {
               <div className="relative">
                 <FaLock className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
                 <input
-                  {...register('password', {
+                  {...register('ConfirmPassword', {
                     required: 'the field is required!',
                     minLength: {
                       value: 6,
@@ -182,6 +212,25 @@ const Register = () => {
                   )}
                 </div>
               </div>
+            </div>
+          </div>
+          <div>
+            <label className="block text-sm font-semibold text-slate-700 mb-1">
+              Profile <span className="text-red-500">*</span>
+            </label>
+            <div className="relative">
+              <CgProfile className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+              <input
+                {...register('image', {
+                  required: 'the field is required!',
+                })}
+                type="file"
+                placeholder="Enter your email"
+                className="w-full bg-slate-50 border border-slate-100 rounded-md py-3 pl-10 pr-4 focus:outline-none focus:ring-2 focus:ring-teal-500 transition"
+              />
+              {errors.email && (
+                <span className="text-red-500">{errors.email.message}</span>
+              )}
             </div>
           </div>
 
@@ -215,8 +264,8 @@ const Register = () => {
 
         {/* Social Buttons - Stacks on mobile, side-by-side on larger screens */}
         <div className="flex flex-row gap-4 justify-around">
-         <Facebook />
-          <Social/>
+          <Facebook />
+          <Social />
         </div>
 
         {/* Footer Link */}
