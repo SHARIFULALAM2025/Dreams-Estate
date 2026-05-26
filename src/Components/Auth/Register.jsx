@@ -33,9 +33,9 @@ const Register = () => {
       let originalPassword = '';
       if (password === ConfirmPassword) {
         originalPassword = password
-
       } else {
         toast.error("password not match")
+        return
       }
       if (!image || image.length == 0) {
         toast.error('please select an image')
@@ -46,9 +46,10 @@ const Register = () => {
       const userInfo = {
         name,
         email,
-        password,
+        password: originalPassword,
         photo: userImage,
         provider: 'email',
+        role:"user"
       }
       console.log(userInfo)
 

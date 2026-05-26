@@ -3,19 +3,22 @@ import { FaLock } from 'react-icons/fa'
 import { AuthContext } from '../Authentication/AuthContext'
 import { toast } from 'react-toastify'
 import { useTranslation } from 'react-i18next'
+import { useNavigate } from 'react-router'
 
 const LogoutButton = () => {
-  const { LogOut } = useContext(AuthContext)
+  const { LogOut, setUser } = useContext(AuthContext)
   const { i18n } = useTranslation()
-      const currentLang = i18n.language
+  const navigate = useNavigate()
+
+  const currentLang = i18n.language
   const handelLogout = () => {
-    LogOut()
-      .then(() => {
-        toast.success('Successfully Logged Out')
-      })
-      .catch((error) => {
-        toast.error('Logout Error:', error.message)
-      })
+    LogOut().then(() => {
+      toast.success('Successfully Logged Out')
+    })
+    setUser(null)
+    navigate('/', { replace: true }).catch((error) => {
+      toast.error('Logout Error:', error.message)
+    })
   }
   return (
     <div>

@@ -20,6 +20,7 @@ const Social = () => {
         email: user.email,
         photo: user.photoURL,
         provider: 'google',
+        role:"user"
       }
       // ডাটাবেজে ইউজার সেভ করা
       await saveUser(userInfo)
