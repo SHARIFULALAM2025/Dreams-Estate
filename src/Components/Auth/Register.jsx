@@ -20,49 +20,68 @@ const Register = () => {
     openEye(!eye)
   }
 
-  const handelSignup = async (data) => {
-    try {
-      const { name, email, password, ConfirmPassword, image } = data
-      let originalPassword = ''
-      if (password === ConfirmPassword) {
-        originalPassword = password
-      } else {
-        toast.error('password not match')
-        return
-      }
-      if (!image || image.length == 0) {
-        toast.error('please select an image')
-        return
-      }
-      const profileImage = image[0]
-      const userImage = await uploadImage(profileImage)
-      const userInfo = {
-        name,
-        email,
-        password: originalPassword,
-        photo: userImage,
-        provider: 'email',
-        role: 'user',
-      }
-      console.log(userInfo)
-      const result = await createUser(email.trim(), password.trim())
-      await saveUser(userInfo)
-      setUser(result)
-      toast.success('register successfully!')
-      navigate('/', { replace: true })
-      if (!userImage) {
-        toast.error('image upload failed')
-        return
-      }
-    } catch (error) {
-      if (error.response?.status == 400) {
-        toast.error('email already exist')
-      } else {
-        console.error(error)
-        toast.error(error, 'something went wrong')
-      }
-    }
-  }
+ const handleSignup = async (data) => {
+   try {
+     // 1. Destructure and normalize data
+     const { name, email, password, ConfirmPassword, image } = data
+     const trimmedEmail = email.trim()
+     const trimmedPassword = password.trim()
+
+     // 2. Validate Password Match
+     if (trimmedPassword !== ConfirmPassword.trim()) {
+       toast.error('Passwords do not match')
+       return
+     }
+
+     // 3. Validate Image Selection
+     if (!image || image.length === 0) {
+       toast.error('Please select an image')
+       return
+     }
+
+     // 4. Upload Image & Check for Failure Immediately
+     const profileImage = image[0]
+     const userImage = await uploadImage(profileImage)
+
+     if (!userImage) {
+       toast.error('Image upload failed')
+       return
+     }
+
+     // 5. Construct User Payload
+     const userInfo = {
+       name,
+       email: trimmedEmail,
+       password: trimmedPassword,
+       photo: userImage,
+       provider: 'email',
+       role: 'user',
+     }
+
+     console.log(userInfo)
+
+     // 6. Create User in Auth and Save to DB
+     const result = await createUser(trimmedEmail, trimmedPassword)
+     await saveUser(userInfo)
+
+     // 7. Update State and Navigate
+     setUser(result)
+     toast.success('Registered successfully!')
+     navigate('/', { replace: true })
+   } catch (error) {
+     console.error(error)
+
+     // 8. Robust Error Handling
+     if (
+       error.response?.status === 400 ||
+       error.code === 'auth/email-already-in-use'
+     ) {
+       toast.error('Email already exists')
+     } else {
+       toast.error(error.message || 'Something went wrong')
+     }
+   }
+ }
 
   const {
     register,
@@ -108,7 +127,7 @@ const Register = () => {
         </h2>
 
         <form
-          onSubmit={handleSubmit(handelSignup)}
+          onSubmit={handleSubmit(handleSignup)}
           className="space-y-4 md:space-y-6"
         >
           {/* Name Field */}
