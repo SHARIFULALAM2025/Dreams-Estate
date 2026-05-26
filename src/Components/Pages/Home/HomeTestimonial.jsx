@@ -95,7 +95,7 @@ const HomeTestimonial = () => {
             <span className="text-emerald-400">~</span>
           </h2>
 
-          <p className="text-slate-500 dark:text-slate-400 mt-4 text-lg">
+          <p className=" text-white mt-4 text-lg">
             {currentLang === 'bn'
               ? 'আমাদের সন্তুষ্ট গ্রাহকদের অভিজ্ঞতা শুনুন'
               : 'Hear from our happy customers'}

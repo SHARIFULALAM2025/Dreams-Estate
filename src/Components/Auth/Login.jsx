@@ -3,22 +3,40 @@ import {
   FaEnvelope,
   FaLock,
   FaEyeSlash,
-  FaFacebook,
+
   FaEye,
 } from 'react-icons/fa'
-import { FcGoogle } from 'react-icons/fc'
-import { Link } from 'react-router'
+import { toast } from 'react-toastify'
+import { Link, useNavigate } from 'react-router'
 import { useForm } from 'react-hook-form'
 import Social from '../Social/Social'
 import Facebook from '../Facebook/Facebook'
+import { useContext } from 'react'
+import { AuthContext } from '../Authentication/AuthContext'
 const Login = () => {
+  const { LoginUser } = useContext(AuthContext)
+  const navigate=useNavigate()
   const [eye, openEye] = useState(false)
   const handelEye = () => {
     openEye(!eye)
   }
-  const handelLogin = (data) => {
-    console.log(data)
-  }
+ const handelLogin = async (data) => {
+   const { email, password } = data
+
+   try {
+     const result = await LoginUser(email, password)
+
+     console.log(result.user)
+
+     toast.success('Login Successful!')
+
+     navigate('/')
+   } catch (error) {
+     console.error(error)
+
+     toast.error(error.message || 'Invalid email or password')
+   }
+ }
 
   const {
     register,
