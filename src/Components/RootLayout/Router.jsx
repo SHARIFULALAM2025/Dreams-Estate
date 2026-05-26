@@ -30,6 +30,7 @@ import BlogDetails from '../Blog/BlogDetails'
 import AddProperty from '../AddProperty/AddProperty'
 import AgencyDetails from '../Listing/Rent/AgencyDetails'
 import DashboardLayout from './DashboardLayout'
+import ForgetPassword from '../Auth/ForgetPassword'
 
 
 
@@ -72,13 +73,14 @@ export const router = createBrowserRouter([
     children: [
       { path: 'login', Component: Login },
       { path: 'register', Component: Register },
+      { path: 'resetPassword', Component: ForgetPassword },
     ],
   },
   {
     path: "dashboard",
     Component: DashboardLayout,
     children: [
-     
+
     ]
   }
 ])

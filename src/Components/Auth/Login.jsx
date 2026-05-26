@@ -152,12 +152,12 @@ const Login = () => {
                 Remember Me
               </label>
             </div>
-            <button
-              type="button"
-              className="text-sm text-red-400 hover:text-red-500 text-left transition-colors"
+            <Link
+              to="/auth/resetPassword"
+              className="text-sm text-red-400 hover:underline hover:text-red-500 text-left transition-colors"
             >
               Forgot Password?
-            </button>
+            </Link>
           </div>
 
           {/* Sign In Button */}
@@ -181,8 +181,8 @@ const Login = () => {
 
         {/* Social Buttons - Stacks on tiny screens, side-by-side on sm+ */}
         <div className="flex flex-col sm:flex-row gap-4">
-          <Facebook/>
-         <Social/>
+          <Facebook />
+          <Social />
         </div>
 
         {/* Footer Link */}
