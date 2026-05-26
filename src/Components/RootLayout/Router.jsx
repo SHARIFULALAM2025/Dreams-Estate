@@ -29,6 +29,7 @@ import AgentDetails from '../Listing/Buy/AgentDetails'
 import BlogDetails from '../Blog/BlogDetails'
 import AddProperty from '../AddProperty/AddProperty'
 import AgencyDetails from '../Listing/Rent/AgencyDetails'
+import DashboardLayout from './DashboardLayout'
 
 
 
@@ -73,6 +74,13 @@ export const router = createBrowserRouter([
       { path: 'register', Component: Register },
     ],
   },
+  {
+    path: "dashboard",
+    Component: DashboardLayout,
+    children: [
+     
+    ]
+  }
 ])
 
 
