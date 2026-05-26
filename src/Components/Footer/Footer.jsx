@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import {
   FaFacebookF,
   FaInstagram,
@@ -11,107 +12,190 @@ import {
 import { FaXTwitter } from 'react-icons/fa6'
 
 const Footer = () => {
+  const { i18n } = useTranslation()
+  const currentLang = i18n.language
+  const footerData = {
+    pages: {
+      title: {
+        en: 'Pages',
+        bn: 'পৃষ্ঠাগুলি',
+      },
+      links: [
+        {
+          en: 'Our Team',
+          bn: 'আমাদের টিম',
+          href: '#',
+        },
+        {
+          en: 'Pricing Plans',
+          bn: 'মূল্য পরিকল্পনা',
+          href: '#',
+        },
+        {
+          en: 'Gallery',
+          bn: 'গ্যালারি',
+          href: '#',
+        },
+        {
+          en: 'Settings',
+          bn: 'সেটিংস',
+          href: '#',
+        },
+        {
+          en: 'Profile',
+          bn: 'প্রোফাইল',
+          href: '#',
+        },
+        {
+          en: 'Listings',
+          bn: 'লিস্টিং',
+          href: '#',
+        },
+      ],
+    },
+
+    company: {
+      title: {
+        en: 'Company',
+        bn: 'কোম্পানি',
+      },
+      links: [
+        {
+          en: 'About Us',
+          bn: 'আমাদের সম্পর্কে',
+          href: '#',
+        },
+        {
+          en: 'Careers',
+          bn: 'ক্যারিয়ার',
+          href: '#',
+        },
+        {
+          en: 'Blog',
+          bn: 'ব্লগ',
+          href: '#',
+        },
+        {
+          en: 'Affiliate Program',
+          bn: 'অ্যাফিলিয়েট প্রোগ্রাম',
+          href: '#',
+        },
+        {
+          en: 'Add Your Listing',
+          bn: 'আপনার লিস্টিং যোগ করুন',
+          href: '#',
+        },
+        {
+          en: 'Our Partners',
+          bn: 'আমাদের পার্টনার',
+          href: '#',
+        },
+      ],
+    },
+
+    destinations: {
+      title: {
+        en: 'Destinations',
+        bn: 'গন্তব্যসমূহ',
+      },
+      links: [
+        {
+          en: 'Hawai',
+          bn: 'হাওয়াই',
+          href: '#',
+        },
+        {
+          en: 'Istanbul',
+          bn: 'ইস্তানবুল',
+          href: '#',
+        },
+        {
+          en: 'San Diego',
+          bn: 'সান দিয়েগো',
+          href: '#',
+        },
+        {
+          en: 'Belgium',
+          bn: 'বেলজিয়াম',
+          href: '#',
+        },
+        {
+          en: 'New York',
+          bn: 'নিউ ইয়র্ক',
+          href: '#',
+        },
+        {
+          en: 'Los Angeles',
+          bn: 'লস অ্যাঞ্জেলেস',
+          href: '#',
+        },
+      ],
+    },
+
+    usefulLinks: {
+      title: {
+        en: 'Useful Links',
+        bn: 'প্রয়োজনীয় লিংক',
+      },
+      links: [
+        {
+          en: 'Legal Notice',
+          bn: 'আইনি নোটিশ',
+          href: '#',
+        },
+        {
+          en: 'Privacy Policy',
+          bn: 'গোপনীয়তা নীতি',
+          href: '#',
+        },
+        {
+          en: 'Terms & Conditions',
+          bn: 'শর্তাবলী',
+          href: '#',
+        },
+        {
+          en: 'Support',
+          bn: 'সহায়তা',
+          href: '#',
+        },
+        {
+          en: 'Refund Policy',
+          bn: 'রিফান্ড নীতি',
+          href: '#',
+        },
+        {
+          en: 'Contact Us',
+          bn: 'যোগাযোগ করুন',
+          href: '#',
+        },
+      ],
+    },
+  }
   return (
     <footer className="text-white bg-slate-950   overflow-hidden">
       <div className="relative max-w-7xl mx-auto px-6 md:px-12">
-        {/* Top Section: Links Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 mb-10 ">
-          {/* Pages Column */}
-          <div className="z-10">
-            <h3 className="text-white text-xl font-bold mb-2">Pages</h3>
-            <div className="w-10 h-1 bg-gradient-to-r from-emerald-400 to-cyan-400 mb-6"></div>
-            <div className="flex flex-col space-y-3">
-              {[
-                { text: 'Our Team', href: '#' },
-                { text: 'Pricing Plans', href: '#' },
-                { text: 'Gallery', href: '#' },
-                { text: 'Settings', href: '#' },
-                { text: 'Profile', href: '#' },
-                { text: 'Listings', href: '#' },
-              ].map((item) => (
-                <a
-                  href={item.href}
-                  key={item.text}
-                  className="text-slate-300 hover:text-emerald-400 hover:underline transition-colors cursor-pointer"
-                >
-                  {item.text}
-                </a>
-              ))}
-            </div>
-          </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 mb-10">
+          {Object.values(footerData).map((section, index) => (
+            <div key={index} className="z-10">
+              <h3 className="text-white text-xl font-bold mb-2">
+                {section.title[currentLang] || section.title.en}
+              </h3>
 
-          {/* Company Column */}
-          <div className="z-10">
-            <h3 className="text-white text-xl font-bold mb-2">Company</h3>
-            <div className="w-10 h-1 bg-gradient-to-r from-emerald-400 to-cyan-400 mb-6"></div>
-            <div className="flex flex-col space-y-3">
-              {[
-                { text: 'About Us', href: '#' },
-                { text: 'Careers', href: '#' },
-                { text: 'Blog', href: '#' },
-                { text: 'Affiliate Program', href: '#' },
-                { text: 'Add Your Listing', href: '#' },
-                { text: 'Our Partners', href: '#' },
-              ].map((item) => (
-                <a
-                  href={item.href}
-                  key={item.text}
-                  className="text-slate-300 hover:underline hover:text-emerald-400 transition-colors cursor-pointer"
-                >
-                  {item.text}
-                </a>
-              ))}
-            </div>
-          </div>
+              <div className="w-10 h-1 bg-gradient-to-r from-emerald-400 to-cyan-400 mb-6"></div>
 
-          {/* Destinations Column */}
-          <div className="z-10">
-            <h3 className="text-white text-xl font-bold mb-2">Destinations</h3>
-            <div className="w-10 h-1 bg-gradient-to-r from-emerald-400 to-cyan-400 mb-6"></div>
-            <div className="flex flex-col space-y-3">
-              {[
-                { text: 'Hawai', href: '#' },
-                { text: 'Istanbul', href: '#' },
-                { text: 'San Diego', href: '#' },
-                { text: 'Belgium', href: '#' },
-                { text: 'Newyork', href: '#' },
-                { text: 'Los Angeles', href: '#' },
-              ].map((item) => (
-                <a
-                  key={item.text}
-                  href={item.href}
-                  className="text-slate-300 hover:underline hover:text-emerald-400 transition-colors cursor-pointer"
-                >
-                  {item.text}
-                </a>
-              ))}
+              <div className="flex flex-col space-y-3">
+                {section.links.map((item, idx) => (
+                  <a
+                    key={idx}
+                    href={item.href}
+                    className="text-slate-300 hover:text-emerald-400 hover:underline transition-colors cursor-pointer w-fit"
+                  >
+                    {item[currentLang] || item.en}
+                  </a>
+                ))}
+              </div>
             </div>
-          </div>
-
-          {/* Useful Links Column */}
-          <div className="z-10">
-            <h3 className="text-white text-xl font-bold mb-2">Useful Links</h3>
-            <div className="w-10 h-1 bg-gradient-to-r from-emerald-400 to-cyan-400 mb-6"></div>
-
-            <div className="flex flex-col space-y-3">
-              {[
-                { text: 'Legal Notice', href: '#' },
-                { text: 'Privacy Policy', href: '#' },
-                { text: 'Terms & Conditions', href: '#' },
-                { text: 'Support', href: '#' },
-                { text: 'Refund Policy', href: '#' },
-                { text: 'Contact Us', href: '#' },
-              ].map((item) => (
-                <a
-                  href={item.href}
-                  key={item.text}
-                  className="text-slate-300 hover:underline hover:text-emerald-400 transition-colors cursor-pointer w-fit"
-                >
-                  {item.text}
-                </a>
-              ))}
-            </div>
-          </div>
+          ))}
         </div>
         <div className="absolute bottom-0 right-0 pointer-events-none opacity-20 lg:opacity-40 select-none">
           <img
@@ -167,7 +251,7 @@ const Footer = () => {
               </div>
               <div className="text-center md:text-left">
                 <p className="text-xs text-slate-400 uppercase tracking-wider font-semibold">
-                  Customer Support
+                  {currentLang === 'bn' ? 'গ্রাহক সহায়তা' : 'Customer Support'}
                 </p>
                 <p className="text-white font-bold">+1 56589 54598</p>
               </div>
@@ -183,10 +267,14 @@ const Footer = () => {
               </div>
               <div className="text-center md:text-left">
                 <p className="text-xs text-slate-400 uppercase tracking-wider font-semibold">
-                  Drop Us an Email
+                  {currentLang === 'bn'
+                    ? 'আমাদেরকে একটি ইমেল পাঠান'
+                    : ' Drop Us an Email'}
                 </p>
                 <p className="text-white font-bold text-sm sm:text-base">
-                  dreamsestate@gmail.com
+                  {currentLang === 'bn'
+                    ? 'dreamsestate@gmail.com'
+                    : ' dreamsestate@gmail.com'}
                 </p>
               </div>
             </a>
@@ -201,7 +289,7 @@ const Footer = () => {
               </div>
               <div className="text-center md:text-left">
                 <p className="text-xs text-slate-400 uppercase tracking-wider font-semibold">
-                  Toll Free Phone
+                  {currentLang === 'bn' ? 'টোল ফ্রি ফোন' : 'Toll Free Phone'}
                 </p>
                 <p className="text-white font-bold">1800 5656 5458</p>
               </div>
@@ -213,8 +301,13 @@ const Footer = () => {
       {/* Bottom Section: Copyright */}
       <div className="text-center mt-10 p-5 border-t border-slate-800 px-6">
         <p className="text-sm text-slate-600 font-medium tracking-wide">
-          Copyright © 2026. All Rights Reserved,{' '}
-          <span className="text-emerald-400">Dreams Estate</span>
+          {currentLang === 'bn'
+            ? 'কপিরাইট © ২০২৬। সর্বস্বত্ব সংরক্ষিত।'
+            : 'Copyright © 2026. All Rights Reserved,'}
+
+          <span className="text-emerald-400">
+            {currentLang === 'bn' ? 'স্বপ্ন এস্টেট' : 'Dreams Estate'}
+          </span>
         </p>
       </div>
     </footer>

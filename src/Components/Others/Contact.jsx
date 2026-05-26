@@ -2,49 +2,57 @@ import React, { useContext } from 'react'
 import { MdEmail, MdPhoneInTalk, MdLocationOn } from 'react-icons/md'
 import { Link } from 'react-router'
 import { AuthContext } from '../Authentication/AuthContext'
+import { useTranslation } from 'react-i18next'
 
 const Contact = () => {
   const { theme } = useContext(AuthContext);
 
-
+ const { i18n } = useTranslation()
+  const currentLang = i18n.language
 
   return (
-    <div className={`min-h-screen py-8 md:py-16 px-4 sm:px-6 md:px-10 transition-colors duration-300
-      ${theme === 'dark' ? 'bg-slate-950 text-slate-100' : 'bg-slate-50 text-slate-800'}`}>
-
+    <div
+      className={`min-h-screen py-8 md:py-16 px-4 sm:px-6 md:px-10 transition-colors duration-300
+      ${theme === 'dark' ? 'bg-slate-950 text-slate-100' : 'bg-slate-50 text-slate-800'}`}
+    >
       <div className="max-w-[1440px] mx-auto">
-
         {/* Top Section: Sales & Support */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 mb-12">
           <div className="flex flex-col gap-6">
             {/* Sales Card */}
             <div className="bg-white dark:bg-slate-900 p-6 md:p-8 rounded-xl shadow-sm border border-slate-100 dark:border-slate-800 flex-1">
               <h2 className="text-xl md:text-2xl font-bold mb-3 dark:text-white">
-                Talk to Member of Sales Team
+                {currentLang === 'bn'
+                  ? 'বিক্রয় দলের সদস্যের সাথে কথা বলুন'
+                  : ' Talk to Member of Sales Team'}
               </h2>
               <p className="text-slate-500 dark:text-slate-400 mb-4 text-sm md:text-base">
-                Connect with our expert sales team for personalized guidance,
-                property insights, and support tailored to your real estate needs.
+                {currentLang === 'bn'
+                  ? 'ব্যক্তিগতকৃত নির্দেশনা,সম্পত্তি বিষয়ক অন্তর্দৃষ্টি, এবং আপনার রিয়েল এস্টেট চাহিদা অনুযায়ী তৈরি সহায়তার জন্য আমাদের বিশেষজ্ঞ বিক্রয় দলের সাথে যোগাযোগ করুন।'
+                  : 'Connect with our expert sales team for personalized guidance property insights, and support tailored to your real estate needs.'}
               </p>
               <p className="font-bold dark:text-emerald-400">
-                Toll Free : 888 634-5891
+                {currentLang === 'bn' ? 'টোল ফ্রি' : 'Toll Free'} : 888 634-5891
               </p>
             </div>
 
             {/* Support Card */}
             <div className="bg-white dark:bg-slate-900 p-6 md:p-8 rounded-xl shadow-sm border border-slate-100 dark:border-slate-800 flex-1">
               <h2 className="text-xl md:text-2xl font-bold mb-3 dark:text-white">
-                Product & Account Support
+                {currentLang === 'bn'
+                  ? 'পণ্য ও অ্যাকাউন্ট সহায়তা'
+                  : 'Product & Account Support'}
               </h2>
               <p className="text-slate-500 dark:text-slate-400 mb-6 text-sm md:text-base">
-                Get dedicated help with your account, features, and services
-                through our expert Product & Account Support team today.
+                {currentLang === 'bn'
+                  ? 'আপনার অ্যাকাউন্ট, ফিচার এবং পরিষেবা সংক্রান্ত বিষয়ে বিশেষ সহায়তা পেতে আজই আমাদের বিশেষজ্ঞ প্রোডাক্ট ও অ্যাকাউন্ট সাপোর্ট টিমের সাথে যোগাযোগ করুন।'
+                  : ' Get dedicated help with your account, features, and services through our expert Product & Account Support team today.'}
               </p>
               <Link
                 to="/Faq"
                 className="inline-block bg-slate-900 dark:bg-emerald-600 text-white px-6 py-2.5 rounded-lg font-semibold hover:opacity-90 transition-all text-center"
               >
-                Go to FAQ
+                {currentLang === 'bn' ? 'প্রশ্নের উত্তর' : 'Go to FAQ'}
               </Link>
             </div>
           </div>
@@ -65,8 +73,8 @@ const Contact = () => {
             {
               icon: <MdEmail />,
               title: 'Email Address',
-              info: 'info@example.com',
-              info2: 'corporate@example.com',
+              info: 'dream@state.com',
+              info2: 'admin@dreamsstate.com',
               color: 'text-emerald-500',
               bg: 'bg-emerald-50 dark:bg-emerald-500/10',
             },
@@ -91,13 +99,21 @@ const Contact = () => {
               key={idx}
               className="bg-white dark:bg-slate-900 p-5 md:p-6 rounded-xl flex items-center gap-4 md:gap-5 border border-slate-100 dark:border-slate-800 shadow-sm"
             >
-              <div className={`${item.bg} ${item.color} p-3 md:p-4 rounded-full text-xl md:text-2xl shrink-0`}>
+              <div
+                className={`${item.bg} ${item.color} p-3 md:p-4 rounded-full text-xl md:text-2xl shrink-0`}
+              >
                 {item.icon}
               </div>
               <div className="min-w-0">
-                <h4 className="font-bold dark:text-white truncate">{item.title}</h4>
-                <p className="text-xs md:text-sm text-slate-500 dark:text-slate-400 truncate">{item.info}</p>
-                <p className="text-xs md:text-sm text-slate-500 dark:text-slate-400 truncate">{item.info2}</p>
+                <h4 className="font-bold dark:text-white truncate">
+                  {item.title}
+                </h4>
+                <p className="text-xs md:text-sm text-slate-500 dark:text-slate-400 truncate">
+                  {item.info}
+                </p>
+                <p className="text-xs md:text-sm text-slate-500 dark:text-slate-400 truncate">
+                  {item.info2}
+                </p>
               </div>
             </div>
           ))}
