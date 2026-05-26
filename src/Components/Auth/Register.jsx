@@ -1,12 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import {
-  FaUser,
-  FaEnvelope,
-  FaLock,
-  FaEyeSlash,
-
-} from 'react-icons/fa'
+import { FaUser, FaEnvelope, FaLock, FaEyeSlash } from 'react-icons/fa'
 
 import { Link, useNavigate } from 'react-router'
 import { FaEye } from 'react-icons/fa'
@@ -18,11 +12,10 @@ import { toast } from 'react-toastify'
 import { saveUser } from '../ReusableFunction/SaveUser'
 import { AuthContext } from '../Authentication/AuthContext'
 
-
 const Register = () => {
   const [eye, openEye] = useState(false)
-  const navigate=useNavigate()
-  const { setUser }=useContext(AuthContext)
+  const navigate = useNavigate()
+  const { setUser, createUser } = useContext(AuthContext)
   const handelEye = () => {
     openEye(!eye)
   }
@@ -30,11 +23,11 @@ const Register = () => {
   const handelSignup = async (data) => {
     try {
       const { name, email, password, ConfirmPassword, image } = data
-      let originalPassword = '';
+      let originalPassword = ''
       if (password === ConfirmPassword) {
         originalPassword = password
       } else {
-        toast.error("password not match")
+        toast.error('password not match')
         return
       }
       if (!image || image.length == 0) {
@@ -49,13 +42,13 @@ const Register = () => {
         password: originalPassword,
         photo: userImage,
         provider: 'email',
-        role:"user"
+        role: 'user',
       }
       console.log(userInfo)
-
-      const result = await saveUser(userInfo)
+      const result = await createUser(email.trim(), password.trim())
+      await saveUser(userInfo)
       setUser(result)
-      toast.success("register successfully!")
+      toast.success('register successfully!')
       navigate('/', { replace: true })
       if (!userImage) {
         toast.error('image upload failed')
@@ -66,19 +59,17 @@ const Register = () => {
         toast.error('email already exist')
       } else {
         console.error(error)
-        toast.error(error,'something went wrong')
+        toast.error(error, 'something went wrong')
       }
-
     }
   }
 
- const {
-   register,
-   handleSubmit,
+  const {
+    register,
+    handleSubmit,
 
-   formState: { errors },
- } = useForm()
-
+    formState: { errors },
+  } = useForm()
 
   const bgImage =
     'https://i.ibb.co.com/9HbJ0Zr5/Gemini-Generated-Image-68bfgl68bfgl68bf.png'
@@ -264,7 +255,10 @@ const Register = () => {
           </div>
 
           {/* Sign Up Button */}
-          <button type='submit' className="w-full bg-[#10b981] hover:bg-[#0da371] text-white font-bold py-3 md:py-4 rounded-md transition-colors shadow-lg">
+          <button
+            type="submit"
+            className="w-full bg-[#10b981] hover:bg-[#0da371] text-white font-bold py-3 md:py-4 rounded-md transition-colors shadow-lg"
+          >
             Sign Up
           </button>
         </form>
