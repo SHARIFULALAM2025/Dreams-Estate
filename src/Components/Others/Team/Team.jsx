@@ -7,16 +7,6 @@ import {
 } from 'react-icons/fa'
 import { FaXTwitter } from 'react-icons/fa6'
 
-/**
- *
- *
-
-
-
-
-
-https://ibb.co.com/6chRvWSC
- */
 
 const Team = () => {
   const teamMembers = [

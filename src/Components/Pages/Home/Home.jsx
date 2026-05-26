@@ -9,11 +9,13 @@ import RentAndHome from './RentAndHome'
 import Pricing from '../../Others/Pricing'
 
 import HomeBlog from './HomeBlog'
+import Work from './Work'
 
 const Home = () => {
   return (
     <div>
       <Hero />
+      <Work/>
       <RentAndHome/>
       <BenefitsSection/>
       <HomeAbout />
@@ -26,3 +28,5 @@ const Home = () => {
 }
 
 export default Home
+
+

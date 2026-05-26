@@ -8,17 +8,11 @@ import { Link } from 'react-router'
 const HomeTestimonial = () => {
   const { i18n } = useTranslation()
 
-  const currentLang = i18n.language?.startsWith('bn')
-    ? 'bn'
-    : 'en'
+  const currentLang = i18n.language?.startsWith('bn') ? 'bn' : 'en'
 
-  const { data, isLoading, isError } =
-    useTestimonialPageData()
+  const { data, isLoading, isError } = useTestimonialPageData()
 
-  const testimonials =
-    data?.testimonials?.[
-      `testimonials_${currentLang}`
-    ] || []
+  const testimonials = data?.testimonials?.[`testimonials_${currentLang}`] || []
 
   // Loading Skeleton
   if (isLoading) {
@@ -80,14 +74,18 @@ const HomeTestimonial = () => {
     )
   }
 
-
   //
   return (
-    <section className="bg-[#f8f8f8] dark:bg-slate-950 py-5 px-5 transition-colors duration-300">
+    <section
+      style={{
+        backgroundImage: `url('https://i.ibb.co.com/Ps9dWD8q/Chat-GPT-Image-May-26-2026-06-49-50-PM.png')`,
+      }}
+      className="py-5 px-5 transition-colors duration-300"
+    >
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-14">
-          <h2 className="text-3xl md:text-5xl font-black text-slate-900 dark:text-white leading-tight">
+          <h2 className="text-3xl md:text-5xl font-black  text-white leading-tight">
             <span className="text-emerald-400">~</span>{' '}
             {currentLang === 'bn' ? 'সফলতার' : 'Success'}{' '}
             <span className="text-emerald-500">
