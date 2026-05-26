@@ -72,7 +72,10 @@ const Contact = () => {
           {[
             {
               icon: <MdEmail />,
-              title: 'Email Address',
+              title: {
+                en: 'Email Address',
+                bn: 'ইমেইল ঠিকানা',
+              },
               info: 'dream@state.com',
               info2: 'admin@dreamsstate.com',
               color: 'text-emerald-500',
@@ -80,7 +83,10 @@ const Contact = () => {
             },
             {
               icon: <MdPhoneInTalk />,
-              title: 'Phone Number',
+              title: {
+                en: 'Phone Number',
+                bn: 'ফোন নম্বর',
+              },
               info: '+81649 48103',
               info2: '+78301 71940',
               color: 'text-blue-500',
@@ -88,7 +94,10 @@ const Contact = () => {
             },
             {
               icon: <MdLocationOn />,
-              title: 'Address',
+              title: {
+                en: 'Address',
+                bn: 'ঠিকানা',
+              },
               info: '509 Rosewood Drive, San Francisco,',
               info2: 'California',
               color: 'text-teal-500',
@@ -106,7 +115,7 @@ const Contact = () => {
               </div>
               <div className="min-w-0">
                 <h4 className="font-bold dark:text-white truncate">
-                  {item.title}
+                  {currentLang === 'bn' ? item.title.bn : item.title.en}
                 </h4>
                 <p className="text-xs md:text-sm text-slate-500 dark:text-slate-400 truncate">
                   {item.info}
@@ -131,18 +140,22 @@ const Contact = () => {
 
           <div className="w-full">
             <h2 className="text-2xl md:text-3xl font-bold mb-6 dark:text-white">
-              Get In Touch
+              {currentLang === 'bn' ? 'যোগাযোগ করুন' : 'Get In Touch'}
             </h2>
+
             <form className="space-y-4 md:space-y-5">
               {/* Name Input */}
               <div>
                 <label className="block text-sm font-semibold text-slate-600 dark:text-slate-300 mb-1">
-                  Your Name
+                  {currentLang === 'bn' ? 'আপনার নাম' : 'Your Name'}
                 </label>
+
                 <input
                   type="text"
                   className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 dark:text-white rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all"
-                  placeholder="Enter your name"
+                  placeholder={
+                    currentLang === 'bn' ? 'আপনার নাম লিখুন' : 'Enter your name'
+                  }
                 />
               </div>
 
@@ -150,22 +163,31 @@ const Contact = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-semibold text-slate-600 dark:text-slate-300 mb-1">
-                    Phone Number
+                    {currentLang === 'bn' ? 'ফোন নম্বর' : 'Phone Number'}
                   </label>
+
                   <input
                     type="text"
                     className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 dark:text-white rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
-                    placeholder="(201) 555-0123"
+                    placeholder={
+                      currentLang === 'bn'
+                        ? 'ফোন নম্বর লিখুন'
+                        : '(201) 555-0123'
+                    }
                   />
                 </div>
+
                 <div>
                   <label className="block text-sm font-semibold text-slate-600 dark:text-slate-300 mb-1">
-                    Email
+                    {currentLang === 'bn' ? 'ইমেইল' : 'Email'}
                   </label>
+
                   <input
                     type="email"
                     className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 dark:text-white rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
-                    placeholder="Email address"
+                    placeholder={
+                      currentLang === 'bn' ? 'ইমেইল ঠিকানা' : 'Email address'
+                    }
                   />
                 </div>
               </div>
@@ -174,22 +196,29 @@ const Contact = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-semibold text-slate-600 dark:text-slate-300 mb-1">
-                    Country
+                    {currentLang === 'bn' ? 'দেশ' : 'Country'}
                   </label>
+
                   <select className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 dark:text-white rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-emerald-500/20">
-                    <option>Select</option>
+                    <option>
+                      {currentLang === 'bn' ? 'নির্বাচন করুন' : 'Select'}
+                    </option>
                     <option>Bangladesh</option>
                     <option>USA</option>
                   </select>
                 </div>
+
                 <div>
                   <label className="block text-sm font-semibold text-slate-600 dark:text-slate-300 mb-1">
-                    Subject
+                    {currentLang === 'bn' ? 'বিষয়' : 'Subject'}
                   </label>
+
                   <input
                     type="text"
                     className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 dark:text-white rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
-                    placeholder="Subject"
+                    placeholder={
+                      currentLang === 'bn' ? 'বিষয় লিখুন' : 'Subject'
+                    }
                   />
                 </div>
               </div>
@@ -197,17 +226,20 @@ const Contact = () => {
               {/* Description */}
               <div>
                 <label className="block text-sm font-semibold text-slate-600 dark:text-slate-300 mb-1">
-                  Description
+                  {currentLang === 'bn' ? 'বিস্তারিত' : 'Description'}
                 </label>
+
                 <textarea
                   className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 dark:text-white rounded-lg py-3 px-4 h-32 focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
-                  placeholder="Comments"
+                  placeholder={
+                    currentLang === 'bn' ? 'আপনার মন্তব্য লিখুন' : 'Comments'
+                  }
                 ></textarea>
               </div>
 
               {/* Submit Button */}
               <button className="w-full bg-slate-900 dark:bg-emerald-600 text-white font-bold py-4 rounded-lg hover:opacity-90 shadow-lg transition-all active:scale-[0.98]">
-                Submit Enquiry
+                {currentLang === 'bn' ? 'অনুসন্ধান জমা দিন' : 'Submit Enquiry'}
               </button>
             </form>
           </div>
