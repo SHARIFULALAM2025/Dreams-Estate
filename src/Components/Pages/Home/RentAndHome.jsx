@@ -10,6 +10,7 @@ import {
   FaStar,
 } from 'react-icons/fa'
 import { MdOutlineGridView } from 'react-icons/md'
+import { Link } from 'react-router'
 
 const properties = [
   {
@@ -190,9 +191,9 @@ const RentAndHome = () => {
                 </div>
 
                 {/* Title */}
-                <h2 className="mb-2 text-xl font-bold text-gray-900 transition group-hover:text-violet-600">
+                <Link to={ `propertyDetails/${property.id}`} className="mb-2 text-xl font-bold text-gray-900 transition group-hover:text-violet-600">
                   {property?.property_name?.[currentLang]}
-                </h2>
+                </Link>
 
                 {/* Location */}
                 <div className="mb-5 flex items-center gap-2 text-sm text-gray-500">

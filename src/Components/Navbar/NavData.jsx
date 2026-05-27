@@ -29,7 +29,11 @@ export const navData = [
         icon: <IoIosArrowDown />,
         hasNested: true,
         nestedLink: [
-          { id: 211, Name: { en: 'Buy Grid', bn: 'বাই গ্রিড' }, path: '/Buy' },
+          {
+            id: 211,
+            Name: { en: 'Buy Grid', bn: 'বাই গ্রিড' },
+            path: '/buyProperty',
+          },
           { id: 212, Name: { en: 'Buy List', bn: 'বাই লিস্ট' }, path: '/List' },
           {
             id: 213,

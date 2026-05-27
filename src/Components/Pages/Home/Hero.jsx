@@ -7,6 +7,7 @@ const Hero = () => {
         const currentLang = i18n.language
   // ইমেজের লিস্ট
   const images = [
+    'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80',
     'https://i.ibb.co.com/vK472ZT/buy-grid-img-05.webp',
     'https://i.ibb.co.com/LDdjTd7b/buy-slide-img-1.jpg',
     'https://i.ibb.co.com/cK9y5RW3/blog-img-03.webp',

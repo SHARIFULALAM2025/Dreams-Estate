@@ -31,6 +31,8 @@ import AddProperty from '../AddProperty/AddProperty'
 import AgencyDetails from '../Listing/Rent/AgencyDetails'
 import DashboardLayout from './DashboardLayout'
 import ForgetPassword from '../Auth/ForgetPassword'
+import BuyProperty from '../BuyProperty/BuyProperty'
+import PropertyDetails from '../Pages/Home/PropertyDetails'
 
 
 
@@ -61,9 +63,11 @@ export const router = createBrowserRouter([
       { path: 'Conditions', Component: Conditions },
       { path: 'gallery', Component: Gallery },
       { path: 'team', Component: Team },
+      { path: 'buyProperty', Component: BuyProperty },
       { path: 'addProperty', Component: AddProperty },
       { path: 'BuyDetails/:agentId', Component: AgentDetails },
       { path: 'BlogDetails/:blogId', Component: BlogDetails },
+      { path: 'propertyDetails/:propertyId', Component: PropertyDetails },
       { path: 'AgencyDetails/:agencyId', Component: AgencyDetails },
     ],
   },
@@ -77,12 +81,10 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: "dashboard",
+    path: 'dashboard',
     Component: DashboardLayout,
-    children: [
-
-    ]
-  }
+    children: [],
+  },
 ])
 
 
