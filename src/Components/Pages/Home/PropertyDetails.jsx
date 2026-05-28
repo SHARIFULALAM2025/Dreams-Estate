@@ -49,60 +49,158 @@ const PropertyDetails = () => {
   const [activeFaq, setActiveFaq] = useState(null);
 
   // Structural feature specifications
-  const propertyFeatures = [
-    { icon: <FaBed />, label: 'Bedrooms', value: '3' },
-    { icon: <FaBath />, label: 'Bathrooms', value: '2' },
-    { icon: <FaCar />, label: 'Parking', value: '1' },
-    { icon: <MdOutlineBalcony className="text-xl" />, label: 'Balcony', value: 'Yes' },
-    { icon: <FaBuilding />, label: 'Floor', value: '5th of 12' },
-    { icon: <FaFileArrowDown />, label: 'Wardrobe', value: '1' },
-    { icon: <FaTv />, label: 'TV', value: '4' },
-    { icon: <MdOutlineWaterDrop className="text-xl" />, label: 'Water Purifier', value: '2' },
-    { icon: <MdOutlineKitchen className="text-xl" />, label: 'Microwave', value: '2' },
-    { icon: <FaWind />, label: 'AC', value: '4' },
-    { icon: <FaBuilding />, label: 'Fridge', value: '1' },
-    { icon: <FaRegCompass />, label: 'Curtains', value: 'Yes' },
-  ];
+ const propertyFeatures = [
+   {
+     icon: <FaBed />,
+     label: {
+       en: 'Bedrooms',
+       bn: 'বেডরুম',
+     },
+     value: `${property.data.property_bedrooms}`,
+   },
+   {
+     icon: <FaBath />,
+     label: {
+       en: 'Bathrooms',
+       bn: 'বাথরুম',
+     },
+     value: `${property.data.property_bathrooms}`,
+   },
+   {
+     icon: <FaCar />,
+     label: {
+       en: 'Parking',
+       bn: 'পার্কিং',
+     },
+     value: `${property.data.property_parking}`,
+   },
+   {
+     icon: <MdOutlineBalcony className="text-xl" />,
+     label: {
+       en: 'Balcony',
+       bn: 'বারান্দা',
+     },
+     value: `${property.data.property_balcony}`,
+   },
+   {
+     icon: <FaBuilding />,
+     label: {
+       en: 'Floor',
+       bn: 'তলা',
+     },
+     value: `${property.data.property_floor}`,
+   },
+   {
+     icon: <FaFileArrowDown />,
+     label: {
+       en: 'Wardrobe',
+       bn: 'ওয়ারড্রোব',
+     },
+     value: `${property.data.property_wardrobe}`,
+   },
+   {
+     icon: <FaTv />,
+     label: {
+       en: 'TV',
+       bn: 'টিভি',
+     },
+     value: `${property.data.property_tv}`,
+   },
+   {
+     icon: <MdOutlineWaterDrop className="text-xl" />,
+     label: {
+       en: 'Water Purifier',
+       bn: 'পানির পিউরিফায়ার',
+     },
+     value: `${property.data.property_water_purifier}`,
+   },
+   {
+     icon: <MdOutlineKitchen className="text-xl" />,
+     label: {
+       en: 'Microwave',
+       bn: 'মাইক্রোওয়েভ',
+     },
+     value: `${property.data.property_microwave}`,
+   },
+   {
+     icon: <FaWind />,
+     label: {
+       en: 'AC',
+       bn: 'এসি',
+     },
+     value: `${property.data.property_ac}`,
+   },
+   {
+     icon: <FaBuilding />,
+     label: {
+       en: 'Fridge',
+       bn: 'ফ্রিজ',
+     },
+     value: `${property.data.property_fridge}`,
+   },
+   {
+     icon: <FaRegCompass />,
+     label: {
+       en: 'Curtains',
+       bn: 'পর্দা',
+     },
+     value: `${property.data.property_available_curtains}`,
+   },
+ ]
 
-  const amenities = [
-    { icon: <FaDumbbell className="text-indigo-600 text-lg" />, name: 'Gym' },
-    {
-      icon: <FaShieldHalved className="text-indigo-600 text-lg" />,
-      name: 'Swimming Pool',
-    },
-    {
-      icon: <FaWind className="text-indigo-600 text-lg" />,
-      name: 'Power Backup',
-    },
-    {
-      icon: <FaShieldHalved className="text-indigo-600 text-lg" />,
-      name: 'Clubhouse',
-    },
-    {
-      icon: <FaUsers className="text-indigo-600 text-lg" />,
-      name: 'Visitor Parking',
-    },
-    {
-      icon: <FaLightbulb className="text-indigo-600 text-lg" />,
-      name: 'Natural Light',
-    },
-    {
-      icon: <FaWind className="text-indigo-600 text-lg" />,
-      name: 'Airy Rooms',
-    },
-    {
-      icon: <FaBuilding className="text-indigo-600 text-lg" />,
-      name: 'Spacious Interior',
-    },
-  ]
 
   const faqs = [
-    { q: "Does offer free cancellation for a full refund?", a: "Cancellation terms are dependent on seasonal baseline matrixes and initial contractual deposits." },
-    { q: "Is there a pool?", a: "Yes, access to a fully maintained community swimming pool is included." },
-    { q: "Are pets allowed?", a: "Standard domestic pets under 25lbs are explicitly permitted." },
-    { q: "Is airport shuttle service offered?", a: "Private logistical shuttles can be arranged via the concierge desk." },
-    { q: "What are the check-in and check-out times?", a: "Standard check-in begins at 14:00, check-out concludes by 11:00." }
-  ];
+    {
+      q: {
+        en: 'Does offer free cancellation for a full refund?',
+        bn: 'সম্পূর্ণ রিফান্ডসহ বিনামূল্যে বুকিং বাতিলের সুবিধা আছে কি?',
+      },
+      a: {
+        en: 'Cancellation terms are dependent on seasonal baseline matrixes and initial contractual deposits.',
+        bn: 'বুকিং বাতিলের শর্তাবলী মৌসুমী ভিত্তি এবং প্রাথমিক চুক্তির জমার ওপর নির্ভরশীল।',
+      },
+    },
+    {
+      q: {
+        en: 'Is there a pool?',
+        bn: 'এখানে কি সুইমিং পুল আছে?',
+      },
+      a: {
+        en: 'Yes, access to a fully maintained community swimming pool is included.',
+        bn: 'হ্যাঁ, সম্পূর্ণ রক্ষণাবেক্ষণকৃত একটি কমিউনিটি সুইমিং পুল ব্যবহারের সুবিধা এর অন্তর্ভুক্ত রয়েছে।',
+      },
+    },
+    {
+      q: {
+        en: 'Are pets allowed?',
+        bn: 'গৃহপালিত পশু-পাখি (Pets) রাখার অনুমতি আছে কি?',
+      },
+      a: {
+        en: 'Standard domestic pets under 25lbs are explicitly permitted.',
+        bn: '২৫ পাউন্ডের কম ওজনের সাধারণ গৃহপালিত পশু রাখার স্পষ্ট অনুমতি রয়েছে।',
+      },
+    },
+    {
+      q: {
+        en: 'Is airport shuttle service offered?',
+        bn: 'এয়ারপোর্ট শাটল (যাতায়াত) সার্ভিস দেওয়া হয় কি?',
+      },
+      a: {
+        en: 'Private logistical shuttles can be arranged via the concierge desk.',
+        bn: 'কনসিয়ার্জ ডেস্কের (Concierge desk) মাধ্যমে ব্যক্তিগত শাটল সার্ভিসের ব্যবস্থা করা যেতে পারে।',
+      },
+    },
+    {
+      q: {
+        en: 'What are the check-in and check-out times?',
+        bn: 'চেক-ইন এবং চেক-আউটের সময় কখন?',
+      },
+      a: {
+        en: 'Standard check-in begins at 14:00, check-out concludes by 11:00.',
+        bn: 'সাধারণত চেক-ইন দুপুর ২:০০ টা (১৪:০০) থেকে শুরু হয় এবং চেক-আউট সকাল ১১:০০ টার মধ্যে সম্পন্ন করতে হয়।',
+      },
+    },
+  ]
 
   return (
     <div className="bg-gray-50 min-h-screen text-gray-800 font-sans antialiased">
@@ -118,7 +216,7 @@ const PropertyDetails = () => {
           <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-4">
             <div className="relative mb-3 h-[400px] bg-gray-200 rounded-lg overflow-hidden">
               <img
-                src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80"
+                src={property?.data?.attachment[0]}
                 alt="Property Asset Visualizer"
                 className="w-full h-full object-cover"
               />
@@ -137,13 +235,13 @@ const PropertyDetails = () => {
 
             {/* Gallery Track Carousel Matrix */}
             <div className="grid grid-cols-5 gap-2">
-              {[1, 2, 3, 4, 5].map((i) => (
+              {property?.data?.attachment?.map((item) => (
                 <div
-                  key={i}
+                  key={item}
                   className="h-20 bg-gray-100 rounded-md overflow-hidden border border-gray-200 hover:border-indigo-500 transition cursor-pointer"
                 >
                   <img
-                    src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=200&q=80"
+                    src={item}
                     alt="Interior Segment View"
                     className="w-full h-full object-cover"
                   />
@@ -158,12 +256,7 @@ const PropertyDetails = () => {
               Description
             </h2>
             <p className="text-gray-600 text-sm leading-relaxed">
-              This property is mostly wooded and sits high on a hilltop
-              overlooking the Mohawk River Valley. Located right in the heart of
-              Upstate NY's Amish farm Country, this land is certified organic
-              making it extremely rare! Good road frontage on a paved county
-              road with utilities make it an amazing setting for your dream
-              country getaway!
+              {property?.data?.description[currentLang]}
             </p>
             <button className="text-indigo-600 text-xs font-semibold mt-2 hover:underline">
               Read More ▾
@@ -177,21 +270,50 @@ const PropertyDetails = () => {
 
             {/* Video Player Container */}
             <div className="w-full aspect-video rounded-lg overflow-hidden relative group bg-gray-900 shadow-inner border border-gray-200/60">
-              <iframe
-                src="https://www.youtube.com/embed/AWovHEZcpQU"
-                title="FPV Real Estate - Indoor Drone Through Beautiful Home w/ VIEWS!"
-                className="w-full h-full absolute inset-0 border-0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-                loading="lazy"
-              ></iframe>
+              {(() => {
+                const rawLink = property?.data?.video_link
+                let embedLink = ''
+
+                if (rawLink) {
+                  // যদি লিঙ্কটি অলরেডি embed করা থাকে তবে সেটাই থাকবে, নতুবা কনভার্ট হবে
+                  if (rawLink.includes('embed/')) {
+                    embedLink = rawLink
+                  } else {
+                    // regular watch link অথবা short link (youtu.be) থেকে ID বের করার নিয়ম
+                    const regExp =
+                      /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/
+                    const match = rawLink.match(regExp)
+
+                    if (match && match[2].length === 11) {
+                      embedLink = `https://www.youtube.com/embed/${match[2]}`
+                    }
+                  }
+                }
+
+                return embedLink ? (
+                  <iframe
+                    src={embedLink} // <--- এখানে পরিবর্তিত এম্বেড লিঙ্কটি বসবে
+                    title="FPV Real Estate - Indoor Drone Through Beautiful Home w/ VIEWS!"
+                    className="w-full h-full absolute inset-0 border-0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                    loading="lazy"
+                  ></iframe>
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center text-gray-400">
+                    কোণো বৈধ ভিডিও লিঙ্ক পাওয়া যায়নি
+                  </div>
+                )
+              })()}
             </div>
           </div>
 
           {/* Property Features Component Grid */}
           <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
             <h2 className="text-xl font-bold border-b pb-3 mb-4 text-gray-900">
-              Property Features
+              {currentLang === 'bn'
+                ? 'সম্পত্তির বৈশিষ্ট্য'
+                : 'Property Features'}
             </h2>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
               {propertyFeatures.map((feat, idx) => (
@@ -202,7 +324,7 @@ const PropertyDetails = () => {
                   <div className="text-indigo-500 text-lg">{feat.icon}</div>
                   <div>
                     <p className="text-[11px] text-gray-400 font-medium">
-                      {feat.label}
+                      {feat.label[currentLang]}
                     </p>
                     <p className="text-xs font-semibold text-gray-700">
                       {feat.value}
@@ -216,23 +338,38 @@ const PropertyDetails = () => {
           {/* Structural Overview Meta Summary */}
           <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
             <h2 className="text-xl font-bold border-b pb-3 mb-4 text-gray-900">
-              About Property
+              {currentLang === 'bn' ? 'প্রপার্টি সম্পর্কে' : 'About Property'}
             </h2>
             <ul className="space-y-2.5 text-xs text-gray-600">
               <li className="flex items-center gap-2">
-                ✔️ First floor - 2 large bedrooms with attached bathrooms.
+                ✔️{' '}
+                {currentLang === 'bn'
+                  ? 'প্রথম তলা - অ্যাটাচড বাথরুমসহ ২টি বড় বেডরুম।'
+                  : 'First floor - 2 large bedrooms with attached bathrooms.'}
               </li>
               <li className="flex items-center gap-2">
-                ✔️ Spacious and well-equipped kitchen.
+                ✔️{' '}
+                {currentLang === 'bn'
+                  ? 'প্রশস্ত এবং সুসজ্জিত রান্নাঘর।'
+                  : 'Spacious and well-equipped kitchen.'}
               </li>
               <li className="flex items-center gap-2">
-                ✔️ Inviting living room with balcony.
+                ✔️{' '}
+                {currentLang === 'bn'
+                  ? 'বারান্দাসহ মনোরম লিভিং রুম।'
+                  : 'Inviting living room with balcony.'}
               </li>
               <li className="flex items-center gap-2">
-                ✔️ Terrace with breathtaking views.
+                ✔️{' '}
+                {currentLang === 'bn'
+                  ? 'মনোমুগ্ধকর দৃশ্যসহ ছাদ/টেরেস।'
+                  : 'Terrace with breathtaking views.'}
               </li>
               <li className="flex items-center gap-2">
-                ✔️ Independent electric and water connections.
+                ✔️{' '}
+                {currentLang === 'bn'
+                  ? 'স্বতন্ত্র বিদ্যুৎ এবং পানি সংযোগ।'
+                  : 'Independent electric and water connections.'}
               </li>
             </ul>
           </div>
@@ -243,16 +380,10 @@ const PropertyDetails = () => {
               Amenities
             </h2>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-              {amenities.map((amenity, idx) => (
-                <div
-                  key={idx}
-                  className="flex items-center gap-2.5 p-3 border border-gray-100 rounded-lg hover:shadow-sm transition"
-                >
-                  {amenity.icon}
-                  <span className="text-xs font-medium text-gray-700">
-                    {amenity.name}
-                  </span>
-                </div>
+              {property?.data?.amenities.map((item) => (
+                <span className="text-xs font-medium text-gray-700">
+                  {item}
+                </span>
               ))}
             </div>
           </div>
@@ -287,7 +418,9 @@ const PropertyDetails = () => {
           {/* Dynamic Accordion Matrix */}
           <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
             <h2 className="text-xl font-bold border-b pb-3 mb-4 text-gray-900">
-              Frequently Asked Questions
+              {currentLang === 'bn'
+                ? 'প্রায়শই জিজ্ঞাসিত প্রশ্নাবলী ?'
+                : 'Frequently Asked Questions'}
             </h2>
             <div className="space-y-2">
               {faqs.map((faq, idx) => (
@@ -299,7 +432,7 @@ const PropertyDetails = () => {
                     onClick={() => setActiveFaq(activeFaq === idx ? null : idx)}
                     className="w-full flex justify-between items-center p-4 text-left bg-white font-medium text-xs text-gray-800 hover:bg-gray-50 transition"
                   >
-                    <span>{faq.q}</span>
+                    <span>{faq.q[currentLang]}</span>
                     {activeFaq === idx ? (
                       <FaChevronUp className="text-gray-400" />
                     ) : (
@@ -308,7 +441,7 @@ const PropertyDetails = () => {
                   </button>
                   {activeFaq === idx && (
                     <div className="p-4 bg-gray-50 text-xs text-gray-600 border-t border-gray-100 leading-relaxed">
-                      {faq.a}
+                      {faq.a[currentLang]}
                     </div>
                   )}
                 </div>
@@ -444,7 +577,8 @@ const PropertyDetails = () => {
                     : 'text-gray-500 hover:text-gray-800'
                 }`}
               >
-                <FaEnvelope className="text-xs" /> Request Info
+                <FaEnvelope className="text-xs" />{' '}
+                {currentLang === 'bn' ? 'তথ্য অনুরোধ করুন' : 'Request Info'}
               </button>
               <button
                 type="button"
@@ -455,7 +589,10 @@ const PropertyDetails = () => {
                     : 'text-gray-500 hover:text-gray-800'
                 }`}
               >
-                <FaCalendarDays className="text-xs" /> Schedule a Visit
+                <FaCalendarDays className="text-xs" />
+                {currentLang === 'bn'
+                  ? 'পরিদর্শনের সময়সূচী নির্ধারণ করুন'
+                  : ' Schedule a Visit'}
               </button>
             </div>
 
@@ -463,17 +600,17 @@ const PropertyDetails = () => {
             <div className="flex items-center gap-3 mb-4 p-3 bg-gray-50/60 rounded-lg border border-gray-100/50">
               <div className="w-10 h-10 bg-gray-300 rounded-full overflow-hidden shrink-0">
                 <img
-                  src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80"
+                  src={property?.data?.profileUrl}
                   alt="Assigned Agent"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div>
                 <h4 className="text-xs font-bold text-gray-900">
-                  Adrian Henriques
+                  {property?.data?.post_name}
                 </h4>
                 <p className="text-[10px] text-gray-400 font-medium">
-                  Company Agent
+                  {currentLang === 'bn' ? 'কোম্পানির এজেন্ট' : 'Company Agent'}
                 </p>
               </div>
             </div>
@@ -486,7 +623,9 @@ const PropertyDetails = () => {
                   {/* Day Selector */}
                   <div>
                     <label className="block text-[10px] font-bold text-gray-400 mb-1.5 uppercase tracking-wider">
-                      Select Day
+                      {currentLang === 'bn'
+                        ? 'দিন নির্বাচন করুন'
+                        : 'Select Day'}
                     </label>
                     <div className="grid grid-cols-5 gap-1.5 text-center">
                       {daysData.map((day, i) => (
@@ -518,7 +657,9 @@ const PropertyDetails = () => {
                   {/* Time Input */}
                   <div>
                     <label className="block text-[10px] font-semibold text-gray-400 mb-1">
-                      Select Time
+                      {currentLang === 'bn'
+                        ? 'সময় নির্বাচন করুন'
+                        : ' Select Time'}
                     </label>
                     <input
                       type="text"
@@ -532,7 +673,7 @@ const PropertyDetails = () => {
               {/* Core Fields (Always Visible for both Tabs) */}
               <div>
                 <label className="block text-[10px] font-semibold text-gray-400 mb-1">
-                  Name
+                  {currentLang === 'bn' ? 'নাম' : 'Name'}
                 </label>
                 <input
                   type="text"
@@ -542,7 +683,7 @@ const PropertyDetails = () => {
               </div>
               <div>
                 <label className="block text-[10px] font-semibold text-gray-400 mb-1">
-                  Email
+                  {currentLang === 'bn' ? 'ইমেল' : 'Email'}
                 </label>
                 <input
                   type="email"
@@ -552,7 +693,7 @@ const PropertyDetails = () => {
               </div>
               <div>
                 <label className="block text-[10px] font-semibold text-gray-400 mb-1">
-                  Phone
+                  {currentLang === 'bn' ? 'ফোন' : 'Phone'}
                 </label>
                 <input
                   type="tel"
@@ -562,7 +703,7 @@ const PropertyDetails = () => {
               </div>
               <div>
                 <label className="block text-[10px] font-semibold text-gray-400 mb-1">
-                  Description
+                  {currentLang === 'bn' ? 'বর্ণনা' : 'Description'}
                 </label>
                 <textarea
                   rows="3"
@@ -572,7 +713,7 @@ const PropertyDetails = () => {
               </div>
 
               <button className="w-full bg-slate-900 text-white font-bold text-xs py-3 rounded-lg hover:bg-slate-800 transition tracking-wide shadow-sm mt-1">
-                Submit
+                {currentLang === 'bn' ? 'জমা দিন' : 'Submit'}
               </button>
             </form>
           </div>
@@ -580,7 +721,9 @@ const PropertyDetails = () => {
           {/* Listing Owner Details Module */}
           <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-5">
             <h3 className="text-xs font-bold border-b pb-3 mb-3 text-gray-900">
-              Listing Owner Details
+              {currentLang === 'bn'
+                ? 'তালিকার মালিকের বিবরণ'
+                : 'Listing Owner Details'}
             </h3>
             <div className="flex gap-3 items-center mb-4">
               <div className="w-11 h-11 bg-gray-200 rounded-full overflow-hidden shrink-0">
@@ -603,33 +746,49 @@ const PropertyDetails = () => {
 
             <div className="text-[11px] space-y-2 border-t pt-3 text-gray-600 mb-4">
               <div className="flex justify-between">
-                <span className="text-gray-400">Phone:</span>{' '}
+                <span className="text-gray-400">
+                  {currentLang === 'bn' ? 'ফোন' : 'Phone'}:
+                </span>{' '}
                 <span className="font-semibold text-gray-800">
                   +1 12545 45548
                 </span>
               </div>
               <div className="flex justify-between">
-                <span className="text-gray-400">Email:</span>{' '}
+                <span className="text-gray-400">
+                  {currentLang === 'bn' ? 'ইমেল' : 'Email'}:
+                </span>{' '}
                 <span className="font-semibold text-indigo-600">
-                  info@example.com
+                  dreams@state.com
                 </span>
               </div>
               <div className="flex justify-between">
-                <span className="text-gray-400">No of Listings:</span>{' '}
+                <span className="text-gray-400">
+                  {currentLang === 'bn' ? 'তালিকার সংখ্যা' : ' No of Listings'}:
+                </span>{' '}
                 <span className="font-semibold text-gray-800">05</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-gray-400">No of Bookings:</span>{' '}
+                <span className="text-gray-400">
+                  {currentLang === 'bn'
+                    ? 'বুকিংয়ের সংখ্যা'
+                    : '    No of Bookings'}
+                  :
+                </span>{' '}
                 <span className="font-semibold text-gray-800">225</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-gray-400">Member on:</span>{' '}
+                <span className="text-gray-400">
+                  {currentLang === 'bn' ? 'সদস্য' : 'Member on'}:
+                </span>{' '}
                 <span className="font-semibold text-gray-800">15 Jan 2014</span>
               </div>
               <div className="flex justify-between items-center pt-1">
-                <span className="text-gray-400">Verification:</span>{' '}
+                <span className="text-gray-400">
+                  {currentLang === 'bn' ? 'যাচাইকরণ' : 'Verification'}:
+                </span>{' '}
                 <span className="bg-[#00c5a3]/10 text-[#00c5a3] text-[10px] font-bold px-2 py-0.5 rounded flex items-center gap-1">
-                  <FaCheckCircle className="text-[9px]" /> Verified
+                  <FaCheckCircle className="text-[9px]" />
+                  {currentLang === 'bn' ? 'যাচাইকৃত' : 'Verified'}
                 </span>
               </div>
             </div>
@@ -642,13 +801,15 @@ const PropertyDetails = () => {
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-1.5 bg-[#00c5a3] text-white text-xs font-bold py-2.5 rounded-lg hover:bg-[#00b091] transition shadow-sm"
               >
-                <FaWhatsapp className="text-sm" /> Whatsapp
+                <FaWhatsapp className="text-sm" />
+                {currentLang === 'bn' ? 'হোয়াটসঅ্যাপ' : ' Whatsapp'}
               </a>
               <button
                 type="button"
                 className="flex items-center justify-center gap-1.5 bg-slate-900 text-white text-xs font-bold py-2.5 rounded-lg hover:bg-slate-800 transition shadow-sm"
               >
-                <FaRegComments className="text-sm" /> Chat Now
+                <FaRegComments className="text-sm" />{' '}
+                {currentLang === 'bn' ? 'চ্যাট করুন' : ' Chat Now'}
               </button>
             </div>
           </div>
@@ -656,7 +817,7 @@ const PropertyDetails = () => {
           {/* Share Property Module */}
           <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-5">
             <h3 className="text-sm font-bold border-b pb-2.5 mb-3 text-gray-900">
-              Share Property
+              {currentLang === 'bn' ? 'শেয়ার সম্পত্তি' : ' Share Property'}
             </h3>
             <div className="flex items-center gap-2 pt-1">
               <button className="w-8 h-8 rounded-full bg-[#3b5998] text-white flex items-center justify-center hover:opacity-90 transition text-xs">
@@ -680,58 +841,84 @@ const PropertyDetails = () => {
             </div>
           </div>
 
-          {/* Mortgage Calculator Form block */}
           <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-5">
             <h3 className="text-sm font-bold border-b pb-2.5 mb-4 text-gray-900">
-              Mortgage Calculator
+              {currentLang === 'bn'
+                ? 'বন্ধকী ক্যালকুলেটর'
+                : 'Mortgage Calculator'}
             </h3>
             <form className="space-y-3" onSubmit={(e) => e.preventDefault()}>
               <div>
                 <label className="block text-[11px] font-semibold text-gray-700 mb-1">
-                  Total Amount ($)
+                  {currentLang === 'bn' ? 'মোট পরিমাণ ($)' : 'Total Amount ($)'}
                 </label>
                 <input
                   type="text"
-                  placeholder="Your Total Amount"
+                  placeholder={
+                    currentLang === 'bn'
+                      ? 'আপনার মোট পরিমাণ'
+                      : 'Your Total Amount'
+                  }
                   className="w-full border border-gray-200 bg-gray-50/50 rounded-lg p-2 text-xs outline-none focus:border-[#00c5a3] transition"
                 />
               </div>
               <div>
                 <label className="block text-[11px] font-semibold text-gray-700 mb-1">
-                  Down Payment ($)
+                  {currentLang === 'bn'
+                    ? 'ডাউন পেমেন্ট ($)'
+                    : 'Down Payment ($)'}
                 </label>
                 <input
                   type="text"
-                  placeholder="Your Down Payment"
+                  placeholder={
+                    currentLang === 'bn'
+                      ? 'আপনার ডাউন পেমেন্ট'
+                      : 'Your Down Payment'
+                  }
                   className="w-full border border-gray-200 bg-gray-50/50 rounded-lg p-2 text-xs outline-none focus:border-[#00c5a3] transition"
                 />
               </div>
               <div>
                 <label className="block text-[11px] font-semibold text-gray-700 mb-1">
-                  Loan Terms (Years)
+                  {currentLang === 'bn'
+                    ? 'ঋণের মেয়াদ (বছর)'
+                    : 'Loan Terms (Years)'}
                 </label>
                 <input
                   type="text"
-                  placeholder="Your Loan Terms"
+                  placeholder={
+                    currentLang === 'bn'
+                      ? 'আপনার ঋণের মেয়াদ'
+                      : 'Your Loan Terms'
+                  }
                   className="w-full border border-gray-200 bg-gray-50/50 rounded-lg p-2 text-xs outline-none focus:border-[#00c5a3] transition"
                 />
               </div>
               <div>
                 <label className="block text-[11px] font-semibold text-gray-700 mb-1">
-                  Interest Rate (%)
+                  {currentLang === 'bn' ? 'সুদের হার (%)' : 'Interest Rate (%)'}
                 </label>
                 <input
                   type="text"
-                  placeholder="Your Interest Rate"
+                  placeholder={
+                    currentLang === 'bn'
+                      ? 'আপনার সুদের হার'
+                      : 'Your Interest Rate'
+                  }
                   className="w-full border border-gray-200 bg-gray-50/50 rounded-lg p-2 text-xs outline-none focus:border-[#00c5a3] transition"
                 />
               </div>
               <div>
                 <label className="block text-[11px] font-semibold text-gray-700 mb-1">
-                  Min Sqft
+                  {currentLang === 'bn' ? 'সর্বনিম্ন স্কয়ার ফিট' : 'Min Sqft'}
                 </label>
                 <input
                   type="text"
+                  placeholder={
+                    currentLang === 'bn'
+                      ? 'সর্বনিম্ন স্কয়ার ফিট লিখুন'
+                      : 'Enter Min Sqft'
+                  }
                   className="w-full border border-gray-200 bg-gray-50/50 rounded-lg p-2 text-xs outline-none focus:border-[#00c5a3] transition"
                 />
               </div>
@@ -750,17 +937,28 @@ const PropertyDetails = () => {
               ></iframe>
             </div>
             <h4 className="text-[10px] font-bold text-gray-800 mb-2 uppercase tracking-wide">
-              Nearby Landmarks & Visits
+              {currentLang === 'bn'
+                ? 'আশেপাশের ল্যান্ডমার্ক এবং দর্শনীয় স্থান'
+                : 'Nearby Landmarks & Visits'}
             </h4>
             <ul className="text-xs space-y-1.5 text-gray-600">
               <li className="flex items-center gap-1.5">
-                🗽 Near By Statue of Liberty
+                🗽{' '}
+                {currentLang === 'bn'
+                  ? 'স্ট্যাচু অব লিবার্টির কাছাকাছি'
+                  : 'Near By Statue of Liberty'}
               </li>
               <li className="flex items-center gap-1.5">
-                🏛️ The Metropolitan Museum of Art
+                🏛️{' '}
+                {currentLang === 'bn'
+                  ? 'দ্য মেট্রোপলিটন মিউজিয়াম অব আর্ট'
+                  : 'The Metropolitan Museum of Art'}
               </li>
               <li className="flex items-center gap-1.5">
-                🌲 Yellowstone National Park
+                🌲{' '}
+                {currentLang === 'bn'
+                  ? 'ইয়েলোস্টোন ন্যাশনাল পার্ক'
+                  : 'Yellowstone National Park'}
               </li>
             </ul>
           </div>
