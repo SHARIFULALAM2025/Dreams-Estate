@@ -56,7 +56,7 @@ const PropertyDetails = () => {
        en: 'Bedrooms',
        bn: 'বেডরুম',
      },
-     value: `${property.data.property_bedrooms}`,
+     value: `${property?.data?.property_bedrooms}`,
    },
    {
      icon: <FaBath />,
@@ -64,7 +64,7 @@ const PropertyDetails = () => {
        en: 'Bathrooms',
        bn: 'বাথরুম',
      },
-     value: `${property.data.property_bathrooms}`,
+     value: `${property?.data?.property_bathrooms}`,
    },
    {
      icon: <FaCar />,
@@ -72,7 +72,7 @@ const PropertyDetails = () => {
        en: 'Parking',
        bn: 'পার্কিং',
      },
-     value: `${property.data.property_parking}`,
+     value: `${property?.data?.property_parking}`,
    },
    {
      icon: <MdOutlineBalcony className="text-xl" />,
@@ -80,7 +80,7 @@ const PropertyDetails = () => {
        en: 'Balcony',
        bn: 'বারান্দা',
      },
-     value: `${property.data.property_balcony}`,
+     value: `${property?.data?.property_balcony}`,
    },
    {
      icon: <FaBuilding />,
@@ -88,7 +88,7 @@ const PropertyDetails = () => {
        en: 'Floor',
        bn: 'তলা',
      },
-     value: `${property.data.property_floor}`,
+     value: `${property?.data?.property_floor}`,
    },
    {
      icon: <FaFileArrowDown />,
@@ -96,7 +96,7 @@ const PropertyDetails = () => {
        en: 'Wardrobe',
        bn: 'ওয়ারড্রোব',
      },
-     value: `${property.data.property_wardrobe}`,
+     value: `${property?.data?.property_wardrobe}`,
    },
    {
      icon: <FaTv />,
@@ -104,7 +104,7 @@ const PropertyDetails = () => {
        en: 'TV',
        bn: 'টিভি',
      },
-     value: `${property.data.property_tv}`,
+     value: `${property?.data?.property_tv}`,
    },
    {
      icon: <MdOutlineWaterDrop className="text-xl" />,
@@ -112,7 +112,7 @@ const PropertyDetails = () => {
        en: 'Water Purifier',
        bn: 'পানির পিউরিফায়ার',
      },
-     value: `${property.data.property_water_purifier}`,
+     value: `${property?.data?.property_water_purifier}`,
    },
    {
      icon: <MdOutlineKitchen className="text-xl" />,
@@ -120,7 +120,7 @@ const PropertyDetails = () => {
        en: 'Microwave',
        bn: 'মাইক্রোওয়েভ',
      },
-     value: `${property.data.property_microwave}`,
+     value: `${property?.data?.property_microwave}`,
    },
    {
      icon: <FaWind />,
@@ -128,7 +128,7 @@ const PropertyDetails = () => {
        en: 'AC',
        bn: 'এসি',
      },
-     value: `${property.data.property_ac}`,
+     value: `${property?.data?.property_ac}`,
    },
    {
      icon: <FaBuilding />,
@@ -136,7 +136,7 @@ const PropertyDetails = () => {
        en: 'Fridge',
        bn: 'ফ্রিজ',
      },
-     value: `${property.data.property_fridge}`,
+     value: `${property?.data?.property_fridge}`,
    },
    {
      icon: <FaRegCompass />,
@@ -144,7 +144,7 @@ const PropertyDetails = () => {
        en: 'Curtains',
        bn: 'পর্দা',
      },
-     value: `${property.data.property_available_curtains}`,
+     value: `${property?.data?.property_available_curtains}`,
    },
  ]
 
@@ -235,9 +235,9 @@ const PropertyDetails = () => {
 
             {/* Gallery Track Carousel Matrix */}
             <div className="grid grid-cols-5 gap-2">
-              {property?.data?.attachment?.map((item) => (
+              {property?.data?.attachment?.map((item, index) => (
                 <div
-                  key={item}
+                  key={index}
                   className="h-20 bg-gray-100 rounded-md overflow-hidden border border-gray-200 hover:border-indigo-500 transition cursor-pointer"
                 >
                   <img
