@@ -9,7 +9,7 @@ import Register from '../Auth/Register'
 import List from '../Listing/List/List'
 import GridSidebar from '../Listing/GridSidebar/GridSidebar'
 import ListSidebar from '../Listing/ListSidebar/ListSidebar'
-import RentList from '../Listing/RentList/RentList'
+
 import RentGridSidebar from '../Listing/RentGridSidebar/RentGridSidebar'
 import RentListSidebar from '../Listing/RentListSidebar/RentListSidebar'
 import ErrorPage404 from '../Error/ErrorPage404'
@@ -33,6 +33,7 @@ import DashboardLayout from './DashboardLayout'
 import ForgetPassword from '../Auth/ForgetPassword'
 import BuyProperty from '../BuyProperty/BuyProperty'
 import PropertyDetails from '../Pages/Home/PropertyDetails'
+import AgentList from '../Listing/AgentList/AgentList'
 
 
 
@@ -49,7 +50,7 @@ export const router = createBrowserRouter([
       { path: 'GridSidebar', Component: GridSidebar },
       { path: 'ListSidebar', Component: ListSidebar },
       { path: 'Rent', Component: Rent },
-      { path: 'RentList', Component: RentList },
+      { path: 'AgencyList', Component: AgentList },
       { path: 'RentGridSidebar', Component: RentGridSidebar },
       { path: 'RentListSidebar', Component: RentListSidebar },
       { path: 'BlogGrid', Component: BlogGrid },

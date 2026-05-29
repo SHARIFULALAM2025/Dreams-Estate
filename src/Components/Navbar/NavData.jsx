@@ -147,7 +147,7 @@ export const navData = [
           {
             id: 332,
             Name: { en: 'Agency List', bn: 'এজেন্সি লিস্ট' },
-            path: '/RentList',
+            path: '/AgencyList',
           },
           {
             id: 333,
