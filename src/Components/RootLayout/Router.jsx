@@ -34,6 +34,7 @@ import ForgetPassword from '../Auth/ForgetPassword'
 import BuyProperty from '../BuyProperty/BuyProperty'
 import PropertyDetails from '../Pages/Home/PropertyDetails'
 import AgentList from '../Listing/AgentList/AgentList'
+import AgentSidebar from '../Listing/AgentSidebar/AgentSidebar'
 
 
 
@@ -50,6 +51,7 @@ export const router = createBrowserRouter([
       { path: 'GridSidebar', Component: GridSidebar },
       { path: 'ListSidebar', Component: ListSidebar },
       { path: 'Rent', Component: Rent },
+      { path: 'AgentSidebar', Component: AgentSidebar },
       { path: 'AgencyList', Component: AgentList },
       { path: 'RentGridSidebar', Component: RentGridSidebar },
       { path: 'RentListSidebar', Component: RentListSidebar },

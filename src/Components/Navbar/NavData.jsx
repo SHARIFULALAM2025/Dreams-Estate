@@ -155,7 +155,7 @@ export const navData = [
               en: 'Agency Grid with sidebar',
               bn: 'সাইডবারসহ এজেন্সি গ্রিড',
             },
-            path: '/RentGridSidebar',
+            path: '/AgentSidebar',
           },
           {
             id: 334,
