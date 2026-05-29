@@ -163,7 +163,7 @@ export const navData = [
               en: 'Agency List with sidebar',
               bn: 'সাইডবারসহ এজেন্সি লিস্ট',
             },
-            path: '/RentListSidebar',
+            path: '/AgencyLSidebar',
           },
         ],
       },
