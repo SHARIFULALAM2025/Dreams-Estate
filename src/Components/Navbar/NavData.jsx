@@ -117,7 +117,7 @@ export const navData = [
               en: 'Agent Grid with sidebar',
               bn: 'সাইডবারসহ এজেন্ট গ্রিড',
             },
-            path: '/GridSidebar',
+            path: '/AgentGridProfile',
           },
           {
             id: 324,
@@ -125,7 +125,7 @@ export const navData = [
               en: 'Agent List with sidebar',
               bn: 'সাইডবারসহ এজেন্ট লিস্ট',
             },
-            path: '/ListSidebar',
+            path: '/AgentProfileSidebar',
           },
         ],
       },

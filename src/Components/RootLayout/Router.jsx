@@ -37,6 +37,8 @@ import AgentList from '../Listing/AgentList/AgentList'
 import AgentSidebar from '../Listing/AgentSidebar/AgentSidebar'
 import AgentListSidebar from '../Listing/AgentListSidebar/AgentListSidebar'
 import AgentListProfile from '../Listing/AgentListProfile/AgentListProfile'
+import AgentProfileListSidebar from '../Listing/AgentProfileListSidebar/AgentProfileListSidebar'
+import AgentGridProfile from '../Listing/AgentGridProfile/AgentGridProfile'
 
 
 
@@ -53,6 +55,8 @@ export const router = createBrowserRouter([
       { path: 'GridSidebar', Component: GridSidebar },
       { path: 'ListSidebar', Component: ListSidebar },
       { path: 'Rent', Component: Rent },
+      { path: 'AgentGridProfile', Component: AgentGridProfile },
+      { path: 'AgentProfileSidebar', Component: AgentProfileListSidebar },
       { path: 'AgentListProfile', Component: AgentListProfile },
       { path: 'AgencyLSidebar', Component: AgentListSidebar },
       { path: 'AgentSidebar', Component: AgentSidebar },
