@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 
 const fetchFaqPageData = async () => {
-    const { data } = await axios.get(`${import.meta.env.VITE_Backend_url}/faq/components/data`);
+    const { data } = await axios.get(`${import.meta.env.VITE_Backend_url}/faq/components/data/Faq_page_data`);
     return data;
 };
 
