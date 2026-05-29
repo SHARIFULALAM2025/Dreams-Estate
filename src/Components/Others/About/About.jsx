@@ -16,7 +16,7 @@ const About = () => {
       </div>
     )
 
-  
+
   const pageData = data
 
   return (
@@ -172,3 +172,15 @@ const About = () => {
 }
 
 export default About
+
+
+
+
+
+
+
+
+
+
+
+
