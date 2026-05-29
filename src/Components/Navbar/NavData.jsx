@@ -109,7 +109,7 @@ export const navData = [
           {
             id: 322,
             Name: { en: 'Agent List', bn: 'এজেন্ট লিস্ট' },
-            path: '/List',
+            path: '/AgentListProfile',
           },
           {
             id: 323,
