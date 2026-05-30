@@ -39,6 +39,7 @@ import AgentListSidebar from '../Listing/AgentListSidebar/AgentListSidebar'
 import AgentListProfile from '../Listing/AgentListProfile/AgentListProfile'
 import AgentProfileListSidebar from '../Listing/AgentProfileListSidebar/AgentProfileListSidebar'
 import AgentGridProfile from '../Listing/AgentGridProfile/AgentGridProfile'
+import BuyList from '../Listing/BuyList/BuyList'
 
 
 
@@ -75,10 +76,19 @@ export const router = createBrowserRouter([
       { path: 'gallery', Component: Gallery },
       { path: 'team', Component: Team },
       { path: 'buyProperty', Component: BuyProperty },
+      { path: 'buyList', Component: BuyList },
       { path: 'addProperty', Component: AddProperty },
       { path: 'BuyDetails/:agentId', Component: AgentDetails },
       { path: 'BlogDetails/:blogId', Component: BlogDetails },
       { path: 'propertyDetails/:propertyId', Component: PropertyDetails },
+      {
+        path: 'buyList/propertyDetails/:propertyId',
+        Component: PropertyDetails,
+      },
+      {
+        path: 'buyProperty/propertyDetails/:propertyId',
+        Component: PropertyDetails,
+      },
       { path: 'AgencyDetails/:agencyId', Component: AgencyDetails },
     ],
   },
