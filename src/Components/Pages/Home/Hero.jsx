@@ -3,8 +3,9 @@ import { useTranslation } from 'react-i18next'
 import { FaHome, FaKey, FaSearch, FaChevronDown } from 'react-icons/fa'
 
 const Hero = () => {
-   const { i18n } = useTranslation()
-        const currentLang = i18n.language
+  const { i18n } = useTranslation()
+  const currentLang = i18n.language
+  const text = '* Buy ** Sell ** Rent * '
   // ইমেজের লিস্ট
   const images = [
     'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80',
@@ -71,8 +72,6 @@ const Hero = () => {
               ? 'আপনার এলাকায় ক্রয় ও ভাড়ার জন্য সেরা সম্পত্তি খুঁজুন। আমাদের কাছে ৩০০০+ প্রিমিয়াম তালিকা রয়েছে।'
               : 'Find premium properties for buying and renting in your area. Explore 3000+ verified listings with trusted agents.'}
           </p>
-
-
         </div>
 
         {/* Tab Buttons Section */}
@@ -181,6 +180,42 @@ const Hero = () => {
                 />
                 <span className="ml-2 font-bold lg:hidden">Search Now</span>
               </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* Rotating Buy / Sell / Rent Circle */}
+      <div className="absolute right-25 top-10 animate-[spin_15s_linear_infinite] hidden lg:flex items-center justify-center w-28 h-28 z-20">
+        <div className="relative w-28 h-28 rounded-full bg-violet-600 shadow-2xl border border-violet-400 overflow-hidden">
+          {/* Rotating Text Container */}
+          <div className="absolute inset-0">
+            {text.split('').map((char, index) => {
+              const angle = (index * 360) / text.length
+
+              return (
+                <span
+                  key={index}
+                  className="absolute left-1/2 top-1/2 text-white font-bold text-[10px] tracking-wider uppercase select-none"
+                  style={{
+                    transform: `
+                translate(-50%, -50%)
+                rotate(${angle}deg)
+                translateY(-42px)
+                rotate(0deg)
+              `,
+                    transformOrigin: 'center center',
+                  }}
+                >
+                  {char}
+                </span>
+              )
+            })}
+          </div>
+
+          {/* Inner Circle / Center Content */}
+          <div className="absolute inset-[24px] rounded-full   border-dotted border-violet-400 bg-violet-700 flex items-center justify-center shadow-inner z-10">
+            <div className="w-8 h-8 rounded-full border-dotted border-violet-400 bg-violet-800 flex items-center justify-center">
+              <img src="/Logo.png" alt="" className="" />
             </div>
           </div>
         </div>
