@@ -107,7 +107,7 @@ const BuyGrid = () => {
 
                 {/* Title */}
                 <Link
-                  to={`propertyDetails/${property?.id}`}
+                  to={`/propertyDetails/${property?.id}`}
                   className="mb-2 block text-xl font-bold text-gray-900 transition group-hover:text-violet-600"
                 >
                   {property?.property_name?.[currentLang]}
