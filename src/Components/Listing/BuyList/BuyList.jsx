@@ -4,7 +4,6 @@ import {
   FaBed,
   FaBath,
   FaWind,
-  FaTshirt,
   FaTv,
   FaStar,
   FaHeart,

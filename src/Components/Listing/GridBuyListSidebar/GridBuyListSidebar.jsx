@@ -14,9 +14,9 @@ import {
   FaTv,
   FaCar,
 } from 'react-icons/fa'
-import { MdOutlineBalcony, MdOutlineGridView, MdOutlineKitchen, MdOutlineWaterDrop } from 'react-icons/md'
-import { FaBath, FaBed, FaFileArrowDown, FaRegHeart } from 'react-icons/fa6'
-import { FaMapMarkerAlt } from 'react-icons/fa'
+import { MdOutlineBalcony,  MdOutlineKitchen, MdOutlineWaterDrop } from 'react-icons/md'
+import { FaBath, FaBed, FaFileArrowDown } from 'react-icons/fa6'
+
 import { Link } from 'react-router'
 import { BiCategory, BiArea } from 'react-icons/bi'
 import { MdOutlineDashboardCustomize } from 'react-icons/md'
