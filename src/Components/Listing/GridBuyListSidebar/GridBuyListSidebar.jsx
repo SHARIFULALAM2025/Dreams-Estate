@@ -24,8 +24,8 @@ import { IoLocationOutline, IoPricetagOutline } from 'react-icons/io5'
 import { useBuyPageData } from '../../Hook/Buy'
 const GridBuyListSidebar = ({ onApplyFilter }) => {
   const { i18n } = useTranslation()
-  const currentLang = i18n.language
-
+  
+const currentLang = i18n.language || 'en'
   const { data: buyProperties = [], isLoading, isError } = useBuyPageData()
   const allData = buyProperties?.data || []
 
