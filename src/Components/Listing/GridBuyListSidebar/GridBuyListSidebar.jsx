@@ -519,7 +519,10 @@ const GridBuyListSidebar = ({ onApplyFilter }) => {
                 {/* Image Section */}
                 <div className="relative w-full md:w-72 xl:w-80 h-52 md:h-auto flex-shrink-0 overflow-hidden">
                   <img
-                    src={property?.attachment?.[0] || 'https://via.placeholder.com/400x300?text=No+Image'}
+                    src={
+                      property?.attachment?.[0] ||
+                      'https://via.placeholder.com/400x300?text=No+Image'
+                    }
                     alt={getSafeText(property?.property_name) || 'Property'}
                     className="w-full h-full object-cover transition duration-500 group-hover:scale-105"
                     loading="lazy"
@@ -547,7 +550,10 @@ const GridBuyListSidebar = ({ onApplyFilter }) => {
                   {/* Agent Avatar */}
                   <div className="absolute bottom-3 left-3 z-10">
                     <img
-                      src={property?.profileUrl || 'https://via.placeholder.com/100'}
+                      src={
+                        property?.profileUrl ||
+                        'https://via.placeholder.com/100'
+                      }
                       alt="Agent"
                       className="w-8 h-8 rounded-full border-2 border-white dark:border-slate-800 object-cover shadow-sm"
                     />
@@ -566,7 +572,9 @@ const GridBuyListSidebar = ({ onApplyFilter }) => {
                               <FaStar key={i} className="text-[10px]" />
                             ))}
                           </div>
-                          <span className="font-semibold text-gray-700 dark:text-slate-300">4.5</span>
+                          <span className="font-semibold text-gray-700 dark:text-slate-300">
+                            4.5
+                          </span>
                           <span>(4.5 Reviews)</span>
                         </div>
 
@@ -575,14 +583,19 @@ const GridBuyListSidebar = ({ onApplyFilter }) => {
                           to={`/buyList/propertyDetails/${propertyId}`}
                           className="text-base font-bold text-slate-950 dark:text-white hover:text-indigo-600 dark:hover:text-violet-400 transition-colors cursor-pointer block truncate"
                         >
-                          {getSafeText(property?.property_name) || (currentLang === 'bn' ? 'নামহীন প্রপার্টি' : 'Untitled Property')}
+                          {getSafeText(property?.property_name) ||
+                            (currentLang === 'bn'
+                              ? 'নামহীন প্রপার্টি'
+                              : 'Untitled Property')}
                         </Link>
                       </div>
 
                       {/* Price Badge */}
                       <div className="sm:text-right flex-shrink-0">
                         <span className="text-lg font-black text-slate-950 dark:text-white block">
-                          ৳ {displayPrice || (currentLang === 'bn' ? 'আলোচনা সাপেক্ষ' : 'N/A')}
+                          ৳{' '}
+                          {displayPrice ||
+                            (currentLang === 'bn' ? 'আলোচনা সাপেক্ষ' : 'N/A')}
                         </span>
                       </div>
                     </div>
@@ -591,15 +604,24 @@ const GridBuyListSidebar = ({ onApplyFilter }) => {
                     <div className="flex items-center gap-1 text-gray-500 dark:text-slate-400 text-xs mb-3">
                       <IoLocationOutline className="text-indigo-500 dark:text-violet-400 flex-shrink-0 w-3.5 h-3.5" />
                       <span className="truncate">
-                        {property?.city ? `${getSafeText(property.city)}, ` : ''}
-                        {property?.state ? `${getSafeText(property.state)}, ` : ''}
+                        {property?.city
+                          ? `${getSafeText(property.city)}, `
+                          : ''}
+                        {property?.state
+                          ? `${getSafeText(property.state)}, `
+                          : ''}
                         {property?.country ? getSafeText(property.country) : ''}
-                        {!property?.city && !property?.state && !property?.country && (currentLang === 'bn' ? 'ঠিকানা উপলব্ধ নেই' : 'No Location Specified')}
+                        {!property?.city &&
+                          !property?.state &&
+                          !property?.country &&
+                          (currentLang === 'bn'
+                            ? 'ঠিকানা উপলব্ধ নেই'
+                            : 'No Location Specified')}
                       </span>
                     </div>
 
                     {/* Horizontal Features Smooth Scroll */}
-                    <div className="flex flex-row gap-2 overflow-x-auto pb-2 pt-1 scrollbar-none">
+                    <div className="flex flex-row gap-2 overflow-x-auto pb-3 pt-1 scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-slate-700">
                       {propertyFeatures.map((feat, idx) => (
                         <div
                           key={idx}
@@ -624,10 +646,14 @@ const GridBuyListSidebar = ({ onApplyFilter }) => {
                   {/* Footer Row */}
                   <div className="flex items-center justify-between border-t border-gray-100 dark:border-slate-800 pt-2 mt-3 text-[11px] text-gray-400 dark:text-slate-400 font-medium">
                     <div>
-                      {currentLang === 'bn' ? 'তালিকাভুক্তির তারিখ :' : 'Listed on :'}{' '}
+                      {currentLang === 'bn'
+                        ? 'তালিকাভুক্তির তারিখ :'
+                        : 'Listed on :'}{' '}
                       <span className="text-gray-600 dark:text-slate-300">
                         {property?.property_available_from
-                          ? new Date(property.property_available_from).toLocaleDateString(
+                          ? new Date(
+                              property.property_available_from
+                            ).toLocaleDateString(
                               currentLang === 'bn' ? 'bn-BD' : 'en-US'
                             )
                           : 'N/A'}
@@ -642,7 +668,7 @@ const GridBuyListSidebar = ({ onApplyFilter }) => {
                   </div>
                 </div>
               </div>
-            );
+            )
           })}
         </div>
       </section>
