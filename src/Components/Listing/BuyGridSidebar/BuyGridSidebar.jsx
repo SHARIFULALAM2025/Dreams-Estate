@@ -51,25 +51,7 @@ const BuyGridSidebar = ({ onApplyFilter }) => {
     setOpenSections((prev) => ({ ...prev, [section]: !prev[section] }))
   }
 
-  // ল্যাঙ্গুয়েজ ডিকশনারি (English & Bengali Translation)
-  const t = {
-    title: { en: 'Filter', bn: 'ফিল্টার' },
-    reset: { en: 'Reset', bn: 'রিসেট' },
-    searchSec: { en: 'Search', bn: 'অনুসন্ধান' },
-    searchPlace: { en: 'Search here...', bn: 'এখানে খুঁজুন...' },
-    selectLoc: { en: 'Select Location', bn: 'লোকেশন নির্বাচন করুন' },
-    noBed: { en: 'No of Bedrooms', bn: 'বেডরুমের সংখ্যা' },
-    noBath: { en: 'No of Bathrooms', bn: 'বাথরুমের সংখ্যা' },
-    minSqft: { en: 'Min Sqft', bn: 'নূন্যতম স্কয়ার ফিট' },
-    categories: { en: 'Categories', bn: 'ক্যাটাগরি' },
-    amenities: { en: 'Amenities', bn: 'সুযোগ-সুবিধা' },
-    price: { en: 'Price', bn: 'মূল্য বা বাজেট' },
-    range: { en: 'Range', bn: 'সীমা' },
-    reviews: { en: 'Reviews', bn: 'রিভিউ' },
-    style: { en: 'Style', bn: 'স্টাইল' },
-    applyBtn: { en: 'Apply Filter', bn: 'ফিল্টার প্রয়োগ করুন' },
-    selectOpt: { en: 'Select', bn: 'বাছাই করুন' },
-  }
+  
 
   // ডামি কাউন্ট ডেটা
   const categoriesList = [
@@ -180,14 +162,14 @@ const BuyGridSidebar = ({ onApplyFilter }) => {
           <div className="flex items-center justify-between p-4 border-b border-gray-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50">
             <h2 className="text-sm font-bold text-slate-800 dark:text-white flex items-center gap-2">
               <FaFilter className="text-indigo-600 dark:text-violet-400 text-xs" />
-              {t?.title[currentLang]}
+              {currentLang === 'bn' ? 'ফিল্টার' : 'Filter'}
             </h2>
             <button
               type="button"
               onClick={handleReset}
               className="text-xs font-semibold text-rose-500 hover:text-rose-600 transition-colors cursor-pointer"
             >
-              {t?.reset[currentLang]}
+              {currentLang === 'bn' ? 'রিসেট' : 'Reset'}
             </button>
           </div>
 
@@ -203,7 +185,7 @@ const BuyGridSidebar = ({ onApplyFilter }) => {
               >
                 <span className="text-xs font-bold text-slate-700 dark:text-slate-300 flex items-center gap-2 uppercase tracking-wider">
                   <FaSearch className="text-slate-400 group-hover:text-indigo-500 dark:group-hover:text-violet-400 transition-colors" />
-                  {t.searchSec[currentLang]}
+                  {currentLang === 'bn' ? 'সার্চ' : 'Search'}
                 </span>
                 {openSections.search ? (
                   <FaChevronUp className="text-slate-400 text-xs" />
@@ -218,7 +200,7 @@ const BuyGridSidebar = ({ onApplyFilter }) => {
                   <div className="relative">
                     <input
                       type="text"
-                      placeholder={t?.searchPlace[currentLang]}
+                      placeholder={currentLang === 'bn' ? 'সার্চ করুন...' : 'Search...'}
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                       className="w-full pl-8 pr-3 py-2 bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-700 rounded text-xs focus:outline-hidden focus:border-indigo-500 dark:focus:border-violet-500 focus:bg-white dark:focus:bg-slate-950 transition-all"
@@ -229,7 +211,7 @@ const BuyGridSidebar = ({ onApplyFilter }) => {
                   {/* Select Location */}
                   <div>
                     <label className="block text-[11px] font-semibold text-slate-500 dark:text-slate-400 mb-1.5">
-                      {t.selectLoc[currentLang]}
+                      {currentLang === 'bn' ? 'অবস্থান নির্বাচন করুন' : 'Select Location'}
                     </label>
                     <div className="relative">
                       <select
@@ -237,7 +219,7 @@ const BuyGridSidebar = ({ onApplyFilter }) => {
                         onChange={(e) => setLocation(e.target.value)}
                         className="w-full px-2.5 py-2 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded text-xs text-slate-700 dark:text-slate-300 appearance-none focus:outline-hidden focus:border-indigo-500 dark:focus:border-violet-500 focus:bg-white dark:focus:bg-slate-950"
                       >
-                        <option value="">{t?.selectOpt[currentLang]}</option>
+                        <option value="">{currentLang === 'bn' ? 'নির্বাচন করুন' : 'Select Option'}</option>
                         <option value="Chicago">Chicago</option>
                         <option value="New York">New York</option>
                         <option value="Dhaka">Dhaka</option>
@@ -249,7 +231,7 @@ const BuyGridSidebar = ({ onApplyFilter }) => {
                   {/* No of Bedrooms */}
                   <div>
                     <label className="block text-[11px] font-semibold text-slate-500 dark:text-slate-400 mb-1.5">
-                      {t.noBed[currentLang]}
+                      {currentLang === 'bn' ? 'বেডরুমের সংখ্যা' : 'Number of Bedrooms'}
                     </label>
                     <div className="relative">
                       <select
@@ -257,7 +239,7 @@ const BuyGridSidebar = ({ onApplyFilter }) => {
                         onChange={(e) => setBedrooms(e.target.value)}
                         className="w-full px-2.5 py-2 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded text-xs text-slate-700 dark:text-slate-300 appearance-none focus:outline-hidden focus:border-indigo-500 dark:focus:border-violet-500 focus:bg-white dark:focus:bg-slate-950"
                       >
-                        <option value="">{t?.selectOpt[currentLang]}</option>
+                        <option value="">{currentLang === 'bn' ? 'নির্বাচন করুন' : 'Select Option'}</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -270,7 +252,7 @@ const BuyGridSidebar = ({ onApplyFilter }) => {
                   {/* No of Bathrooms */}
                   <div>
                     <label className="block text-[11px] font-semibold text-slate-500 dark:text-slate-400 mb-1.5">
-                      {t?.noBath[currentLang]}
+                      {currentLang === 'bn' ? 'বাথরুমের সংখ্যা' : 'Number of Bathrooms'}
                     </label>
                     <div className="relative">
                       <select
@@ -278,7 +260,7 @@ const BuyGridSidebar = ({ onApplyFilter }) => {
                         onChange={(e) => setBathrooms(e.target.value)}
                         className="w-full px-2.5 py-2 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded text-xs text-slate-700 dark:text-slate-300 appearance-none focus:outline-hidden focus:border-indigo-500 dark:focus:border-violet-500 focus:bg-white dark:focus:bg-slate-950"
                       >
-                        <option value="">{t.selectOpt[currentLang]}</option>
+                        <option value="">{currentLang === 'bn' ? 'নির্বাচন করুন' : 'Select Option'}</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -290,11 +272,11 @@ const BuyGridSidebar = ({ onApplyFilter }) => {
                   {/* Min Sqft */}
                   <div>
                     <label className="block text-[11px] font-semibold text-slate-500 dark:text-slate-400 mb-1.5">
-                      {t?.minSqft[currentLang]}
+                      {currentLang === 'bn' ? 'ন্যূনতম বর্গফুট' : 'Min Sqft'}
                     </label>
                     <input
                       type="number"
-                      placeholder={t.searchPlace[currentLang]}
+                      placeholder={currentLang === 'bn' ? 'ন্যূনতম বর্গফুট' : 'Min Sqft'}
                       value={minSqft}
                       onChange={(e) => setMinSqft(e.target.value)}
                       className="w-full px-2.5 py-2 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded text-xs text-slate-800 dark:text-slate-200 focus:outline-hidden focus:border-indigo-500 dark:focus:border-violet-500 focus:bg-white dark:focus:bg-slate-950"
@@ -312,7 +294,7 @@ const BuyGridSidebar = ({ onApplyFilter }) => {
               >
                 <span className="text-xs font-bold text-slate-700 dark:text-slate-300 flex items-center gap-2 uppercase tracking-wider">
                   <BiCategory className="text-slate-400 group-hover:text-indigo-500 dark:group-hover:text-violet-400 text-sm transition-colors" />
-                  {t?.categories[currentLang]}
+                  {currentLang === 'bn' ? 'ক্যাটেগরিগুলি' : 'Categories'}
                 </span>
                 {openSections.categories ? (
                   <FaChevronUp className="text-slate-400 text-xs" />
@@ -354,7 +336,7 @@ const BuyGridSidebar = ({ onApplyFilter }) => {
               >
                 <span className="text-xs font-bold text-slate-700 dark:text-slate-300 flex items-center gap-2 uppercase tracking-wider">
                   <MdOutlineDashboardCustomize className="text-slate-400 group-hover:text-indigo-500 dark:group-hover:text-violet-400 text-sm transition-colors" />
-                  {t.amenities[currentLang]}
+                  {currentLang === 'bn' ? 'সুবিধাসমূহ' : 'Amenities'}
                 </span>
                 {openSections?.amenities ? (
                   <FaChevronUp className="text-slate-400 text-xs" />
@@ -396,7 +378,7 @@ const BuyGridSidebar = ({ onApplyFilter }) => {
               >
                 <span className="text-xs font-bold text-slate-700 dark:text-slate-300 flex items-center gap-2 uppercase tracking-wider">
                   <IoPricetagOutline className="text-slate-400 group-hover:text-indigo-500 dark:group-hover:text-violet-400 text-sm transition-colors" />
-                  {t.price[currentLang]}
+                  {currentLang === 'bn' ? 'মূল্য স্লাইডার' : 'Price Slider'}
                 </span>
                 {openSections?.price ? (
                   <FaChevronUp className="text-slate-400 text-xs" />
@@ -434,7 +416,7 @@ const BuyGridSidebar = ({ onApplyFilter }) => {
               >
                 <span className="text-xs font-bold text-slate-700 dark:text-slate-300 flex items-center gap-2 uppercase tracking-wider">
                   <FaStar className="text-slate-400 group-hover:text-indigo-500 dark:group-hover:text-violet-400 text-sm transition-colors" />
-                  {t?.reviews[currentLang]}
+                  {currentLang === 'bn' ? 'সমীক্ষা রেটিং' : 'Reviews Rating'}
                 </span>
                 {openSections.reviews ? (
                   <FaChevronUp className="text-slate-400 text-xs" />
@@ -486,7 +468,7 @@ const BuyGridSidebar = ({ onApplyFilter }) => {
               >
                 <span className="text-xs font-bold text-slate-700 dark:text-slate-300 flex items-center gap-2 uppercase tracking-wider">
                   <BiArea className="text-slate-400 group-hover:text-indigo-500 dark:group-hover:text-violet-400 text-sm transition-colors" />
-                  {t?.style[currentLang]}
+                  {currentLang === 'bn' ? 'শৈলী' : 'Style'}
                 </span>
                 {openSections.style ? (
                   <FaChevronUp className="text-slate-400 text-xs" />
@@ -526,7 +508,7 @@ const BuyGridSidebar = ({ onApplyFilter }) => {
                 type="submit"
                 className="w-full bg-slate-900 dark:bg-violet-600 hover:bg-slate-900/90 dark:hover:bg-violet-700 text-white py-2.5 rounded font-bold text-xs uppercase tracking-wider shadow-xs transition-all cursor-pointer active:scale-98"
               >
-                {t?.applyBtn[currentLang]}
+                {currentLang === 'bn' ? 'আপ্লাই করুন' : 'Apply'}
               </button>
             </div>
           </form>
