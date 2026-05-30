@@ -17,11 +17,13 @@ import { Link } from 'react-router'
 const RentAndHome = () => {
    const { i18n } = useTranslation()
 
-   const currentLang = i18n.language
+   const currentLang = i18n.language || 'en'
 
    const { data: rentAndSell=[], isLoading, isError } = useRentAndSellPageData()
   const allData = rentAndSell?.data
   console.log(allData);
+  
+
   return (
     <section className="bg-white dark:bg-slate-950 py-10">
       <div className="container mx-auto px-4">
@@ -65,14 +67,14 @@ const RentAndHome = () => {
                 {/* Price */}
                 <div className="absolute bottom-4 left-4">
                   <h3 className="text-2xl font-bold text-white">
-                    {property.price}
+                    {property?.price}
                   </h3>
                 </div>
 
                 {/* Avatar */}
                 <div className="absolute bottom-4 right-4">
                   <img
-                    src={property.profileUrl}
+                    src={property?.profileUrl}
                     alt=""
                     className="h-12 w-12 rounded-full border-[3px] border-white object-cover"
                   />
@@ -97,7 +99,7 @@ const RentAndHome = () => {
                 </div>
 
                 {/* Title */}
-                <Link to={ `propertyDetails/${property.id}`} className="mb-2 text-xl font-bold text-gray-900 transition group-hover:text-violet-600">
+                <Link to={ `/propertyDetails/${property.id}`} className="mb-2 text-xl font-bold text-gray-900 transition group-hover:text-violet-600">
                   {property?.property_name?.[currentLang]}
                 </Link>
 
@@ -105,8 +107,9 @@ const RentAndHome = () => {
                 <div className="mb-5 flex items-center gap-2 text-sm text-gray-500">
                   <FaMapMarkerAlt className="text-violet-500" />
                   <span>
-                    {property.city[currentLang]} ,{property.state[currentLang]}{' '}
-                    ,{property.country[currentLang]}
+                    {property?.city?.[currentLang]} ,
+                    {property?.state?.[currentLang]} ,
+                    {property?.country?.[currentLang]}
                   </span>
                 </div>
 
@@ -114,17 +117,17 @@ const RentAndHome = () => {
                 <div className="mb-5 grid grid-cols-3 gap-2 rounded-lg bg-gray-100 p-3 text-sm text-gray-700">
                   <div className="flex items-center gap-2">
                     <FaBed className="text-violet-500" />
-                    <span>{property.property_bedrooms} Bedroom</span>
+                    <span>{property?.property_bedrooms} Bedroom</span>
                   </div>
 
                   <div className="flex items-center gap-2">
                     <FaBath className="text-violet-500" />
-                    <span>{property.property_bathrooms} Bath</span>
+                    <span>{property?.property_bathrooms} Bath</span>
                   </div>
 
                   <div className="flex items-center gap-2">
                     <MdOutlineGridView className="text-violet-500" />
-                    <span>{property.property_sqft} Sq Ft</span>
+                    <span>{property?.property_sqft} Sq Ft</span>
                   </div>
                 </div>
 
@@ -135,7 +138,7 @@ const RentAndHome = () => {
                       Listed on :
                     </span>{' '}
                     {new Date(
-                      property.property_available_from
+                      property?.property_available_from
                     ).toLocaleDateString()}
                   </p>
 
@@ -143,7 +146,7 @@ const RentAndHome = () => {
                     <span className="font-semibold text-gray-800">
                       Category :
                     </span>{' '}
-                    {property.property_category[currentLang]}
+                    {property?.property_category?.[currentLang]}
                   </p>
                 </div>
               </div>
