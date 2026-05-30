@@ -22,6 +22,7 @@ const RentAndHome = () => {
    const { data: rentAndSell=[], isLoading, isError } = useRentAndSellPageData()
   const allData = rentAndSell?.data
   console.log(allData);
+  //console.log(allData?.map((item) => item?.property_name[currentLang]))
 
 
   return (
@@ -100,16 +101,16 @@ const RentAndHome = () => {
 
                 {/* Title */}
                 <Link to={ `/propertyDetails/${property.id}`} className="mb-2 text-xl font-bold text-gray-900 transition group-hover:text-violet-600">
-                  {property?.property_name?.[currentLang]}
+                  {property?.property_name}
                 </Link>
 
                 {/* Location */}
                 <div className="mb-5 flex items-center gap-2 text-sm text-gray-500">
                   <FaMapMarkerAlt className="text-violet-500" />
                   <span>
-                    {property?.city?.[currentLang]} ,
-                    {property?.state?.[currentLang]} ,
-                    {property?.country?.[currentLang]}
+                    {property?.city} ,
+                    {property?.state} ,
+                    {property?.country}
                   </span>
                 </div>
 
@@ -146,7 +147,7 @@ const RentAndHome = () => {
                     <span className="font-semibold text-gray-800">
                       Category :
                     </span>{' '}
-                    {property?.property_category?.[currentLang]}
+                    {property?.property_category}
                   </p>
                 </div>
               </div>
