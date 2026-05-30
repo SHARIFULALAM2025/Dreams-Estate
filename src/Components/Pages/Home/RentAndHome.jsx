@@ -12,18 +12,45 @@ import {
 import { MdOutlineGridView } from 'react-icons/md'
 import { Link } from 'react-router'
 
-
-
 const RentAndHome = () => {
-   const { i18n } = useTranslation()
+  const { i18n } = useTranslation()
+  const currentLang = i18n.language || 'en'
 
-   const currentLang = i18n.language || 'en'
+  const {
+    data: rentAndSell = [],
+    isLoading,
+    isError,
+  } = useRentAndSellPageData()
+  const allData = rentAndSell?.data || []
 
-   const { data: rentAndSell=[], isLoading, isError } = useRentAndSellPageData()
-  const allData = rentAndSell?.data
-  console.log(allData);
-  //console.log(allData?.map((item) => item?.property_name[currentLang]))
+  // অবজেক্ট বা স্ট্রিং থেকে সেফলি ল্যাঙ্গুয়েজ অনুযায়ী টেক্সট ফিল্টার করার ফাংশন
+  const getLocalizedText = (field) => {
+    if (!field) return ''
+    if (typeof field === 'string') return field
+    return field[currentLang] || field['en'] || ''
+  }
 
+  // ডেটা লোড হওয়ার সময়ের সেফটি গার্ড
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center py-20 bg-white dark:bg-slate-950">
+        <p className="text-lg font-semibold text-slate-600 dark:text-slate-400">
+          Loading Properties...
+        </p>
+      </div>
+    )
+  }
+
+  // এরর বা ডেটা শূন্য থাকলে সেফটি গার্ড
+  if (isError || !allData.length) {
+    return (
+      <div className="flex justify-center items-center py-20 bg-white dark:bg-slate-950">
+        <p className="text-lg font-semibold text-rose-500">
+          No properties found or API error!
+        </p>
+      </div>
+    )
+  }
 
   return (
     <section className="bg-white dark:bg-slate-950 py-10">
@@ -37,8 +64,8 @@ const RentAndHome = () => {
               {/* Image */}
               <div className="relative overflow-hidden">
                 <img
-                  src={property?.attachment[0]}
-                  alt={property.title}
+                  src={property?.attachment?.[0]}
+                  alt={getLocalizedText(property?.property_name) || 'Property'}
                   className="h-[260px] w-full object-cover transition duration-500 group-hover:scale-110"
                 />
 
@@ -47,13 +74,13 @@ const RentAndHome = () => {
 
                 {/* Top badges */}
                 <div className="absolute left-4 top-4 flex items-center gap-2">
-                  {property.isNew && (
+                  {property?.isNew && (
                     <span className="rounded-full bg-red-500 px-3 py-1 text-xs font-semibold text-white">
                       New
                     </span>
                   )}
 
-                  {property.featured && (
+                  {property?.featured && (
                     <span className="rounded-full bg-orange-400 px-3 py-1 text-xs font-semibold text-white">
                       Featured
                     </span>
@@ -91,26 +118,25 @@ const RentAndHome = () => {
                       <FaStar key={i} />
                     ))}
                   </div>
-
-                  <span className="font-medium text-gray-700">
-                    4.5
-                  </span>
-
+                  <span className="font-medium text-gray-700">4.5</span>
                   <span>(4.5 Reviews)</span>
                 </div>
 
-                {/* Title */}
-                <Link to={ `/propertyDetails/${property.id}`} className="mb-2 text-xl font-bold text-gray-900 transition group-hover:text-violet-600">
-                  {property?.property_name}
+                {/* Title (Absolute Path এবং getLocalizedText ব্যবহার করা হয়েছে) */}
+                <Link
+                  to={`/propertyDetails/${property?.id}`}
+                  className="mb-2 block text-xl font-bold text-gray-900 transition group-hover:text-violet-600"
+                >
+                  {getLocalizedText(property?.property_name)}
                 </Link>
 
                 {/* Location */}
                 <div className="mb-5 flex items-center gap-2 text-sm text-gray-500">
                   <FaMapMarkerAlt className="text-violet-500" />
                   <span>
-                    {property?.city} ,
-                    {property?.state} ,
-                    {property?.country}
+                    {getLocalizedText(property?.city)} ,{' '}
+                    {getLocalizedText(property?.state)} ,{' '}
+                    {getLocalizedText(property?.country)}
                   </span>
                 </div>
 
@@ -138,16 +164,18 @@ const RentAndHome = () => {
                     <span className="font-semibold text-gray-800">
                       Listed on :
                     </span>{' '}
-                    {new Date(
-                      property?.property_available_from
-                    ).toLocaleDateString()}
+                    {property?.property_available_from
+                      ? new Date(
+                          property.property_available_from
+                        ).toLocaleDateString()
+                      : ''}
                   </p>
 
                   <p>
                     <span className="font-semibold text-gray-800">
                       Category :
                     </span>{' '}
-                    {property?.property_category}
+                    {getLocalizedText(property?.property_category)}
                   </p>
                 </div>
               </div>
