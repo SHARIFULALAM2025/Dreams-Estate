@@ -47,7 +47,7 @@ export const navData = [
           {
             id: 214,
             Name: { en: 'Buy List with sidebar', bn: 'সাইডবারসহ লিস্ট' },
-            path: '/ListSidebar',
+            path: '/buyListSidebar',
           },
         ],
       },

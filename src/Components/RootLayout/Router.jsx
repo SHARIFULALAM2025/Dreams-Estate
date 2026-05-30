@@ -41,6 +41,7 @@ import AgentProfileListSidebar from '../Listing/AgentProfileListSidebar/AgentPro
 import AgentGridProfile from '../Listing/AgentGridProfile/AgentGridProfile'
 import BuyList from '../Listing/BuyList/BuyList'
 import BuyGridSidebar from '../Listing/BuyGridSidebar/BuyGridSidebar'
+import GridBuyListSidebar from '../Listing/GridBuyListSidebar/GridBuyListSidebar'
 
 
 
@@ -79,6 +80,7 @@ export const router = createBrowserRouter([
       { path: 'buyProperty', Component: BuyProperty },
       { path: 'buyList', Component: BuyList },
       { path: 'buyGridSidebar', Component: BuyGridSidebar },
+      { path: 'buyListSidebar', Component: GridBuyListSidebar },
       { path: 'addProperty', Component: AddProperty },
       { path: 'BuyDetails/:agentId', Component: AgentDetails },
       { path: 'BlogDetails/:blogId', Component: BlogDetails },
