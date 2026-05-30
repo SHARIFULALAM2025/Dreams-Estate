@@ -12,110 +12,16 @@ import {
 import { MdOutlineGridView } from 'react-icons/md'
 import { Link } from 'react-router'
 
-const properties = [
-  {
-    id: 1,
-    image: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85',
-    title: 'Serenity Condo Suite',
-    location: '17, Grove Towers, New York, USA',
-    price: '$21000',
-    featured: true,
-    isNew: true,
-    rating: 5.0,
-    reviews: 20,
-    bedroom: 4,
-    bath: 4,
-    sqft: 350,
-    listedOn: '16 Jan 2023',
-    category: 'Apartment',
-    avatar: 'https://randomuser.me/api/portraits/women/44.jpg',
-  },
-  {
-    id: 2,
-    image: 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688',
-    title: 'Loyal Apartment',
-    location: '25, Willow Crest Apartment, USA',
-    price: '$1940',
-    featured: true,
-    rating: 4.6,
-    reviews: 36,
-    bedroom: 2,
-    bath: 2,
-    sqft: 350,
-    listedOn: '02 May 2025',
-    category: 'Apartment',
-    avatar: 'https://randomuser.me/api/portraits/women/65.jpg',
-  },
-  {
-    id: 3,
-    image: 'https://images.unsplash.com/photo-1568605114967-8130f3a36994',
-    title: 'Grand Villa House',
-    location: '10, Oak Ridge Villa, USA',
-    price: '$1370',
-    featured: true,
-    rating: 4.9,
-    reviews: 25,
-    bedroom: 4,
-    bath: 3,
-    sqft: 520,
-    listedOn: '28 Apr 2025',
-    category: 'Villa',
-    avatar: 'https://randomuser.me/api/portraits/women/32.jpg',
-  },
-  {
-    id: 4,
-    image: 'https://images.unsplash.com/photo-1448630360428-65456885c650',
-    title: 'Palm Cove Bungalows',
-    location: '42, Pine Residency, Miami, USA',
-    price: '$1370',
-    rating: 4.8,
-    reviews: 26,
-    bedroom: 5,
-    bath: 3,
-    sqft: 700,
-    listedOn: '16 Mar 2025',
-    category: 'Bungalow',
-    avatar: 'https://randomuser.me/api/portraits/men/41.jpg',
-  },
-  {
-    id: 5,
-    image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750',
-    title: 'Blue Horizon Villa',
-    location: '76, Golden Oaks, Dallas, USA',
-    price: '$2000',
-    rating: 4.9,
-    reviews: 19,
-    bedroom: 2,
-    bath: 1,
-    sqft: 400,
-    listedOn: '08 Mar 2025',
-    category: 'Villa',
-    avatar: 'https://randomuser.me/api/portraits/women/56.jpg',
-  },
-  {
-    id: 6,
-    image: 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267',
-    title: 'Wanderlust Lodge',
-    location: '91, Birch Residences, Boston, USA',
-    price: '$1950',
-    rating: 4.7,
-    reviews: 45,
-    bedroom: 3,
-    bath: 2,
-    sqft: 550,
-    listedOn: '25 Feb 2025',
-    category: 'Lodge',
-    avatar: 'https://randomuser.me/api/portraits/men/52.jpg',
-  },
-]
+
 
 const RentAndHome = () => {
    const { i18n } = useTranslation()
 
    const currentLang = i18n.language
 
-   const { data: rentAndSell, isLoading, isError } = useRentAndSellPageData()
-   const allData=rentAndSell?.data || []
+   const { data: rentAndSell=[], isLoading, isError } = useRentAndSellPageData()
+  const allData = rentAndSell?.data
+  console.log(allData);
   return (
     <section className="bg-white dark:bg-slate-950 py-10">
       <div className="container mx-auto px-4">
