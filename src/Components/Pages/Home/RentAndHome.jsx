@@ -22,7 +22,7 @@ const RentAndHome = () => {
    const { data: rentAndSell=[], isLoading, isError } = useRentAndSellPageData()
   const allData = rentAndSell?.data
   console.log(allData);
-  
+
 
   return (
     <section className="bg-white dark:bg-slate-950 py-10">
@@ -100,7 +100,7 @@ const RentAndHome = () => {
 
                 {/* Title */}
                 <Link to={ `/propertyDetails/${property.id}`} className="mb-2 text-xl font-bold text-gray-900 transition group-hover:text-violet-600">
-                  {property?.property_name?.[currentLang]}
+                  {/* {property?.property_name?.[currentLang]} */} hello
                 </Link>
 
                 {/* Location */}
