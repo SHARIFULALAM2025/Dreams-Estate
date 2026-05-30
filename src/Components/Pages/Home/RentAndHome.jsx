@@ -100,7 +100,7 @@ const RentAndHome = () => {
 
                 {/* Title */}
                 <Link to={ `/propertyDetails/${property.id}`} className="mb-2 text-xl font-bold text-gray-900 transition group-hover:text-violet-600">
-                  {/* {property?.property_name?.[currentLang]} */} hello
+                  {property?.property_name?.[currentLang]}
                 </Link>
 
                 {/* Location */}
