@@ -46,7 +46,7 @@ const BuyList = () => {
   return (
     <div className="dark:bg-black p-4 bg-gray-50 min-h-screen">
       {/* Property List Wrapper */}
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-3">
         {allData.map((property) => {
           // propertyFeatures অ্যারেটি লুপের ভেতরে রাখা হয়েছে
           const propertyFeatures = [

@@ -34,11 +34,15 @@ export const navData = [
             Name: { en: 'Buy Grid', bn: 'বাই গ্রিড' },
             path: '/buyProperty',
           },
-          { id: 212, Name: { en: 'Buy List', bn: 'বাই লিস্ট' }, path: '/buyList' },
+          {
+            id: 212,
+            Name: { en: 'Buy List', bn: 'বাই লিস্ট' },
+            path: '/buyList',
+          },
           {
             id: 213,
             Name: { en: 'Buy Grid with sidebar', bn: 'সাইডবারসহ গ্রিড' },
-            path: '/GridSidebar',
+            path: '/buyGridSidebar',
           },
           {
             id: 214,
