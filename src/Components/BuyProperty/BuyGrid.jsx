@@ -13,7 +13,14 @@ const BuyGrid = () => {
   const { data: buyProperties = [], isLoading, isError } = useBuyPageData()
   const allData = buyProperties?.data || []
 
-  // ১. এপিআই ডেটা লোড হওয়ার সময়ের সেফটি গার্ড
+  // অবজেক্ট বা স্ট্রিং থেকে সেফলি ল্যাঙ্গুয়েজ অনুযায়ী টেক্সট ফিল্টার করার ফাংশন
+  const getLocalizedText = (field) => {
+    if (!field) return ''
+    if (typeof field === 'string') return field
+    return field[currentLang] || field['en'] || ''
+  }
+
+  // ১. এপিআই ডেটা লোড হওয়ার সময়ের সেফটি গার্ড
   if (isLoading) {
     return (
       <div className="flex justify-center items-center py-20 bg-white dark:bg-slate-950">
@@ -48,7 +55,7 @@ const BuyGrid = () => {
               <div className="relative overflow-hidden">
                 <img
                   src={property?.attachment?.[0]}
-                  alt={property?.property_name?.[currentLang] || 'Property'}
+                  alt={getLocalizedText(property?.property_name) || 'Property'}
                   className="h-[260px] w-full object-cover transition duration-500 group-hover:scale-110"
                 />
 
@@ -110,16 +117,16 @@ const BuyGrid = () => {
                   to={`/propertyDetails/${property?.id}`}
                   className="mb-2 block text-xl font-bold text-gray-900 transition group-hover:text-violet-600"
                 >
-                  {property?.property_name?.[currentLang]}
+                  {getLocalizedText(property?.property_name)}
                 </Link>
 
-                {/* Location - সংশোধিত (Optional Chaining যুক্ত করা হয়েছে) */}
+                {/* Location */}
                 <div className="mb-5 flex items-center gap-2 text-sm text-gray-500">
                   <FaMapMarkerAlt className="text-violet-500" />
                   <span>
-                    {property?.city?.[currentLang]} ,
-                    {property?.state?.[currentLang]} ,
-                    {property?.country?.[currentLang]}
+                    {getLocalizedText(property?.city)} ,{' '}
+                    {getLocalizedText(property?.state)} ,{' '}
+                    {getLocalizedText(property?.country)}
                   </span>
                 </div>
 
@@ -141,7 +148,7 @@ const BuyGrid = () => {
                   </div>
                 </div>
 
-                {/* Footer - সংশোধিত (Optional Chaining যুক্ত করা হয়েছে) */}
+                {/* Footer */}
                 <div className="flex items-center justify-between border-t pt-4 text-sm text-gray-500">
                   <p>
                     <span className="font-semibold text-gray-800">
@@ -158,7 +165,7 @@ const BuyGrid = () => {
                     <span className="font-semibold text-gray-800">
                       Category :
                     </span>{' '}
-                    {property?.property_category?.[currentLang]}
+                    {getLocalizedText(property?.property_category)}
                   </p>
                 </div>
               </div>
