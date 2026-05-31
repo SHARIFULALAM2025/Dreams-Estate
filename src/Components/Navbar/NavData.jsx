@@ -54,8 +54,8 @@ export const navData = [
       {
         id: 22,
         Name: {
-          en: 'Rent Property',
-          bn: 'ভাড়া প্রপার্টি',
+          en: 'Sell Property',
+          bn: 'সেল প্রপার্টি',
         },
         path: '#',
         icon: <IoIosArrowDown />,
@@ -63,22 +63,22 @@ export const navData = [
         nestedLink: [
           {
             id: 221,
-            Name: { en: 'Rent Grid', bn: 'ভাড়া গ্রিড' },
-            path: '/Rent',
+            Name: { en: 'Sell Grid', bn: 'সেল গ্রিড' },
+            path: '/SellGrid',
           },
           {
             id: 222,
-            Name: { en: 'Rent List', bn: 'ভাড়া লিস্ট' },
-            path: '/RentList',
+            Name: { en: 'Sell List', bn: 'সেল লিস্ট' },
+            path: '/SellList',
           },
           {
             id: 223,
-            Name: { en: 'Rent Grid with sidebar', bn: 'সাইডবারসহ ভাড়া গ্রিড' },
+            Name: { en: 'Rent Grid with sidebar', bn: 'সাইডবারসহ সেল গ্রিড' },
             path: '/RentGridSidebar',
           },
           {
             id: 224,
-            Name: { en: 'Rent List with sidebar', bn: 'সাইডবারসহ ভাড়া লিস্ট' },
+            Name: { en: 'Rent List with sidebar', bn: 'সাইডবারসহ সেল লিস্ট' },
             path: '/RentListSidebar',
           },
         ],
