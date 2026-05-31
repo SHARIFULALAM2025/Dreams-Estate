@@ -44,6 +44,8 @@ import BuyGridSidebar from '../Listing/BuyGridSidebar/BuyGridSidebar'
 import GridBuyListSidebar from '../Listing/GridBuyListSidebar/GridBuyListSidebar'
 import SellGridProperty from '../Listing/SellGridProperty/SellGridProperty'
 import SellListProperty from '../Listing/SellListProperty/SellListProperty'
+import SellSidebarGrid from '../Listing/SellSidebarGrid/SellSidebarGrid'
+import SellListSidebar from '../Listing/SellListSidebar/SellListSidebar'
 
 
 
@@ -81,6 +83,8 @@ export const router = createBrowserRouter([
       { path: 'team', Component: Team },
       { path: 'buyProperty', Component: BuyProperty },
       { path: 'buyList', Component: BuyList },
+      { path: 'SellSidebarGrid', Component: SellSidebarGrid },
+      { path: 'SellListSidebar', Component: SellListSidebar },
       { path: 'SellGrid', Component: SellGridProperty },
       { path: 'SellList', Component: SellListProperty },
       { path: 'buyGridSidebar', Component: BuyGridSidebar },

@@ -73,13 +73,13 @@ export const navData = [
           },
           {
             id: 223,
-            Name: { en: 'Rent Grid with sidebar', bn: 'সাইডবারসহ সেল গ্রিড' },
-            path: '/RentGridSidebar',
+            Name: { en: 'Sell Grid with sidebar', bn: 'সাইডবারসহ সেল গ্রিড' },
+            path: '/SellSidebarGrid',
           },
           {
             id: 224,
-            Name: { en: 'Rent List with sidebar', bn: 'সাইডবারসহ সেল লিস্ট' },
-            path: '/RentListSidebar',
+            Name: { en: 'Sell List with sidebar', bn: 'সাইডবারসহ সেল লিস্ট' },
+            path: '/SellListSidebar',
           },
         ],
       },
