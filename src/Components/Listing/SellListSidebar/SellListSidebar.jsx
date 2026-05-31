@@ -716,7 +716,7 @@ const SellListSidebar = ({ onApplyFilter }) => {
                           {property?.post_name}
                         </p>
                         <p className="text-xs text-black">
-                          {getLocalizedText(property?.country)}
+                          {getSafeText(property?.country)}
                         </p>
                       </div>
                     </div>
