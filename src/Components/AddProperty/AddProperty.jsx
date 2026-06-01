@@ -274,7 +274,6 @@ const AddProperty = () => {
         attachment: uploadedLinks,
 
         postName: user?.displayName,
-
         postEmail: user?.email,
         profileUrl: user?.photoURL,
 
@@ -291,9 +290,16 @@ const AddProperty = () => {
         city: currentLang === 'bn' ? cityObj?.nameBn : cityObj?.nameEn,
       }
       console.log(finalData)
+      const token=localStorage.getItem('token')
       const response = await axios.post(
         `${import.meta.env.VITE_Backend_url}/api/property/add`,
-        finalData
+        finalData,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`, 
+          },
+        }
       )
 
       if (response.data?.success) {
@@ -461,7 +467,7 @@ const AddProperty = () => {
                   </span>
                 )}
               </div>
-              
+
               <div>
                 <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">
                   {currentLang === 'bn' ? 'বিক্রয় মূল্য' : 'Sale Price'}
